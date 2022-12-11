@@ -11,7 +11,7 @@ escapenoteWebProd:
     domainRedirects:
       www.escape-note.com: https://escape-note.com
     cloudfront:
-      # distributionId: E3R6HK8OW2PYQ6
+      distributionId: EERIX8RFPAXBV
       defaults:
         forward:
           headers:
