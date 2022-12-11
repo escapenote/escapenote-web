@@ -1,0 +1,26 @@
+name: escapenote-web-prod
+
+escapenoteWebProd:
+  component: '@sls-next/serverless-component@3.7'
+  inputs:
+    roleArn: 'arn:aws:iam::805854560716:role/escapenote-web-role'
+    bucketRegion: 'ap-northeast-2'
+    bucketName: 'escapenote-web-prod'
+    domain: ['escape-note.com']
+    domainType: 'both'
+    domainRedirects:
+      www.escape-note.com: https://escape-note.com
+    cloudfront:
+      # distributionId: E3R6HK8OW2PYQ6
+      defaults:
+        forward:
+          headers:
+            [Host, CloudFront-Is-Desktop-Viewer, CloudFront-Viewer-Country]
+    name:
+      defaultLambda: escapenoteWebProdDefaultLambda
+      apiLambda: escapenoteWebProdApiLambda
+      imageLambda: escapenoteWebProdImageLambda
+    certificate:
+      cloudFrontDefaultCertificate: false
+      acmCertificateArn: 'arn:aws:acm:us-east-1:805854560716:certificate/0874a7b5-ef44-4656-9c68-6c3e05c2e6ce'
+    publicDirectoryCache: true
