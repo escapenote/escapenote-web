@@ -19,8 +19,22 @@ class MyDocument extends Document {
       <Html lang="ko">
         <Head>
           <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+            rel="preload"
+            href="/fonts/MuseumClassicM.otf"
+            as="font"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/MuseumClassicB.otf"
+            as="font"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/MuseumClassicL.otf"
+            as="font"
+            crossOrigin="anonymous"
           />
           <Analytics />
         </Head>

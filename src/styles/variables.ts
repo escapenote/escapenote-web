@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export const variables = css`
   :root {
-    --family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    --family: 'MuseumClassic', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Roboto, Helvetica, Arial, sans-serif;
     --xsmall: 10px;
     --small: 12px;

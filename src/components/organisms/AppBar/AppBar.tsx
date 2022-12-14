@@ -32,6 +32,19 @@ const StyledHeader = styled.header`
   height: 70px;
   background-color: rgb(var(--content));
   z-index: 99;
+  ::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    right: 0;
+    display: block;
+    border-bottom: 1px solid rgb(var(--border));
+    width: 100%;
+    height: 5px;
+    background-color: rgb(var(--content));
+    z-index: 98;
+  }
   @media (min-width: 480px) {
     margin: 0 auto;
     max-width: 480px;

@@ -25,6 +25,9 @@ const CafeDetailPage = () => {
           title={`${data.name} - Escape Note`}
           description={data.addressLine}
           pageUrl={`${process.env.NEXT_PUBLIC_URL}/cafes/${id}`}
+          {...(data.images && {
+            imageUrl: `${process.env.NEXT_PUBLIC_IMAGE_URL}${data.images[0]}`,
+          })}
         />
       )}
 

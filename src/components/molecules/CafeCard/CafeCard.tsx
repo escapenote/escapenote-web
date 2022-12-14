@@ -2,6 +2,8 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 
 import { ICafe } from 'types';
+import { Box } from 'components/atoms';
+import iconLightbulb from 'assets/icons/lightbulb.svg';
 
 interface IProps {
   cafe: ICafe;
@@ -13,13 +15,21 @@ const CafeCard: React.FC<IProps> = ({ cafe }) => {
         <Name>{cafe.name}</Name>
         <Themes>
           {cafe.themes.map(theme => (
-            <img
-              key={theme.id}
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme.thumbnail}`}
-              alt={theme.name}
-              width="100px"
-              height="160px"
-            />
+            <Box key={theme.id} mr="12px">
+              <ThemeThumbsnail
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme.thumbnail}`}
+                alt={theme.name}
+              />
+              <Box flexDirection="row" alignItems="center">
+                <img
+                  src={iconLightbulb}
+                  alt="level"
+                  width="24px"
+                  height="24px"
+                />
+                난이도 {theme.level}
+              </Box>
+            </Box>
           ))}
         </Themes>
       </Container>
@@ -35,17 +45,19 @@ const Container = styled.a`
   padding: 10px;
 `;
 const Name = styled.strong`
-  margin-bottom: 6px;
+  margin-bottom: 15px;
   font-size: 16px;
-  font-weight: 700;
 `;
 const Themes = styled.div`
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  > img {
-    margin-right: 10px;
-  }
+  font-weight: 300;
+`;
+const ThemeThumbsnail = styled.img`
+  border-radius: 4px;
+  width: 82px;
+  height: 115px;
 `;
 
 export default CafeCard;
