@@ -60,7 +60,7 @@ const Title = styled.h1`
 const Action = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 24px;
+  min-width: 48px;
 `;
 
 export default Header;

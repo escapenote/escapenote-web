@@ -23,14 +23,13 @@ const Wrapper = styled.section`
   flex: 1;
 `;
 const Main = styled.main`
-  padding: 70px 0;
+  padding: 72px 0 70px 0;
   border: 1px solid rgb(var(--border));
   width: 100%;
   height: 100%;
   overflow: hidden;
   @media (min-width: 480px) {
     margin: 0 auto;
-    padding: 70px 0;
     max-width: 480px;
   }
 `;
