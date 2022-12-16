@@ -119,6 +119,7 @@ const ThemeIntro = styled.p`
   font-size: 16px;
   font-weight: 300;
   line-height: 22.4px;
+  white-space: pre-line;
 `;
 const ReservationLink = styled.a`
   position: absolute;

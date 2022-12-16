@@ -73,9 +73,9 @@ const CafeListPage = () => {
             {areaB || '전체'}
           </FilterItem>
         </Box>
-        <FilterItem shadow>
+        {/* <FilterItem shadow>
           <img src={iconFilter} alt="filter" width="24px" height="24px" />
-        </FilterItem>
+        </FilterItem> */}
       </Filters>
 
       {status === 'loading' ? (
