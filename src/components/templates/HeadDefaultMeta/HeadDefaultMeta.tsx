@@ -25,6 +25,12 @@ const HeadDefaultMeta: React.FC = () => {
 
       {/* 도메인 리소스 외부 연결시 시간 단축 */}
       <link rel="preconnect" href={process.env.NEXT_PUBLIC_API} />
+
+      {/* 네이버 웹 마스터도구 연동 */}
+      <meta
+        name="naver-site-verification"
+        content={process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION}
+      />
     </Head>
   );
 };
