@@ -16,7 +16,7 @@ const CafeCard: React.FC<IProps> = ({ cafe }) => {
         <Themes>
           {cafe.themes.map(theme => (
             <Box key={theme.id} mr="12px">
-              <ThemeThumbsnail
+              <ThemeThumbnail
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme.thumbnail}`}
                 alt={theme.name}
               />
@@ -54,7 +54,7 @@ const Themes = styled.div`
   overflow-x: auto;
   font-weight: 300;
 `;
-const ThemeThumbsnail = styled.img`
+const ThemeThumbnail = styled.img`
   border-radius: 4px;
   width: 82px;
   height: 115px;

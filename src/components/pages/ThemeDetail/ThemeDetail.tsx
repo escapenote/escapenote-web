@@ -15,7 +15,7 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
   return (
     <Wrapper>
       <Box flexDirection="row" alignItems="flex-start" mb="10px">
-        <Thumbsnail
+        <Thumbnail
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme?.thumbnail}`}
           alt={theme?.name}
         />
@@ -79,7 +79,7 @@ const Wrapper = styled.div`
   flex: 1;
   padding: 10px 20px;
 `;
-const Thumbsnail = styled.img`
+const Thumbnail = styled.img`
   flex: 1;
   min-width: 176px;
   aspect-ratio: 0.73 / 1;
