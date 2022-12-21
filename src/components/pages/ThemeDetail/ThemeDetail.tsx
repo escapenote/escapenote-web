@@ -12,10 +12,12 @@ interface IProps {
 const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
   return (
     <Wrapper>
-      <Thumbnail
-        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme?.thumbnail}`}
-        alt={theme?.name}
-      />
+      <ThumbnailBox>
+        <Thumbnail
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme?.thumbnail}`}
+          alt={theme?.name}
+        />
+      </ThumbnailBox>
 
       <ThemeName>{theme?.name}</ThemeName>
       <CafeName>{theme?.cafe.name}</CafeName>
@@ -71,10 +73,18 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
 const Wrapper = styled.div`
   position: relative;
 `;
-const Thumbnail = styled.img`
+const ThumbnailBox = styled.div`
+  position: relative;
   margin-bottom: 18px;
+  padding-top: 125%;
+`;
+const Thumbnail = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 16px;
-  aspect-ratio: 0.815 / 1;
 `;
 const ThemeName = styled.h1`
   margin-bottom: 2px;
@@ -131,7 +141,6 @@ const SubTitle = styled.strong`
   font-weight: 700;
   line-height: 24px;
 `;
-
 const Footer = styled.footer`
   position: fixed;
   bottom: 0;
@@ -147,6 +156,10 @@ const Footer = styled.footer`
   height: 72px;
   background-color: rgb(var(--content));
   z-index: 999;
+  @media (min-width: 480px) {
+    margin: 0 auto;
+    max-width: 480px;
+  }
 `;
 const Price = styled.strong`
   margin-bottom: 4px;

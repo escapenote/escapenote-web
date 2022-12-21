@@ -93,6 +93,7 @@ const Tab = styled.div<{ active?: boolean }>`
   font-size: 14px;
   font-weight: 500;
   color: rgb(var(--greyscale400));
+  cursor: pointer;
   ${p =>
     p.active &&
     css`
@@ -116,6 +117,10 @@ const Footer = styled.footer`
   height: 72px;
   background-color: rgb(var(--content));
   z-index: 999;
+  @media (min-width: 480px) {
+    margin: 0 auto;
+    max-width: 480px;
+  }
 `;
 const TelLink = styled.a`
   display: flex;
