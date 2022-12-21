@@ -31,7 +31,7 @@ const CafeDetailPage = () => {
         />
       )}
 
-      <Layout leftAction={<Back onClick={router.back} />}>
+      <Layout leftAction={<Back onClick={router.back} />} hideBottom>
         <CafeDetail id={id} cafe={data} />
       </Layout>
     </>

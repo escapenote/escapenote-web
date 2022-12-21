@@ -11,7 +11,7 @@ const ThemeListPage = () => {
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/themes`}
       />
 
-      <Layout>
+      <Layout title="테마" subTitle="방탈출 테마를 찾아보세요!">
         <ThemeList />
       </Layout>
     </>

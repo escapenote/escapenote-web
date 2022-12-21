@@ -29,7 +29,7 @@ const ThemeDetailPage = () => {
         />
       )}
 
-      <Layout leftAction={<Back onClick={router.back} />}>
+      <Layout leftAction={<Back onClick={router.back} />} hideBottom>
         <ThemeDetail id={id} theme={data} />
       </Layout>
     </>

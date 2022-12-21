@@ -5,16 +5,31 @@ import AppBar from 'components/organisms/AppBar';
 import BottomNavigationBar from 'components/organisms/BottomNavigationBar';
 
 interface IProps {
+  title?: string;
+  subTitle?: string;
   leftAction?: React.ReactNode;
   rightAction?: React.ReactNode;
+  hideBottom?: boolean;
   children: React.ReactNode;
 }
-const Layout: React.FC<IProps> = ({ leftAction, rightAction, children }) => {
+const Layout: React.FC<IProps> = ({
+  title,
+  subTitle,
+  leftAction,
+  rightAction,
+  hideBottom = false,
+  children,
+}) => {
   return (
     <Wrapper>
-      <AppBar leftAction={leftAction} rightAction={rightAction} />
+      <AppBar
+        title={title}
+        subTitle={subTitle}
+        leftAction={leftAction}
+        rightAction={rightAction}
+      />
       <Main>{children}</Main>
-      <BottomNavigationBar />
+      {!hideBottom && <BottomNavigationBar />}
     </Wrapper>
   );
 };
@@ -23,8 +38,7 @@ const Wrapper = styled.section`
   flex: 1;
 `;
 const Main = styled.main`
-  padding: 72px 0 70px 0;
-  border: 1px solid rgb(var(--border));
+  padding: 80px 24px 88px 24px;
   width: 100%;
   height: 100%;
   overflow: hidden;

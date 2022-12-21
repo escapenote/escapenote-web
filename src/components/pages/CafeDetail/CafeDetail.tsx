@@ -1,31 +1,147 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import { ICafe } from 'types';
+import { Box } from 'components/atoms';
+import iconCafeThumbnail from 'assets/icons/cafe-thumbnail.svg';
+import CafeThemes from './CafeThemes';
+import CafeInfo from './CafeInfo';
 
 interface IProps {
   id: string;
   cafe?: ICafe;
 }
 const CafeDetail: React.FC<IProps> = ({ id, cafe }) => {
+  const [tab, setTab] = useState('themes');
+
+  function handleChangeTab(activeTab: string) {
+    setTab(activeTab);
+  }
+
   return (
     <Wrapper>
-      <div>카페명: {cafe?.name}</div>
-      <div>지역 대분류: {cafe?.areaA}</div>
-      <div>지역 소분류: {cafe?.areaB}</div>
-      <div>주소: {cafe?.addressLine}</div>
-      <div>
-        위도/경도: {cafe?.lat}/{cafe?.lng}
-      </div>
-      <div>웹사이트: {cafe?.website}</div>
-      <div>전화번호: {cafe?.tel}</div>
-      <div>오픈시간: {cafe?.openingHour}</div>
-      <div>클로즈시간: {cafe?.closingHour}</div>
+      <Box alignItems="center" mb="32px">
+        {cafe && cafe.images.length > 0 ? (
+          <Image
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${cafe.images[0]}`}
+            alt={cafe.name}
+          />
+        ) : (
+          <Image src={iconCafeThumbnail} alt={cafe?.name} />
+        )}
+        <Name>{cafe?.name}</Name>
+        <Location>
+          {cafe?.areaA} {cafe?.areaB}
+        </Location>
+      </Box>
+
+      <Tabs>
+        <Tab
+          active={tab === 'themes'}
+          onClick={() => handleChangeTab('themes')}
+        >
+          테마 ({cafe?.themes.length})
+        </Tab>
+        <Tab active={tab === 'info'} onClick={() => handleChangeTab('info')}>
+          기본정보
+        </Tab>
+      </Tabs>
+
+      {tab === 'themes' && <CafeThemes themes={cafe?.themes} />}
+      {tab === 'info' && <CafeInfo cafe={cafe} />}
+
+      <Footer>
+        <TelLink href={`tel:${cafe?.tel}}`}>전화하기</TelLink>
+        <SiteLink href={cafe?.website} target="_blank">
+          홈페이지
+        </SiteLink>
+      </Footer>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
-  padding: 20px;
+const Wrapper = styled.div``;
+const Image = styled.img`
+  margin-bottom: 12px;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+`;
+const Name = styled.strong`
+  margin-bottom: 2px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: center;
+`;
+const Location = styled.span`
+  font-size: 12px;
+  color: rgb(var(--greyscale400));
+`;
+const Tabs = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const Tab = styled.div<{ active?: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  border-bottom: 1.5px solid transparent;
+  height: 48px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(var(--greyscale400));
+  ${p =>
+    p.active &&
+    css`
+      border-color: rgb(var(--primary));
+      font-weight: 700;
+      color: rgb(var(--primary));
+    `}
+`;
+const Footer = styled.footer`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgb(var(--border));
+  padding: 8px 24px;
+  width: 100%;
+  height: 72px;
+  background-color: rgb(var(--content));
+  z-index: 999;
+`;
+const TelLink = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid rgb(var(--border));
+  padding: 16px;
+  width: 148px;
+  height: 56px;
+  background-color: rgb(var(--content));
+  font-size: 14px;
+  font-weight: 700;
+`;
+const SiteLink = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  padding: 16px;
+  width: 148px;
+  height: 56px;
+  background-color: rgb(var(--primary));
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
 `;
 
 export default CafeDetail;

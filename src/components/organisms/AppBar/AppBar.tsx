@@ -1,20 +1,27 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import iconLogo from 'assets/icons/escape-note.svg';
+import { Box } from 'components/atoms';
 
 interface IProps {
   title?: string;
+  subTitle?: string;
   leftAction?: React.ReactNode;
   rightAction?: React.ReactNode;
 }
-const Header: React.FC<IProps> = props => (
+const Header: React.FC<IProps> = ({
+  title,
+  subTitle,
+  leftAction,
+  rightAction,
+}) => (
   <StyledHeader>
-    <Action>{props.leftAction}</Action>
-    <Title>
-      <img src={iconLogo} alt="escpae note" width="132px" height="32px" />
-    </Title>
-    <Action>{props.rightAction}</Action>
+    {leftAction && <Action>{leftAction}</Action>}
+    <Box>
+      {subTitle && <SubTitle>{subTitle}</SubTitle>}
+      {title && <Title>{title}</Title>}
+    </Box>
+    {rightAction && <Action>{rightAction}</Action>}
   </StyledHeader>
 );
 
@@ -26,36 +33,23 @@ const StyledHeader = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgb(var(--border));
-  border-bottom: 2px solid rgb(var(--border));
-  padding: 16px 16px 0 16px;
-  height: 70px;
+  border-bottom: 1px solid rgb(var(--border));
+  padding: 8px 24px;
+  height: 56px;
   background-color: rgb(var(--content));
-  z-index: 99;
-  ::after {
-    content: '';
-    position: absolute;
-    bottom: -7px;
-    left: 0;
-    right: 0;
-    display: block;
-    border-bottom: 1px solid rgb(var(--border));
-    width: 100%;
-    height: 5px;
-    background-color: rgb(var(--content));
-    z-index: 98;
-  }
+  z-index: 999;
   @media (min-width: 480px) {
     margin: 0 auto;
     max-width: 480px;
   }
 `;
 const Title = styled.h1`
-  display: block;
-  max-width: 300px;
-  img {
-    object-fit: contain;
-  }
+  font-size: 18px;
+  font-weight: 700;
+`;
+const SubTitle = styled.small`
+  font-size: 10px;
+  color: rgb(var(--greyscale400));
 `;
 const Action = styled.div`
   display: flex;

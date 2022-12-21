@@ -2,10 +2,8 @@ import styled from '@emotion/styled';
 
 import { ITheme } from 'types';
 import { Box } from 'components/atoms';
-import iconMovie from 'assets/icons/movie.svg';
-import iconTime from 'assets/icons/time.svg';
-import iconLightbulb from 'assets/icons/lightbulb.svg';
-import iconSensor from 'assets/icons/sensor.svg';
+import CafeMiniCard from 'components/molecules/CafeMiniCard';
+import { numberWithComma } from 'utils/common';
 
 interface IProps {
   id: string;
@@ -14,126 +12,163 @@ interface IProps {
 const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
   return (
     <Wrapper>
-      <Box flexDirection="row" alignItems="flex-start" mb="10px">
-        <Thumbnail
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme?.thumbnail}`}
-          alt={theme?.name}
-        />
+      <Thumbnail
+        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme?.thumbnail}`}
+        alt={theme?.name}
+      />
 
-        <Box flex="1" ml="12px">
-          <CafeBox>
-            <CafeLabel>카페</CafeLabel>
-            <CafeName>{theme?.cafe.name}</CafeName>
-          </CafeBox>
+      <ThemeName>{theme?.name}</ThemeName>
+      <CafeName>{theme?.cafe.name}</CafeName>
 
-          <Box py="10px">
-            <ThemeGenre>
-              <img src={iconMovie} alt="genre" width="24px" height="24px" />
-              {theme && theme?.genre.length > 0
-                ? theme?.genre.map(v => v.id).join(', ')
-                : '-'}
-            </ThemeGenre>
-            <ThemeDuring>
-              <img src={iconTime} alt="during" width="24px" height="24px" />
-              {theme?.during}분
-            </ThemeDuring>
-            <ThemeLevel>
-              <img src={iconLightbulb} alt="level" width="24px" height="24px" />
-              난이도 {theme?.level}
-            </ThemeLevel>
-            <ThemeLockingRatio>
-              <img
-                src={iconSensor}
-                alt="lockingRatio"
-                width="24px"
-                height="24px"
-              />
-              장치 {theme?.lockingRatio}%
-            </ThemeLockingRatio>
-          </Box>
+      <Properties>
+        <Property>
+          <span>난이도</span>
+          <strong>{theme?.level}</strong>
+        </Property>
+        <Property>
+          <span>시간</span>
+          <strong>{theme?.during}분</strong>
+        </Property>
+        <Property>
+          <span>인원수</span>
+          <strong>
+            {theme?.minPerson}-{theme?.maxPerson}
+          </strong>
+        </Property>
+      </Properties>
+
+      {theme && (
+        <GenreBox>
+          {theme.genre.length > 0 &&
+            theme.genre.slice(0, 3).map(v => <Genre key={v.id}>#{v.id}</Genre>)}
+          {theme.genre.length > 3 && '...'}
+        </GenreBox>
+      )}
+      <Intro>{theme?.intro}</Intro>
+
+      <Box mb="18px">
+        <SubTitle>카페</SubTitle>
+        {theme?.cafe && <CafeMiniCard cafe={theme?.cafe} />}
+      </Box>
+
+      <Footer>
+        <Box>
+          <Price>₩{numberWithComma(theme?.price)}</Price>
+          <PriceHelper>※ 2인 플레이 기준 1인 가격</PriceHelper>
         </Box>
-      </Box>
-
-      <Box>
-        <ThemeName>{theme?.name}</ThemeName>
-        <ThemeIntro>{theme?.intro}</ThemeIntro>
-      </Box>
-
-      <ReservationLink href={theme?.reservationUrl} target="_blank">
-        예약하기
-      </ReservationLink>
-
-      {/* <div>금액: {theme?.price}</div>
-      <div>
-        인원수: {theme?.minPerson} ~ {theme?.maxPerson}
-      </div>
-      <div>오픈일: {theme?.openDate}</div>
-      <div>상세 페이지: {theme?.detailUrl}</div>
-      <div>예약 페이지: {theme?.reservationUrl}</div> */}
+        <ReservationLink
+          href={theme?.reservationUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          예약하기
+        </ReservationLink>
+      </Footer>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   position: relative;
-  flex: 1;
-  padding: 10px 20px;
 `;
 const Thumbnail = styled.img`
-  flex: 1;
-  min-width: 176px;
-  aspect-ratio: 0.73 / 1;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  aspect-ratio: 0.815 / 1;
 `;
-const CafeBox = styled.div`
-  margin-bottom: 10px;
-  border: 1px solid rgb(var(--border));
-  padding: 10px 10px 32px 10px;
-`;
-const CafeLabel = styled.label`
-  margin-bottom: 5px;
-  font-size: 18px;
+const ThemeName = styled.h1`
+  margin-bottom: 2px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: center;
 `;
 const CafeName = styled.strong`
-  font-size: 16px;
-  font-weight: 300;
+  margin-bottom: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(var(--greyscale400));
+  text-align: center;
 `;
-const ThemeGenre = styled.div`
+const Properties = styled.ul`
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 18px;
+`;
+const Property = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > span {
+    margin-bottom: 2px;
+    font-size: 12px;
+    color: rgb(var(--greyscale500));
+  }
+  > strong {
+    font-size: 14px;
+    font-weight: 700;
+  }
+`;
+const GenreBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 5px;
-  font-weight: 300;
-  > img {
-    margin-right: 2px;
-  }
+  font-size: 14px;
+  color: rgb(var(--primary));
+  line-height: 20px;
 `;
-const ThemeDuring = styled(ThemeGenre)``;
-const ThemeLevel = styled(ThemeGenre)``;
-const ThemeLockingRatio = styled(ThemeGenre)``;
-const ThemeName = styled.h1`
-  margin-bottom: 5px;
-  font-size: 18px;
-  line-height: 25.2px;
+const Genre = styled.span`
+  margin-right: 4px;
 `;
-const ThemeIntro = styled.p`
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 22.4px;
+const Intro = styled.p`
+  margin-bottom: 28px;
+  color: rgb(var(--greyscale400));
   white-space: pre-line;
 `;
-const ReservationLink = styled.a`
-  position: absolute;
+const SubTitle = styled.strong`
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+`;
+
+const Footer = styled.footer`
+  position: fixed;
+  bottom: 0;
+  left: 0;
   right: 0;
-  bottom: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgb(var(--border));
+  padding: 8px 24px;
+  width: 100%;
+  height: 72px;
+  background-color: rgb(var(--content));
+  z-index: 999;
+`;
+const Price = styled.strong`
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+`;
+const PriceHelper = styled.small`
+  font-size: 12px;
+  color: rgb(var(--greyscale400));
+`;
+const ReservationLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px 0px 0px 4px;
-  border: 1px solid rgb(var(--border));
-  width: 84px;
-  height: 37px;
-  box-shadow: 2px 2px 2px rgb(var(--border));
-  background-color: rgb(var(--border));
+  border-radius: 16px;
+  padding: 16px;
+  width: 148px;
+  height: 56px;
+  background-color: rgb(var(--primary));
+  font-size: 14px;
+  font-weight: 700;
   color: white;
 `;
 

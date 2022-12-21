@@ -11,7 +11,7 @@ const CafeListPage = () => {
         pageUrl={`${process.env.NEXT_PUBLIC_URL}`}
       />
 
-      <Layout>
+      <Layout title="방탈출 카페" subTitle="방탈출 카페를 찾아보세요!">
         <CafeList />
       </Layout>
     </>

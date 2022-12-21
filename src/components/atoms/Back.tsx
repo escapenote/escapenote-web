@@ -8,14 +8,16 @@ interface IProps {
 }
 const Back: React.FC<IProps> = props => (
   <Action onClick={props.onClick}>
-    <img src={iconArrowBack} alt="back" width="48px" height="48px" />
+    <img src={iconArrowBack} alt="back" width="32px" height="32px" />
   </Action>
 );
 
 const Action = styled.button`
   display: flex;
   flex-direction: column;
-  flex-basis: 48px;
+  flex-basis: 32px;
+  width: 32px;
+  height: 32px;
 `;
 
 export default Back;

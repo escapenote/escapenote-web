@@ -31,6 +31,12 @@ const HeadDefaultMeta: React.FC = () => {
         name="naver-site-verification"
         content={process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION}
       />
+
+      {/* 네이버 지도 */}
+      <script
+        async
+        src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP}`}
+      />
     </Head>
   );
 };

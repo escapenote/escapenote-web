@@ -18,24 +18,6 @@ class MyDocument extends Document {
     return (
       <Html lang="ko">
         <Head>
-          <link
-            rel="preload"
-            href="/fonts/MuseumClassicM.otf"
-            as="font"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/MuseumClassicB.otf"
-            as="font"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/MuseumClassicL.otf"
-            as="font"
-            crossOrigin="anonymous"
-          />
           <Analytics />
         </Head>
         <body>

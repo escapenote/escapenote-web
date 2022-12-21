@@ -5,6 +5,7 @@ import { IPage, ITheme } from 'types';
  * 테마 리스트 조회
  */
 interface IFetchThemesProps {
+  cafeId?: string;
   genre?: string;
   areaB?: string;
   level?: string;
@@ -13,6 +14,7 @@ interface IFetchThemesProps {
   cursor?: string;
 }
 export const fetchThemes = async ({
+  cafeId,
   genre,
   areaB,
   level,
@@ -21,6 +23,7 @@ export const fetchThemes = async ({
   cursor,
 }: IFetchThemesProps) => {
   const params = { take, cursor } as any;
+  if (cafeId) params.cafeId = cafeId;
   if (genre) params.genre = genre;
   if (areaB) params.areaB = areaB;
   if (level) params.level = Number(level);

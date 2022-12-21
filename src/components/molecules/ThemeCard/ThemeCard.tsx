@@ -2,11 +2,9 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 
 import { ITheme } from 'types';
+import { numberWithComma } from 'utils/common';
 import { Box } from 'components/atoms';
-import iconMovie from 'assets/icons/movie.svg';
-import iconTime from 'assets/icons/time.svg';
-import iconLightbulb from 'assets/icons/lightbulb.svg';
-import iconSensor from 'assets/icons/sensor.svg';
+import iconLock from 'assets/icons/lock.svg';
 
 interface IProps {
   theme: ITheme;
@@ -20,34 +18,34 @@ const ThemeCard: React.FC<IProps> = ({ theme }) => {
           alt={theme.name}
         />
         <Contents>
-          <Name>{theme.name}</Name>
-          <Cafe>{theme.cafe.name}</Cafe>
-          <Box flexDirection="row" alignItems="center" mb="5px">
-            <GenreBox>
-              <img src={iconMovie} alt="genre" width="24px" height="24px" />
-              {theme.genre.length > 0
-                ? theme.genre.map(v => v.id).join(', ')
-                : '-'}
-            </GenreBox>
-            <DuringBox>
-              <img src={iconTime} alt="during" width="24px" height="24px" />
-              {theme.during}분
-            </DuringBox>
-          </Box>
-          <Box flexDirection="row" alignItems="center">
+          <Box>
+            <Name>{theme.name}</Name>
+            {theme.cafe && <Cafe>{theme.cafe.name}</Cafe>}
             <LevelBox>
-              <img src={iconLightbulb} alt="level" width="24px" height="24px" />
-              난이도 {theme.level}
+              {Array.from({ length: theme.level }, (_, i) => (
+                <img
+                  key={i}
+                  src={iconLock}
+                  alt="level"
+                  width="16px"
+                  height="16px"
+                />
+              ))}
             </LevelBox>
-            <LockingRatioBox>
-              <img
-                src={iconSensor}
-                alt="lockingRatio"
-                width="24px"
-                height="24px"
-              />
-              장치 {theme.lockingRatio}%
-            </LockingRatioBox>
+          </Box>
+          <Box
+            flexDirection="row"
+            justifyContent="space-between"
+            alignItems="flex-end"
+          >
+            <GenreBox>
+              {theme.genre.length > 0 &&
+                theme.genre
+                  .slice(0, 3)
+                  .map(v => <Genre key={v.id}>#{v.id}</Genre>)}
+              {theme.genre.length > 3 && '...'}
+            </GenreBox>
+            <Price>₩{numberWithComma(theme.price)}</Price>
           </Box>
         </Contents>
       </Container>
@@ -58,47 +56,61 @@ const ThemeCard: React.FC<IProps> = ({ theme }) => {
 const Container = styled.a`
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid rgb(var(--border));
-  padding: 12px 32px;
-  width: 100%;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 0 40px rgba(17, 24, 39, 0.06);
 `;
 const Thumbnail = styled.img`
-  border-radius: 4px;
-  width: 105px;
-  height: 147px;
+  border-radius: 12px;
+  width: 96px;
+  height: 96px;
 `;
 const Contents = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   flex: 1;
-  padding: 10px;
+  margin-left: 18px;
 `;
 const Name = styled.strong`
-  margin-bottom: 5px;
-  font-size: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
 `;
 const Cafe = styled.span`
-  margin-bottom: 10px;
-  font-size: 16px;
-  font-weight: 300;
-  color: #333333;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: rgb(var(--greyscale400));
+`;
+const LevelBox = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 const GenreBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-right: 7px;
-  height: 24px;
-  line-height: 24px;
-  font-size: 14px;
-  font-weight: 300;
-  > img {
-    margin-right: 2px;
-  }
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: rgb(var(--primary));
+  line-height: 18px;
 `;
-const DuringBox = styled(GenreBox)``;
-const LevelBox = styled(GenreBox)``;
-const LockingRatioBox = styled(GenreBox)``;
+const Genre = styled.span`
+  margin-right: 4px;
+`;
+const Price = styled.span`
+  border-radius: 8px;
+  padding: 7px 8px;
+  background-color: rgb(var(--primary100));
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(var(--primary));
+`;
 
 export default ThemeCard;

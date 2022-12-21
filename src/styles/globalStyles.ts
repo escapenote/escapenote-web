@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 
 import { variables } from './variables';
 import reset from './reset';
-import fonts from './fonts';
 
 const globalStyles = css`
   /* Global CSS Variables */
@@ -10,9 +9,6 @@ const globalStyles = css`
 
   /* CSS Reset */
   ${reset}
-
-  /* Fonts */
-  ${fonts}
 
   /* Common Styles */
   *, *:before, *:after {
