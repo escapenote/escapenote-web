@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import React, { useEffect, useRef } from 'react';
 
 interface IProps {
@@ -29,13 +30,12 @@ const SimpleMap: React.FC<IProps> = ({ addressLine, lat, lng }) => {
     window.open(`https://map.naver.com/v5/search/${addressLine}`, '_blank');
   }
 
-  return (
-    <div
-      ref={mapElement}
-      onClick={handleClickMap}
-      style={{ minHeight: '300px' }}
-    />
-  );
+  return <StyledMap ref={mapElement} onClick={handleClickMap} />;
 };
+
+const StyledMap = styled.div`
+  border-radius: 16px;
+  min-height: 300px;
+`;
 
 export default SimpleMap;

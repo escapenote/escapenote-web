@@ -65,8 +65,10 @@ const Wrapper = styled.div``;
 const Image = styled.img`
   margin-bottom: 12px;
   border-radius: 50px;
+  border: 8px solid white;
   width: 100px;
   height: 100px;
+  box-shadow: 0 0 40px rgba(17, 24, 39, 0.06);
 `;
 const Name = styled.strong`
   margin-bottom: 2px;
@@ -105,6 +107,7 @@ const Tab = styled.div<{ active?: boolean }>`
 const Footer = styled.footer`
   position: fixed;
   bottom: 0;
+  bottom: env(safe-area-inset-bottom);
   left: 0;
   right: 0;
   display: flex;
@@ -115,6 +118,7 @@ const Footer = styled.footer`
   padding: 8px 24px;
   width: 100%;
   height: 72px;
+  min-height: calc(72px + env(safe-area-inset-bottom));
   background-color: rgb(var(--content));
   z-index: 999;
   @media (min-width: 480px) {
@@ -126,10 +130,11 @@ const TelLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 18px;
   border-radius: 16px;
   border: 1px solid rgb(var(--border));
   padding: 16px;
-  width: 148px;
+  width: calc(50% - 9px);
   height: 56px;
   background-color: rgb(var(--content));
   font-size: 14px;
@@ -141,7 +146,7 @@ const SiteLink = styled.a`
   align-items: center;
   border-radius: 16px;
   padding: 16px;
-  width: 148px;
+  width: calc(50% - 9px);
   height: 56px;
   background-color: rgb(var(--primary));
   font-size: 14px;

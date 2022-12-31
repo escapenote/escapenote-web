@@ -10,10 +10,7 @@ interface IProps {
 const CafeInfo: React.FC<IProps> = ({ cafe }) => {
   return (
     <Wrapper>
-      <Intro>{cafe?.intro && cafe?.intro}</Intro>
-
-      <Title>전화번호</Title>
-      <Box mb="28px">{cafe?.tel}</Box>
+      {cafe?.intro && <Intro>{cafe?.intro}</Intro>}
 
       <Title>운영시간</Title>
       <Box flexDirection="row" mb="28px">
@@ -54,7 +51,13 @@ const Title = styled.h2`
   line-height: 24px;
 `;
 const Intro = styled.p`
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 28px;
   white-space: pre-line;
+  line-height: 20px;
 `;
 
 export default CafeInfo;

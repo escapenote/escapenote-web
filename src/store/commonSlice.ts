@@ -5,13 +5,13 @@ import { AppState } from 'store';
 
 type ThemeType = 'dark' | 'light';
 
-export interface ICommonState {
+export interface IState {
   theme: ThemeType;
   isDesktop: string;
   isMobile: string;
 }
 
-const initialState: ICommonState = {
+const initialState: IState = {
   theme: 'light',
   isDesktop: '',
   isMobile: '',

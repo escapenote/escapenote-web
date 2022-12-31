@@ -18,6 +18,8 @@ export interface ITheme {
   minPerson: number;
   maxPerson: number;
   level: number;
+  fear: number;
+  activity: number;
   openDate: string;
   detailUrl: string;
   reservationUrl: string;

@@ -33,6 +33,7 @@
     "react-dom": "^17.0.0",
     "react-redux": "^7.2.8",
     "react-responsive": "^9.0.0",
+    "redux-persist": "^6.0.0",
     "styled-system": "^5.1.5"
   },
   "devDependencies": {

@@ -6,27 +6,27 @@ import BottomNavigationBar from 'components/organisms/BottomNavigationBar';
 
 interface IProps {
   title?: string;
-  subTitle?: string;
   leftAction?: React.ReactNode;
   rightAction?: React.ReactNode;
   hideBottom?: boolean;
+  appBar?: React.ReactNode;
   children: React.ReactNode;
 }
 const Layout: React.FC<IProps> = ({
   title,
-  subTitle,
   leftAction,
   rightAction,
   hideBottom = false,
+  appBar,
   children,
 }) => {
   return (
     <Wrapper>
       <AppBar
         title={title}
-        subTitle={subTitle}
         leftAction={leftAction}
         rightAction={rightAction}
+        appBar={appBar}
       />
       <Main>{children}</Main>
       {!hideBottom && <BottomNavigationBar />}

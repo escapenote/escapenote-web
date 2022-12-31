@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 const HeadDefaultMeta: React.FC = () => {
   const title = 'Escape Note';
-  const color = 'rgb(246, 244, 240)';
+  const color = 'rgb(255, 255, 255)';
 
   return (
     <Head>

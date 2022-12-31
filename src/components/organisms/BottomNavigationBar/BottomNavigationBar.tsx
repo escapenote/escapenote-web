@@ -55,7 +55,7 @@ const NavItem = styled.a<{ isActive: boolean }>`
   align-items: center;
   width: 100%;
   height: 64px;
-  font-size: 10px;
+  font-size: 12px;
   color: rgb(var(--greyscale400));
   > img {
     margin-bottom: 4px;

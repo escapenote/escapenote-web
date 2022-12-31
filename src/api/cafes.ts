@@ -5,16 +5,19 @@ import { IPage, ICafe } from 'types';
  * 카페 리스트 조회
  */
 interface IFetchCafesProps {
+  term?: string;
   areaB?: string;
   take?: number;
   cursor?: string;
 }
 export const fetchCafes = async ({
+  term,
   areaB,
   take = 20,
   cursor,
 }: IFetchCafesProps) => {
   const params = { take, cursor } as IFetchCafesProps;
+  if (term) params.term = term;
   if (areaB) params.areaB = areaB;
 
   const { data } = await api.get<{ items: ICafe[]; pageInfo: IPage }>('cafes', {
