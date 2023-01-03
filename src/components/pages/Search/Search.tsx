@@ -10,6 +10,7 @@ import SearchBar from 'components/molecules/SearchBar';
 import { Box, Back, Tag } from 'components/atoms';
 import SearchedCafes from './SearchedCafes';
 import SearchedThemes from './SearchedThemes';
+import SearchedAll from './SearchedAll';
 
 const Search = () => {
   const router = useRouter();
@@ -55,6 +56,9 @@ const Search = () => {
       {term ? (
         <>
           <Tabs>
+            <Tab active={tab === 'all'} onClick={() => handleChangeTab('all')}>
+              통합
+            </Tab>
             <Tab
               active={tab === 'cafe'}
               onClick={() => handleChangeTab('cafe')}
@@ -70,7 +74,9 @@ const Search = () => {
           </Tabs>
 
           <Box mt="24px">
-            {tab === 'cafe' ? (
+            {tab === 'all' ? (
+              <SearchedAll term={term} />
+            ) : tab === 'cafe' ? (
               <SearchedCafes term={term} />
             ) : (
               <SearchedThemes term={term} />

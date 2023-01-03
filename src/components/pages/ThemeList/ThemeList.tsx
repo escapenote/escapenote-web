@@ -86,7 +86,7 @@ const ThemeListPage = () => {
           <>
             <ActionButton
               style={{ marginRight: '16px' }}
-              onClick={() => router.push('/search?tab=theme')}
+              onClick={() => router.push('/search?tab=all')}
             >
               <img src={iconSearch} alt="search" width="24px" height="24px" />
             </ActionButton>
