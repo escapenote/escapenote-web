@@ -10,6 +10,8 @@ import iconMinus from 'assets/icons/minus.svg';
 import iconPlus from 'assets/icons/plus.svg';
 import iconCheck from 'assets/icons/check.svg';
 import iconUnCheck from 'assets/icons/uncheck.svg';
+import { useQuery } from '@tanstack/react-query';
+import api from 'api';
 
 interface IProps {
   isOpen: boolean;
@@ -20,6 +22,7 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
 
   const router = useRouter();
   const areaB = String(router.query.areaB ?? '');
+  const genre = String(router.query.genre ?? '');
   const level = String(router.query.level ?? '');
   const person = Number(router.query.person ?? 0);
   const minPrice = Number(router.query.minPrice ?? 0);
@@ -30,6 +33,7 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
   const maxLockingRatio = Number(router.query.maxLockingRatio ?? 100);
 
   const [_areaB, _setAreaB] = useState(areaB);
+  const [_genre, _setGenre] = useState(genre);
   const [_level, _setLevel] = useState(level);
   const [_person, _setPerson] = useState(person);
   const [_minPrice, _setMinPrice] = useState(minPrice);
@@ -39,8 +43,13 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
   const [_minLockingRatio, _setMinLockingRatio] = useState(minLockingRatio);
   const [_maxLockingRatio, _setMaxLockingRatio] = useState(maxLockingRatio);
 
+  const { data: genreList } = useQuery(['fetchGenreList'], () => {
+    return api.genre.fetchGenreList();
+  });
+
   useEffect(() => {
     _setAreaB(areaB);
+    _setGenre(genre);
     _setLevel(level);
     _setPerson(person);
     _setMinPrice(minPrice);
@@ -53,6 +62,7 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
 
   function handleReset() {
     _setAreaB('');
+    _setGenre('');
     _setLevel('');
     _setPerson(0);
     _setMinPrice(0);
@@ -68,6 +78,9 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
 
     if (!_areaB) delete query['areaB'];
     else query['areaB'] = _areaB;
+
+    if (!_genre) delete query['genre'];
+    else query['genre'] = _genre;
 
     if (!_level) delete query['level'];
     else query['level'] = _level;
@@ -144,6 +157,21 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
             <option value="잠실">잠실</option>
             <option value="종각">종각</option>
             <option value="홍대">홍대</option>
+          </Select>
+        </Box>
+
+        <Box mb="24px">
+          <Title>장르</Title>
+          <Select
+            value={_genre}
+            onChange={(e: any) => _setGenre(e.target.value)}
+          >
+            <option value="">전체</option>
+            {genreList?.map(item => (
+              <option key={item.id} value={item.id}>
+                {item.id}
+              </option>
+            ))}
           </Select>
         </Box>
 

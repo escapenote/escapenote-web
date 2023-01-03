@@ -14,6 +14,7 @@ import ThemeFilter from './ThemeFilter';
 const ThemeListPage = () => {
   const router = useRouter();
   const areaB = String(router.query.areaB ?? '');
+  const genre = String(router.query.genre ?? '');
   const level = String(router.query.level ?? '');
   const person = String(router.query.person ?? '');
   const minPrice = String(router.query.minPrice ?? '');
@@ -25,6 +26,7 @@ const ThemeListPage = () => {
 
   const isActiveFilter =
     areaB ||
+    genre ||
     level ||
     person ||
     minPrice ||
@@ -46,6 +48,7 @@ const ThemeListPage = () => {
     [
       'fetchThemes',
       areaB,
+      genre,
       level,
       person,
       minPrice,
@@ -58,6 +61,7 @@ const ThemeListPage = () => {
     ({ pageParam }) => {
       return api.themes.fetchThemes({
         areaB,
+        genre,
         level,
         person,
         minPrice,
