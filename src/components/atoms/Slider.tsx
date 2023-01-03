@@ -95,6 +95,7 @@ const MultiRangeSlider: React.FC<IProps> = ({
 };
 
 const Container = styled.div<{ width: number }>`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;

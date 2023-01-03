@@ -20,10 +20,22 @@ const BottomSheet: React.FC<IProps> = ({
   onClose,
   onFinish,
 }) => {
+  function handleOpenEnd() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  function handleCloseStart() {
+    document.body.style.overflow = 'auto';
+  }
   return (
-    <ModalSheet isOpen={isOpen} onClose={onClose} snapPoints={[0.92]}>
+    <ModalSheet
+      isOpen={isOpen}
+      disableDrag={true}
+      onClose={onClose}
+      onOpenEnd={handleOpenEnd}
+      onCloseStart={handleCloseStart}
+    >
       <ModalSheet.Container>
-        <ModalSheet.Header />
         <HeadingContainer>
           <Box width="24px" />
           <Title>필터</Title>
@@ -60,6 +72,7 @@ const Title = styled.strong`
 const CloseButton = styled.strong``;
 const BodyContainer = styled.div`
   padding: 24px;
+  overflow: scroll;
 `;
 const ModalSheetFooter = styled.div`
   display: flex;

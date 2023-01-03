@@ -96,8 +96,8 @@ const globalStyles = css`
     }
   }
   .react-modal-sheet-container {
-    border-top-left-radius: 40px !important;
-    border-top-right-radius: 40px !important;
+    border-top-left-radius: 32px !important;
+    border-top-right-radius: 32px !important;
   }
   .react-modal-sheet-drag-indicator {
     height: 10px !important;
