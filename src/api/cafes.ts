@@ -9,16 +9,22 @@ interface IFetchCafesProps {
   areaB?: string;
   take?: number;
   cursor?: string;
+  sort?: string;
+  order?: string;
 }
 export const fetchCafes = async ({
   term,
   areaB,
   take = 20,
   cursor,
+  sort,
+  order,
 }: IFetchCafesProps) => {
   const params = { take, cursor } as IFetchCafesProps;
   if (term) params.term = term;
   if (areaB) params.areaB = areaB;
+  if (sort) params.sort = sort;
+  if (order) params.order = order;
 
   const { data } = await api.get<{ items: ICafe[]; pageInfo: IPage }>('cafes', {
     params,

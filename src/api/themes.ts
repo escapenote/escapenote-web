@@ -19,6 +19,8 @@ interface IFetchThemesProps {
   maxLockingRatio?: string;
   take?: number;
   cursor?: string;
+  sort?: string;
+  order?: string;
 }
 export const fetchThemes = async ({
   term,
@@ -35,6 +37,8 @@ export const fetchThemes = async ({
   maxLockingRatio,
   take = 20,
   cursor,
+  sort,
+  order,
 }: IFetchThemesProps) => {
   const params = { take, cursor } as any;
   if (term) params.term = term;
@@ -49,6 +53,8 @@ export const fetchThemes = async ({
   if (activity) params.activity = activity;
   if (minLockingRatio) params.minLockingRatio = Number(minLockingRatio);
   if (maxLockingRatio) params.maxLockingRatio = Number(maxLockingRatio);
+  if (sort) params.sort = sort;
+  if (order) params.order = order;
 
   const { data } = await api.get<{ items: ITheme[]; pageInfo: IPage }>(
     'themes',
