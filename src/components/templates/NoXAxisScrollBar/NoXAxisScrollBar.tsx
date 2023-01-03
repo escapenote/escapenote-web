@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 const Container = styled.div`
+  display: flex;
   flex-direction: row;
   margin-bottom: -15px;
   padding-bottom: 15px;

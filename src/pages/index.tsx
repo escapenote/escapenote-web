@@ -1,18 +1,18 @@
 import HeadPageMeta from 'components/templates/HeadPageMeta';
-import CafeList from 'components/pages/CafeList';
+import Home from 'components/pages/Home';
 
-const CafeListPage = () => {
+const HomePage = () => {
   return (
     <>
       <HeadPageMeta
-        title="카페 리스트 - Escape Note"
-        description="카페 리스트입니다."
+        title="Escape Note"
+        description="전국 방탕출 모두 다있다!"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}`}
       />
 
-      <CafeList />
+      <Home />
     </>
   );
 };
 
-export default CafeListPage;
+export default HomePage;

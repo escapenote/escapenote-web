@@ -6,6 +6,8 @@ import { css } from '@emotion/react';
 
 import iconHome from 'assets/icons/home.svg';
 import iconHomeActive from 'assets/icons/home-active.svg';
+import iconCafe from 'assets/icons/cafe.svg';
+import iconCafeActive from 'assets/icons/cafe-active.svg';
 import iconTicket from 'assets/icons/ticket.svg';
 import iconTicketActive from 'assets/icons/ticket-active.svg';
 
@@ -69,17 +71,18 @@ const NavItem = styled.a<{ isActive: boolean }>`
 
 const NavItems: React.FC = () => {
   const router = useRouter();
-  const isCafePage = ['/', '/cafes', '/cafes/[id]'].includes(router.pathname);
+  const isHomePage = ['/'].includes(router.pathname);
+  const isCafePage = ['/cafes', '/cafes/[id]'].includes(router.pathname);
   const isThemePage = ['/themes', '/themes/[id]'].includes(router.pathname);
 
   return (
     <NavList>
       <NavBox>
-        <Link href="/" passHref>
+        <Link href="/cafes" passHref>
           <NavItem isActive={isCafePage}>
             <img
-              src={isCafePage ? iconHomeActive : iconHome}
-              alt="cafes"
+              src={isCafePage ? iconCafeActive : iconCafe}
+              alt="cafe"
               width="24px"
               height="24px"
             />
@@ -88,11 +91,24 @@ const NavItems: React.FC = () => {
         </Link>
       </NavBox>
       <NavBox>
+        <Link href="/" passHref>
+          <NavItem isActive={isHomePage}>
+            <img
+              src={isHomePage ? iconHomeActive : iconHome}
+              alt="home"
+              width="24px"
+              height="24px"
+            />
+            홈
+          </NavItem>
+        </Link>
+      </NavBox>
+      <NavBox>
         <Link href="/themes" passHref>
           <NavItem isActive={isThemePage}>
             <img
               src={isThemePage ? iconTicketActive : iconTicket}
-              alt="themes"
+              alt="theme"
               width="24px"
               height="24px"
             />

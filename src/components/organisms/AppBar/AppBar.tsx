@@ -5,12 +5,14 @@ import { Box } from 'components/atoms';
 
 interface IProps {
   title?: string;
+  subTitle?: string;
   leftAction?: React.ReactNode;
   rightAction?: React.ReactNode;
   appBar?: React.ReactNode;
 }
 const Header: React.FC<IProps> = ({
   title,
+  subTitle,
   leftAction,
   rightAction,
   appBar,
@@ -26,11 +28,10 @@ const Header: React.FC<IProps> = ({
         height="100%"
       >
         {leftAction && <Action>{leftAction}</Action>}
-        {title && (
-          <Box>
-            <Title>{title}</Title>
-          </Box>
-        )}
+        <Box>
+          {subTitle && <SubTitle>{subTitle}</SubTitle>}
+          {title && <Title>{title}</Title>}
+        </Box>
         {rightAction && <Action>{rightAction}</Action>}
       </Box>
     )}
@@ -55,6 +56,10 @@ const StyledHeader = styled.header`
 const Title = styled.h1`
   font-size: 18px;
   font-weight: 700;
+`;
+const SubTitle = styled.small`
+  font-size: 12px;
+  color: rgb(var(--greyscale400));
 `;
 const Action = styled.div`
   display: flex;

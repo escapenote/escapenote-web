@@ -36,6 +36,7 @@ const SimpleMap: React.FC<IProps> = ({ addressLine, lat, lng }) => {
 const StyledMap = styled.div`
   border-radius: 16px;
   min-height: 300px;
+  overflow: hidden;
 `;
 
 export default SimpleMap;

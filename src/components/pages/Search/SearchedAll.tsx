@@ -102,6 +102,7 @@ const Title = styled.strong`
 `;
 const More = styled.a`
   font-size: 12px;
+  font-weight: 500;
   color: rgb(var(--greyscale400));
 `;
 const Loading = styled.strong`
