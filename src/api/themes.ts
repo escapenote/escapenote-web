@@ -10,27 +10,45 @@ interface IFetchThemesProps {
   genre?: string;
   areaB?: string;
   level?: string;
-  lockingRatio?: string;
+  person?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  fearScore?: string;
+  activity?: string;
+  minLockingRatio?: string;
+  maxLockingRatio?: string;
   take?: number;
   cursor?: string;
 }
 export const fetchThemes = async ({
   term,
   cafeId,
-  genre,
   areaB,
+  genre,
   level,
-  lockingRatio,
+  person,
+  minPrice,
+  maxPrice,
+  fearScore,
+  activity,
+  minLockingRatio,
+  maxLockingRatio,
   take = 20,
   cursor,
 }: IFetchThemesProps) => {
   const params = { take, cursor } as any;
   if (term) params.term = term;
   if (cafeId) params.cafeId = cafeId;
-  if (genre) params.genre = genre;
   if (areaB) params.areaB = areaB;
+  if (genre) params.genre = genre;
   if (level) params.level = Number(level);
-  if (lockingRatio) params.lockingRatio = Number(lockingRatio);
+  if (person) params.person = Number(person);
+  if (minPrice) params.minPrice = Number(minPrice);
+  if (maxPrice) params.maxPrice = Number(maxPrice);
+  if (fearScore) params.fearScore = fearScore;
+  if (activity) params.activity = activity;
+  if (minLockingRatio) params.minLockingRatio = Number(minLockingRatio);
+  if (maxLockingRatio) params.maxLockingRatio = Number(maxLockingRatio);
 
   const { data } = await api.get<{ items: ITheme[]; pageInfo: IPage }>(
     'themes',

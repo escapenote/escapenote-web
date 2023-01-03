@@ -56,7 +56,6 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
       </ThumbnailBox>
 
       <ThemeName>{theme?.name}</ThemeName>
-      <CafeName>{theme?.cafe.name}</CafeName>
 
       <Properties>
         <Property>
@@ -112,6 +111,8 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
 
 const Wrapper = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 const ThumbnailBox = styled.div`
   position: relative;
@@ -154,17 +155,10 @@ const SubProperty = styled.li`
   }
 `;
 const ThemeName = styled.h1`
-  margin-bottom: 2px;
+  margin-bottom: 24px;
   font-size: 20px;
   font-weight: 700;
   line-height: 30px;
-  text-align: center;
-`;
-const CafeName = styled.strong`
-  margin-bottom: 24px;
-  font-size: 14px;
-  font-weight: 500;
-  color: rgb(var(--greyscale400));
   text-align: center;
 `;
 const Properties = styled.ul`
@@ -190,7 +184,7 @@ const GenreBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
   font-size: 14px;
   color: rgb(var(--primary));
   line-height: 20px;
@@ -233,6 +227,8 @@ const Footer = styled.footer`
   }
 `;
 const PriceBox = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-right: 18px;
   width: calc(50% - 9px);
 `;

@@ -130,7 +130,7 @@ const TelLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 18px;
+  margin-right: 24px;
   border-radius: 16px;
   border: 1px solid rgb(var(--border));
   padding: 16px;

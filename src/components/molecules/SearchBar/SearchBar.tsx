@@ -14,6 +14,13 @@ const SearchBar: React.FC<IProps> = ({ term, onSearch }) => {
     if (term) setValue(term);
   }, [term]);
 
+  function handleChangeValue(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.value === '') {
+      onSearch('');
+    }
+    setValue(e.target.value);
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     onSearch(value);
@@ -25,7 +32,7 @@ const SearchBar: React.FC<IProps> = ({ term, onSearch }) => {
       <Input
         placeholder="카페 또는 테마 검색"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={handleChangeValue}
       />
     </InputForm>
   );

@@ -104,6 +104,7 @@ const NavItems: React.FC = () => {
   );
 };
 const NavList = styled.div`
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   height: 100%;

@@ -37,7 +37,7 @@ const SearchedThemes: React.FC<IProps> = ({ term }) => {
       ) : status === 'error' ? (
         <Error>에러</Error>
       ) : data && data.pages.length > 0 && data.pages[0].items.length === 0 ? (
-        <NoData>데이터 없음</NoData>
+        <NoData>해당하는 검색 결과가 없습니다.</NoData>
       ) : (
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
