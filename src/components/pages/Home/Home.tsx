@@ -6,11 +6,12 @@ import { useQuery } from '@tanstack/react-query';
 
 import api from 'api';
 import Layout from 'components/templates/Layout';
+import NoXAxisScrollBar from 'components/templates/NoXAxisScrollBar';
 import CafeCard from 'components/molecules/CafeCard';
 import ThemeBigCard from 'components/molecules/ThemeBigCard';
 import SearchBar from 'components/molecules/SearchBar';
 import { Box } from 'components/atoms';
-import NoXAxisScrollBar from 'components/templates/NoXAxisScrollBar';
+import iconMessage from 'assets/icons/message.svg';
 
 const HomePage = () => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const HomePage = () => {
     data: cafes,
     error: cafeError,
   } = useQuery(['fetchCafes', 'home'], () => {
-    return api.cafes.fetchCafes({});
+    return api.cafes.fetchCafes({ sort: 'view' });
   });
 
   const {
@@ -28,7 +29,7 @@ const HomePage = () => {
     data: themes,
     error: themeError,
   } = useQuery(['fetchThemes', 'home'], () => {
-    return api.themes.fetchThemes({});
+    return api.themes.fetchThemes({ sort: 'view' });
   });
 
   function handleSearch(term: string) {
@@ -109,6 +110,20 @@ const HomePage = () => {
             </CafeItems>
           )}
         </Section>
+
+        <Section>
+          <Question href="mailto:escapenote.team@gmail.com">
+            <QuestionIconBox>
+              <img src={iconMessage} alt="문의" width="24px" height="24px" />
+            </QuestionIconBox>
+            <Box ml="12px">
+              <QuestionTitle>문의하기</QuestionTitle>
+              <QuestionText>
+                ESCAPE NOTE에 대해 궁금하신 점이 있으신가요?
+              </QuestionText>
+            </Box>
+          </Question>
+        </Section>
       </Layout>
     </>
   );
@@ -146,6 +161,32 @@ const CafeItem = styled.li`
 `;
 const ThemeItem = styled.div`
   margin-right: 16px;
+`;
+const Question = styled.a`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+const QuestionIconBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  background: rgb(var(--primary));
+`;
+const QuestionTitle = styled.strong`
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+`;
+const QuestionText = styled.p`
+  font-weight: 400;
+  font-size: 10px;
+  color: rgb(var(--greyscale500));
+  line-height: 15px;
 `;
 
 export default HomePage;
