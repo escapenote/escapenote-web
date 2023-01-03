@@ -126,6 +126,7 @@ const Tab = styled.div<{ active?: boolean }>`
   align-items: center;
   flex: 1;
   border-bottom: 1.5px solid transparent;
+  border-color: rgb(var(--border));
   height: 48px;
   font-size: 14px;
   font-weight: 500;
