@@ -61,7 +61,7 @@ const Container = styled.a<{ imageUrl: string }>`
   background-image: url(${p => p.imageUrl});
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100%;
+  background-size: cover;
 `;
 const Contents = styled.div`
   position: absolute;
