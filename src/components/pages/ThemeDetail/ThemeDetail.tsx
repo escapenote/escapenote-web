@@ -28,7 +28,7 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
           {theme && theme.fear !== 0 && (
             <SubProperty>
               <img src={iconGhost} alt="공포도" width="26px" height="26px" />
-              {theme.fear > 4 ? '높음' : theme.fear > 2 ? '중간' : '낮음'}
+              {theme.fear > 4 ? '높음' : theme.fear > 2 ? '보통' : '낮음'}
             </SubProperty>
           )}
           {theme && theme.activity !== 0 && (
@@ -37,7 +37,7 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
               {theme.activity > 4
                 ? '높음'
                 : theme.activity > 2
-                ? '중간'
+                ? '보통'
                 : '낮음'}
             </SubProperty>
           )}
@@ -118,19 +118,34 @@ const ThumbnailBox = styled.div`
   position: relative;
   margin-bottom: 18px;
   padding-top: 125%;
+  ::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 16px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      326.9deg,
+      #000000 -27.6%,
+      rgba(217, 217, 217, 0) 48.76%
+    );
+  }
 `;
 const Thumbnail = styled.img`
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 16px;
   width: 100%;
   height: 100%;
-  border-radius: 16px;
 `;
 const SubProperties = styled.ul`
   position: absolute;
   bottom: 10px;
   right: 10px;
+  z-index: 1;
   > li {
     margin-top: 6px;
     :first-of-type {
@@ -146,10 +161,10 @@ const SubProperty = styled.li`
   border-radius: 38px;
   width: 38px;
   height: 68px;
-  background-color: rgba(240, 240, 240, 0.95);
+  background-color: rgba(240, 240, 240, 0.75);
   font-size: 12px;
   font-weight: 500;
-  box-shadow: 0 0 40px rgba(17, 24, 39, 0.26);
+  /* box-shadow: 0 0 40px rgba(17, 24, 39, 0.26); */
   > img {
     margin-bottom: 6px;
   }
