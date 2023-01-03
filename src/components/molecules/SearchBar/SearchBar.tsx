@@ -16,9 +16,6 @@ const SearchBar: React.FC<IProps> = ({ placeholder, term, onSearch }) => {
   }, [term]);
 
   function handleChangeValue(e: React.ChangeEvent<HTMLInputElement>) {
-    if (e.target.value === '') {
-      onSearch('');
-    }
     setValue(e.target.value);
   }
 
