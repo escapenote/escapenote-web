@@ -91,6 +91,7 @@ const Cafe = styled.span`
 const LevelBox = styled.div`
   display: flex;
   flex-direction: row;
+  margin-left: -1px;
 `;
 const GenreBox = styled.div`
   display: flex;
