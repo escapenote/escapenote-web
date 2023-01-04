@@ -62,10 +62,12 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
           <span>난이도</span>
           <strong>{theme?.level}</strong>
         </Property>
+        <Box width="1px" height="20px" backgroundColor="rgb(var(--border))" />
         <Property>
           <span>시간</span>
           <strong>{theme?.during}분</strong>
         </Property>
+        <Box width="1px" height="20px" backgroundColor="rgb(var(--border))" />
         <Property>
           <span>인원수</span>
           <strong>
@@ -74,18 +76,21 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
         </Property>
       </Properties>
 
-      {theme && (
-        <GenreBox>
-          {theme.genre.length > 0 &&
-            theme.genre.slice(0, 3).map(v => (
-              <Link key={v.id} href={`/explore/genre/${v.id}`} passHref>
-                <Genre>#{v.id}</Genre>
-              </Link>
-            ))}
-          {theme.genre.length > 3 && '...'}
-        </GenreBox>
-      )}
-      <Intro>{theme?.intro}</Intro>
+      <Box>
+        <SubTitle>시놉시스</SubTitle>
+        {theme && (
+          <GenreBox>
+            {theme.genre.length > 0 &&
+              theme.genre.slice(0, 3).map(v => (
+                <Link key={v.id} href={`/explore/genre/${v.id}`} passHref>
+                  <Genre>#{v.id}</Genre>
+                </Link>
+              ))}
+            {theme.genre.length > 3 && '...'}
+          </GenreBox>
+        )}
+        <Intro>{theme?.intro}</Intro>
+      </Box>
 
       <Box mb="18px">
         <SubTitle>카페</SubTitle>
@@ -178,6 +183,7 @@ const ThemeName = styled.h1`
 const Properties = styled.ul`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin-bottom: 24px;
 `;
 const Property = styled.li`
@@ -198,7 +204,7 @@ const GenreBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   font-size: 14px;
   color: rgb(var(--primary));
   line-height: 20px;
