@@ -33,7 +33,7 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
           )}
           {theme && theme.activity !== 0 && (
             <SubProperty>
-              <img src={iconActivity} alt="활동" width="26px" height="26px" />
+              <img src={iconActivity} alt="활동" width="22px" height="22px" />
               {theme.activity > 3
                 ? '높음'
                 : theme.activity > 2
@@ -166,7 +166,7 @@ const SubProperty = styled.li`
   border-radius: 38px;
   width: 38px;
   height: 68px;
-  background-color: rgba(240, 240, 240, 0.75);
+  background-color: rgba(var(--greyscale100), 0.95);
   font-size: 12px;
   font-weight: 500;
   > img {
