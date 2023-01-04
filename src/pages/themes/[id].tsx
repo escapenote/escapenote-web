@@ -22,7 +22,7 @@ const ThemeDetailPage = () => {
     <>
       {data && (
         <HeadPageMeta
-          title={`${data.name} - Escape Note`}
+          title={`${data.name} - ESCAPE NOTE`}
           description={data.intro}
           pageUrl={`${process.env.NEXT_PUBLIC_URL}/themes/${id}`}
           imageUrl={`${process.env.NEXT_PUBLIC_IMAGE_URL}${data.thumbnail}`}

@@ -5,8 +5,8 @@ const SearchPage = () => {
   return (
     <>
       <HeadPageMeta
-        title="검색 - Escape Note"
-        description="검색 페이지입니다."
+        title="통합 검색 - ESCAPE NOTE"
+        description="방탈출에 대한 모든 것"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/search`}
       />
 

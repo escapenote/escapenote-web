@@ -30,10 +30,21 @@ const HeadPageMeta: React.FC<IProps> = ({
           <link rel="canonical" href={pageUrl} />
         </>
       )}
-      {imageUrl && (
+      {imageUrl ? (
         <>
           <meta property="og:image" content={imageUrl} />
           <meta name="twitter:image" content={imageUrl} />
+        </>
+      ) : (
+        <>
+          <meta
+            property="og:image"
+            content={`${process.env.NEXT_PUBLIC_URL}/thumbnail.jpg`}
+          />
+          <meta
+            name="twitter:image"
+            content={`${process.env.NEXT_PUBLIC_URL}/thumbnail.jpg`}
+          />
         </>
       )}
       {noFollow && <meta name="robots" content="noindex ,nofollow" />}

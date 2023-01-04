@@ -5,8 +5,8 @@ const HomePage = () => {
   return (
     <>
       <HeadPageMeta
-        title="Escape Note"
-        description="전국 방탕출 모두 다있다!"
+        title="ESCAPE NOTE"
+        description="방탈출에 대한 모든 것"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}`}
       />
 
