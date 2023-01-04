@@ -9,6 +9,7 @@ import Layout from 'components/templates/Layout';
 import FetchMore from 'components/templates/FetchMore';
 import ThemeCard from 'components/molecules/ThemeCard';
 import IconFilter from 'components/icons/IconFilter';
+import { Box } from 'components/atoms';
 import iconSearch from 'assets/icons/search.svg';
 import iconArrowsDownUp from 'assets/icons/arrows-down-up.svg';
 import ThemeFilter from './ThemeFilter';
@@ -106,17 +107,19 @@ const ThemeListPage = () => {
           </>
         }
       >
-        <Order>
-          <select value={sort} onChange={handleChagneSort}>
-            <option value="createdAt">최신순</option>
-            <option value="view">인기순</option>
-            <option value="level">난이도순</option>
-            <option value="fear">공포순</option>
-            <option value="activity">활동순</option>
-          </select>
-          <img src={iconArrowsDownUp} alt="sort" width="14px" height="14px" />
-          {sortOptions[sort]}
-        </Order>
+        <Box flexDirection="row" justifyContent="flex-end">
+          <Order>
+            <select value={sort} onChange={handleChagneSort}>
+              <option value="createdAt">최신순</option>
+              <option value="view">인기순</option>
+              <option value="level">난이도순</option>
+              <option value="fear">공포순</option>
+              <option value="activity">활동순</option>
+            </select>
+            <img src={iconArrowsDownUp} alt="sort" width="14px" height="14px" />
+            {sortOptions[sort]}
+          </Order>
+        </Box>
 
         {status === 'loading' ? (
           <Loading>로딩중...</Loading>

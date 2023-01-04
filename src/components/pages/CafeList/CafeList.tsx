@@ -9,6 +9,7 @@ import Layout from 'components/templates/Layout';
 import FetchMore from 'components/templates/FetchMore';
 import CafeCard from 'components/molecules/CafeCard';
 import IconFilter from 'components/icons/IconFilter';
+import { Box } from 'components/atoms';
 import iconSearch from 'assets/icons/search.svg';
 import iconArrowsDownUp from 'assets/icons/arrows-down-up.svg';
 import CafeFilter from './CafeFilter';
@@ -65,14 +66,16 @@ const CafeListPage = () => {
           </>
         }
       >
-        <Order>
-          <select value={sort} onChange={handleChagneSort}>
-            <option value="createdAt">최신순</option>
-            <option value="view">인기순</option>
-          </select>
-          <img src={iconArrowsDownUp} alt="sort" width="14px" height="14px" />
-          {sortOptions[sort]}
-        </Order>
+        <Box flexDirection="row" justifyContent="flex-end">
+          <Order>
+            <select value={sort} onChange={handleChagneSort}>
+              <option value="createdAt">최신순</option>
+              <option value="view">인기순</option>
+            </select>
+            <img src={iconArrowsDownUp} alt="sort" width="14px" height="14px" />
+            {sortOptions[sort]}
+          </Order>
+        </Box>
 
         {status === 'loading' ? (
           <Loading>로딩중...</Loading>
@@ -116,7 +119,6 @@ const ActionButton = styled.button`
 const Order = styled.button`
   position: relative;
   display: flex;
-  justify-content: right;
   align-items: center;
   margin-top: -10px;
   margin-bottom: 14px;
