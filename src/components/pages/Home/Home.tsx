@@ -5,6 +5,8 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 
 import api from 'api';
+import { useAppDispatch } from 'store';
+import { addRecentlySearchKeyword } from 'store/searchSlice';
 import Layout from 'components/templates/Layout';
 import NoXAxisScrollBar from 'components/templates/NoXAxisScrollBar';
 import CafeCard from 'components/molecules/CafeCard';
@@ -15,6 +17,7 @@ import iconMessage from 'assets/icons/message.svg';
 
 const HomePage = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const {
     isLoading: isCafeLoading,
@@ -33,6 +36,7 @@ const HomePage = () => {
   });
 
   function handleSearch(term: string) {
+    dispatch(addRecentlySearchKeyword(term));
     router.push(`/search?tab=all&q=${term}`);
   }
 
