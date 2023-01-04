@@ -28,13 +28,13 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
           {theme && theme.fear !== 0 && (
             <SubProperty>
               <img src={iconGhost} alt="공포도" width="26px" height="26px" />
-              {theme.fear > 4 ? '높음' : theme.fear > 2 ? '보통' : '낮음'}
+              {theme.fear > 3 ? '높음' : theme.fear > 2 ? '보통' : '낮음'}
             </SubProperty>
           )}
           {theme && theme.activity !== 0 && (
             <SubProperty>
               <img src={iconActivity} alt="활동" width="26px" height="26px" />
-              {theme.activity > 4
+              {theme.activity > 3
                 ? '높음'
                 : theme.activity > 2
                 ? '보통'
@@ -164,7 +164,6 @@ const SubProperty = styled.li`
   background-color: rgba(240, 240, 240, 0.75);
   font-size: 12px;
   font-weight: 500;
-  /* box-shadow: 0 0 40px rgba(17, 24, 39, 0.26); */
   > img {
     margin-bottom: 6px;
   }
