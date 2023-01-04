@@ -98,17 +98,19 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
       </Box>
 
       <Footer>
-        <PriceBox>
-          <Price>₩{numberWithComma(theme?.price)}</Price>
-          <PriceHelper>※ 2인 플레이 기준 1인 가격</PriceHelper>
-        </PriceBox>
-        <ReservationLink
-          href={theme?.reservationUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          예약하기
-        </ReservationLink>
+        <FooterContainer>
+          <PriceBox>
+            <Price>₩{numberWithComma(theme?.price)}</Price>
+            <PriceHelper>※ 2인 플레이 기준 1인 가격</PriceHelper>
+          </PriceBox>
+          <ReservationLink
+            href={theme?.reservationUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            예약하기
+          </ReservationLink>
+        </FooterContainer>
       </Footer>
     </Wrapper>
   );
@@ -227,16 +229,9 @@ const SubTitle = styled.strong`
 const Footer = styled.footer`
   position: fixed;
   bottom: 0;
-  bottom: env(safe-area-inset-bottom);
   left: 0;
   right: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   border-top: 1px solid rgb(var(--border));
-  padding: 8px 24px;
-  width: 100%;
   height: 72px;
   min-height: calc(72px + env(safe-area-inset-bottom));
   background-color: rgb(var(--content));
@@ -245,6 +240,17 @@ const Footer = styled.footer`
     margin: 0 auto;
     max-width: 480px;
   }
+`;
+const FooterContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  bottom: env(safe-area-inset-bottom);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px;
+  width: 100%;
 `;
 const PriceBox = styled.div`
   display: flex;

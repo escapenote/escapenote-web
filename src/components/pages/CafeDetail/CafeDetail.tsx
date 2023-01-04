@@ -52,10 +52,12 @@ const CafeDetail: React.FC<IProps> = ({ id, cafe }) => {
       {tab === 'info' && <CafeInfo cafe={cafe} />}
 
       <Footer>
-        <TelLink href={`tel:${cafe?.tel}}`}>전화하기</TelLink>
-        <SiteLink href={cafe?.website} target="_blank">
-          홈페이지
-        </SiteLink>
+        <FooterContainer>
+          <TelLink href={`tel:${cafe?.tel}}`}>전화하기</TelLink>
+          <SiteLink href={cafe?.website} target="_blank">
+            홈페이지
+          </SiteLink>
+        </FooterContainer>
       </Footer>
     </Wrapper>
   );
@@ -108,16 +110,9 @@ const Tab = styled.div<{ active?: boolean }>`
 const Footer = styled.footer`
   position: fixed;
   bottom: 0;
-  bottom: env(safe-area-inset-bottom);
   left: 0;
   right: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   border-top: 1px solid rgb(var(--border));
-  padding: 8px 24px;
-  width: 100%;
   height: 72px;
   min-height: calc(72px + env(safe-area-inset-bottom));
   background-color: rgb(var(--content));
@@ -126,6 +121,17 @@ const Footer = styled.footer`
     margin: 0 auto;
     max-width: 480px;
   }
+`;
+const FooterContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  bottom: env(safe-area-inset-bottom);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px;
+  width: 100%;
 `;
 const TelLink = styled.a`
   display: flex;
