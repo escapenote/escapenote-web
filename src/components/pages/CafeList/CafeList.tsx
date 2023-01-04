@@ -4,15 +4,18 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
 import api from 'api';
+import sortOptions from 'data/sortOptions';
 import Layout from 'components/templates/Layout';
 import FetchMore from 'components/templates/FetchMore';
 import CafeCard from 'components/molecules/CafeCard';
 import IconFilter from 'components/icons/IconFilter';
 import iconSearch from 'assets/icons/search.svg';
+import iconArrowsDownUp from 'assets/icons/arrows-down-up.svg';
 import CafeFilter from './CafeFilter';
 
 const CafeListPage = () => {
   const router = useRouter();
+  const sort = String(router.query.sort ?? 'createdAt');
   const areaB = String(router.query.areaB ?? '');
 
   const isActiveFilter = Boolean(areaB);
@@ -26,17 +29,23 @@ const CafeListPage = () => {
     isFetching,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    ['fetchCafes', areaB],
+    ['fetchCafes', areaB, sort],
     ({ pageParam }) => {
       return api.cafes.fetchCafes({
         areaB,
         cursor: pageParam,
+        sort,
       });
     },
     {
       getNextPageParam: lastPage => lastPage.pageInfo.endCursor,
     },
   );
+
+  function handleChagneSort(e: React.ChangeEvent<HTMLSelectElement>) {
+    const query = { ...router.query, sort: e.target.value };
+    router.replace({ query });
+  }
 
   return (
     <>
@@ -56,6 +65,15 @@ const CafeListPage = () => {
           </>
         }
       >
+        <Order>
+          <select value={sort} onChange={handleChagneSort}>
+            <option value="createdAt">최신순</option>
+            <option value="view">인기순</option>
+          </select>
+          <img src={iconArrowsDownUp} alt="sort" width="14px" height="14px" />
+          {sortOptions[sort]}
+        </Order>
+
         {status === 'loading' ? (
           <Loading>로딩중...</Loading>
         ) : status === 'error' ? (
@@ -94,6 +112,27 @@ const CafeListPage = () => {
 const ActionButton = styled.button`
   width: 24px;
   height: 24px;
+`;
+const Order = styled.button`
+  position: relative;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: -10px;
+  margin-bottom: 14px;
+  img {
+    margin-right: 4px;
+  }
+  select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    appearance: none;
+    opacity: 0;
+    cursor: pointer;
+  }
 `;
 const Loading = styled.strong`
   font-size: 14px;
