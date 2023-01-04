@@ -37,6 +37,7 @@ const StyledMap = styled.div`
   border-radius: 16px;
   min-height: 300px;
   overflow: hidden;
+  z-index: 9;
 `;
 
 export default SimpleMap;
