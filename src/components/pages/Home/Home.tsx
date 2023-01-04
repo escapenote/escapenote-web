@@ -183,10 +183,8 @@ const QuestionTitle = styled.strong`
   line-height: 21px;
 `;
 const QuestionText = styled.p`
-  font-weight: 400;
-  font-size: 10px;
+  font-size: 12px;
   color: rgb(var(--greyscale500));
-  line-height: 15px;
 `;
 
 export default HomePage;
