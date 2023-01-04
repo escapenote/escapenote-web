@@ -106,7 +106,7 @@ const More = styled.a`
   color: rgb(var(--greyscale400));
 `;
 const Loading = styled.strong`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 `;
 const Error = styled(Loading)``;
