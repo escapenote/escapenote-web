@@ -7,15 +7,12 @@ import {
   QueryClientProvider,
   Hydrate,
 } from '@tanstack/react-query';
-import { useStore } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 
 import globalStyles from '../styles/globalStyles';
 import { wrapper } from 'store';
 import HeadDefaultMeta from 'components/templates/HeadDefaultMeta';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const store = useStore();
   const queryClientRef = useRef<QueryClient>();
 
   if (!queryClientRef.current) {
@@ -23,7 +20,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }
 
   return (
-    <PersistGate persistor={(store as any).__persistor} loading={<>로딩중</>}>
+    <>
       <HeadDefaultMeta />
 
       <Global styles={globalStyles} />
@@ -33,7 +30,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />
         </Hydrate>
       </QueryClientProvider>
-    </PersistGate>
+    </>
   );
 };
 
