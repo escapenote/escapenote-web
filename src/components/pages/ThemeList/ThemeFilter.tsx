@@ -135,6 +135,7 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
         <Box mb="24px">
           <Title>지역</Title>
           <Select
+            defaultValue={_areaB}
             value={_areaB}
             onChange={(e: any) => _setAreaB(e.target.value)}
           >
@@ -163,6 +164,7 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
         <Box mb="24px">
           <Title>장르</Title>
           <Select
+            defaultValue={_genre}
             value={_genre}
             onChange={(e: any) => _setGenre(e.target.value)}
           >
@@ -178,6 +180,7 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
         <Box mb="24px">
           <Title>난이도</Title>
           <Select
+            defaultValue={_level}
             value={_level}
             onChange={(e: any) => _setLevel(e.target.value)}
           >

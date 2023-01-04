@@ -40,7 +40,11 @@ const CafeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
     >
       <Box mb="24px">
         <Title>지역</Title>
-        <Select value={_areaB} onChange={(e: any) => _setAreaB(e.target.value)}>
+        <Select
+          defaultValue={_areaB}
+          value={_areaB}
+          onChange={(e: any) => _setAreaB(e.target.value)}
+        >
           <option value="">전체</option>
           <option value="강남">강남</option>
           <option value="건대">건대</option>
