@@ -92,7 +92,7 @@ const ThemeDetail: React.FC<IProps> = ({ theme }) => {
         <Intro>{theme?.intro}</Intro>
       </Box>
 
-      <Box mb="18px">
+      <Box>
         <SubTitle>카페</SubTitle>
         {theme?.cafe && <CafeMiniCard cafe={theme?.cafe} />}
       </Box>

@@ -38,12 +38,20 @@ const Layout: React.FC<IProps> = ({
 };
 
 const Wrapper = styled.section`
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 `;
 const Main = styled.main`
-  padding: 80px 24px 88px 24px;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  align-items: stretch;
+  margin: 0;
+  padding: 80px 24px 96px 24px;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom));
   overflow: hidden;
   @media (min-width: 480px) {
     margin: 0 auto;
