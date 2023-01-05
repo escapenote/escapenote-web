@@ -49,9 +49,9 @@ const Main = styled.main`
   flex-grow: 1;
   flex-shrink: 0;
   align-items: stretch;
-  margin: 0;
   padding: 80px 24px 96px 24px;
   padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  width: 100%;
   overflow: hidden;
   @media (min-width: 480px) {
     margin: 0 auto;
