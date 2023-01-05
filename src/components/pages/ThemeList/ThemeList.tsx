@@ -113,8 +113,9 @@ const ThemeListPage = () => {
               <option value="createdAt">최신순</option>
               <option value="view">인기순</option>
               <option value="level">난이도순</option>
-              <option value="fear">공포순</option>
-              <option value="activity">활동순</option>
+              <option value="price">금액순</option>
+              <option value="fear">공포도순</option>
+              <option value="activity">활동성순</option>
             </select>
             <img src={iconArrowsDownUp} alt="sort" width="14px" height="14px" />
             {sortOptions[sort]}
