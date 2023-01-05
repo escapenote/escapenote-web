@@ -48,22 +48,30 @@ const CafeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
           <option value="">전체</option>
           <option value="강남">강남</option>
           <option value="건대">건대</option>
+          <option value="구로">구로</option>
           <option value="김포">김포</option>
           <option value="노량진">노량진</option>
           <option value="노원">노원</option>
           <option value="대학로">대학로</option>
           <option value="명동">명동</option>
+          <option value="목동">목동</option>
           <option value="서울대입구">서울대입구</option>
+          <option value="성수">성수</option>
           <option value="성신여대">성신여대</option>
+          <option value="수유">수유</option>
           <option value="신림">신림</option>
           <option value="신사">신사</option>
           <option value="신촌">신촌</option>
+          <option value="연신내">연신내</option>
           <option value="영등포">영등포</option>
+          <option value="용산">용산</option>
           <option value="왕십리">왕십리</option>
           <option value="이수">이수</option>
           <option value="잠실">잠실</option>
-          <option value="종각">종각</option>
+          <option value="종로">종로</option>
+          <option value="천호">천호</option>
           <option value="홍대">홍대</option>
+          <option value="회기">회기</option>
         </Select>
       </Box>
     </BottomSheet>
