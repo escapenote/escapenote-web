@@ -1,16 +1,52 @@
+import { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 
 import { ICafe } from 'types';
 import { Box } from 'components/atoms';
 import SimpleMap from 'components/molecules/SimpleMap';
+import { useEffect } from 'react';
 
 interface IProps {
   cafe?: ICafe;
 }
 const CafeInfo: React.FC<IProps> = ({ cafe }) => {
+  const introRef = useRef<HTMLParagraphElement>(null);
+  const [overHeightIntro, setOverHeightIntro] = useState(false);
+
+  useEffect(() => {
+    handleAdjustHeight();
+  }, [introRef]);
+
+  function handleAdjustHeight() {
+    if (!introRef.current) return;
+
+    const { height } = introRef.current.getBoundingClientRect();
+    if (height > 80) {
+      introRef.current.style.display = '-webkit-box';
+      introRef.current.style.webkitLineClamp = '4';
+      introRef.current.style.webkitBoxOrient = 'vertical';
+      introRef.current.style.overflow = 'hidden';
+      setOverHeightIntro(true);
+    }
+  }
+
+  function handleMoreIntro() {
+    if (!introRef.current) return;
+    introRef.current.style.display = 'block';
+    introRef.current.style.overflow = 'auto';
+    setOverHeightIntro(false);
+  }
+
   return (
     <Wrapper>
-      {cafe?.intro && <Intro>{cafe?.intro}</Intro>}
+      {cafe?.intro && (
+        <Box alignItems="flex-start" mb="28px">
+          <Intro ref={introRef}>{cafe?.intro}</Intro>
+          {overHeightIntro && (
+            <MoreIntro onClick={handleMoreIntro}>더보기</MoreIntro>
+          )}
+        </Box>
+      )}
 
       <Title>운영시간</Title>
       <Box flexDirection="row" mb="28px">
@@ -51,13 +87,11 @@ const Title = styled.h2`
   line-height: 24px;
 `;
 const Intro = styled.p`
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-bottom: 28px;
   white-space: pre-line;
   line-height: 20px;
+`;
+const MoreIntro = styled.button`
+  color: rgb(var(--primary));
 `;
 
 export default CafeInfo;
