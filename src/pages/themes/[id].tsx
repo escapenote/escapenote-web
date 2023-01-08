@@ -10,13 +10,21 @@ import { Back } from 'components/atoms';
 
 const ThemeDetail = dynamic(() => import('components/pages/ThemeDetail'));
 
-const ThemeDetailPage = () => {
+interface IProps {
+  initial: boolean;
+}
+const ThemeDetailPage = ({ initial }: IProps) => {
   const router = useRouter();
   const id = String(router.query.id);
 
   const { data } = useQuery(['fetchTheme', id], () => {
     return api.themes.fetchTheme({ id });
   });
+
+  function handleGoBack() {
+    if (initial) router.push('/');
+    else router.back();
+  }
 
   return (
     <>
@@ -31,7 +39,7 @@ const ThemeDetailPage = () => {
 
       <Layout
         title="테마"
-        leftAction={<Back onClick={router.back} />}
+        leftAction={<Back onClick={handleGoBack} />}
         rightAction={<></>}
         hideBottom
       >
@@ -50,9 +58,9 @@ ThemeDetailPage.getInitialProps = wrapper.getInitialPageProps(
         await queryClient.prefetchQuery(['fetchTheme', id], () => {
           return api.themes.fetchTheme({ id });
         });
-        return { dehydratedState: dehydrate(queryClient) };
+        return { dehydratedState: dehydrate(queryClient), initial: true };
       }
-      return { dehydratedState: null };
+      return { dehydratedState: null, initial: false };
     },
 );
 

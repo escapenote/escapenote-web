@@ -10,13 +10,21 @@ import { Back } from 'components/atoms';
 
 const CafeDetail = dynamic(() => import('components/pages/CafeDetail'));
 
-const CafeDetailPage = () => {
+interface IProps {
+  initial: boolean;
+}
+const CafeDetailPage = ({ initial }: IProps) => {
   const router = useRouter();
   const id = String(router.query.id);
 
   const { data } = useQuery(['fetchCafe', id], () => {
     return api.cafes.fetchCafe({ id });
   });
+
+  function handleGoBack() {
+    if (initial) router.push('/');
+    else router.back();
+  }
 
   return (
     <>
@@ -33,7 +41,7 @@ const CafeDetailPage = () => {
 
       <Layout
         title="카페"
-        leftAction={<Back onClick={router.back} />}
+        leftAction={<Back onClick={handleGoBack} />}
         rightAction={<></>}
         hideBottom
       >
@@ -52,9 +60,9 @@ CafeDetailPage.getInitialProps = wrapper.getInitialPageProps(
         await queryClient.prefetchQuery(['fetchCafe', id], () => {
           return api.cafes.fetchCafe({ id });
         });
-        return { dehydratedState: dehydrate(queryClient) };
+        return { dehydratedState: dehydrate(queryClient), initial: true };
       }
-      return { dehydratedState: null };
+      return { dehydratedState: null, initial: false };
     },
 );
 
