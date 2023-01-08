@@ -17,6 +17,7 @@ import ThemeFilter from './ThemeFilter';
 const ThemeListPage = () => {
   const router = useRouter();
   const sort = String(router.query.sort ?? 'createdAt');
+  const order = String(router.query.order ?? 'desc');
   const areaB = String(router.query.areaB ?? '');
   const genre = String(router.query.genre ?? '');
   const level = String(router.query.level ?? '');
@@ -62,6 +63,7 @@ const ThemeListPage = () => {
       minLockingRatio,
       maxLockingRatio,
       sort,
+      order,
     ],
     ({ pageParam }) => {
       return api.themes.fetchThemes({
@@ -77,6 +79,7 @@ const ThemeListPage = () => {
         maxLockingRatio,
         cursor: pageParam,
         sort,
+        order,
       });
     },
     {
@@ -84,8 +87,9 @@ const ThemeListPage = () => {
     },
   );
 
-  function handleChagneSort(e: React.ChangeEvent<HTMLSelectElement>) {
-    const query = { ...router.query, sort: e.target.value };
+  function handleChagneSortOrder(e: React.ChangeEvent<HTMLSelectElement>) {
+    const [selectSort, selectOrder] = e.target.value.split('-');
+    const query = { ...router.query, sort: selectSort, order: selectOrder };
     router.replace({ query });
   }
 
@@ -109,16 +113,24 @@ const ThemeListPage = () => {
       >
         <Box flexDirection="row" justifyContent="flex-end">
           <Order>
-            <select value={sort} onChange={handleChagneSort}>
-              <option value="createdAt">최신순</option>
-              <option value="view">인기순</option>
-              <option value="level">난이도순</option>
-              <option value="price">금액순</option>
-              <option value="fear">공포도순</option>
-              <option value="activity">활동성순</option>
+            <select
+              defaultValue={`${sort}-${order}`}
+              value={`${sort}-${order}`}
+              onChange={handleChagneSortOrder}
+            >
+              <option value="createdAt-desc">최신순</option>
+              <option value="view-desc">인기순</option>
+              <option value="level-desc">난이도 높은순</option>
+              <option value="level-asc">난이도 낮은순</option>
+              <option value="price-desc">금액 높은순</option>
+              <option value="price-asc">금액 낮은순</option>
+              <option value="fear-desc">공포도 높은순</option>
+              <option value="fear-asc">공포도 낮은순</option>
+              <option value="activity-desc">활동성 높은순</option>
+              <option value="activity-asc">활동성 낮은순</option>
             </select>
             <img src={iconArrowsDownUp} alt="sort" width="14px" height="14px" />
-            {sortOptions[sort]}
+            {sortOptions[`${sort}-${order}`]}
           </Order>
         </Box>
 

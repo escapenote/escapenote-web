@@ -17,6 +17,7 @@ import CafeFilter from './CafeFilter';
 const CafeListPage = () => {
   const router = useRouter();
   const sort = String(router.query.sort ?? 'createdAt');
+  const order = String(router.query.order ?? 'desc');
   const areaB = String(router.query.areaB ?? '');
 
   const isActiveFilter = Boolean(areaB);
@@ -30,12 +31,13 @@ const CafeListPage = () => {
     isFetching,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    ['fetchCafes', areaB, sort],
+    ['fetchCafes', areaB, sort, order],
     ({ pageParam }) => {
       return api.cafes.fetchCafes({
         areaB,
         cursor: pageParam,
         sort,
+        order,
       });
     },
     {
@@ -43,8 +45,9 @@ const CafeListPage = () => {
     },
   );
 
-  function handleChagneSort(e: React.ChangeEvent<HTMLSelectElement>) {
-    const query = { ...router.query, sort: e.target.value };
+  function handleChagneSortOrder(e: React.ChangeEvent<HTMLSelectElement>) {
+    const [selectSort, selectOrder] = e.target.value.split('-');
+    const query = { ...router.query, sort: selectSort, order: selectOrder };
     router.replace({ query });
   }
 
@@ -68,12 +71,16 @@ const CafeListPage = () => {
       >
         <Box flexDirection="row" justifyContent="flex-end">
           <Order>
-            <select value={sort} onChange={handleChagneSort}>
-              <option value="createdAt">최신순</option>
-              <option value="view">인기순</option>
+            <select
+              defaultValue={`${sort}-${order}`}
+              value={`${sort}-${order}`}
+              onChange={handleChagneSortOrder}
+            >
+              <option value="createdAt-desc">최신순</option>
+              <option value="view-desc">인기순</option>
             </select>
             <img src={iconArrowsDownUp} alt="sort" width="14px" height="14px" />
-            {sortOptions[sort]}
+            {sortOptions[`${sort}-${order}`]}
           </Order>
         </Box>
 
