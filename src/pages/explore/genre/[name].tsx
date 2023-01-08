@@ -12,7 +12,7 @@ const GenreDetailPage = () => {
   return (
     <>
       <HeadPageMeta
-        title={`#${name} - ESCAPE NOTE`}
+        title={`#${name} - Escape Note`}
         description="방탈출에 대한 모든 것"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/explore/genre/${name}`}
       />

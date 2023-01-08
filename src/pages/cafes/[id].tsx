@@ -22,7 +22,7 @@ const CafeDetailPage = () => {
     <>
       {data && (
         <HeadPageMeta
-          title={`${data.name} - ESCAPE NOTE`}
+          title={`${data.name} - Escape Note`}
           description={data.addressLine}
           pageUrl={`${process.env.NEXT_PUBLIC_URL}/cafes/${id}`}
           {...(data.images && {
