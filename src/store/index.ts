@@ -4,10 +4,12 @@ import { persistStore, persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import { createWrapper } from 'next-redux-wrapper';
 
+import dataSlice from './dataSlice';
 import commonSlice from './commonSlice';
 import searchSlice from './searchSlice';
 
 const rootReducer = combineReducers({
+  [dataSlice.name]: dataSlice.reducer,
   [commonSlice.name]: commonSlice.reducer,
   [searchSlice.name]: searchSlice.reducer,
 });

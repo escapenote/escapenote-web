@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import App from 'next/app';
 import type { AppProps } from 'next/app';
 import { Global } from '@emotion/react';
@@ -9,15 +9,20 @@ import {
 } from '@tanstack/react-query';
 
 import globalStyles from '../styles/globalStyles';
-import { wrapper } from 'store';
+import { useAppDispatch, wrapper } from 'store';
+import { fetchCommonData } from 'store/dataSlice';
 import HeadDefaultMeta from 'components/templates/HeadDefaultMeta';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryClientRef = useRef<QueryClient>();
-
   if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient();
   }
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchCommonData());
+  }, []);
 
   return (
     <>

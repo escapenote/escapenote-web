@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
+import api from 'api';
+import { useAppSelector } from 'store';
 import useElementSize from 'hooks/useElementSize';
 import BottomSheet from 'components/templates/BottomSheet';
 import { Box, Select, Slider } from 'components/atoms';
@@ -11,15 +13,12 @@ import iconPlus from 'assets/icons/plus.svg';
 import iconCheck from 'assets/icons/check.svg';
 import iconUnCheck from 'assets/icons/uncheck.svg';
 import { useQuery } from '@tanstack/react-query';
-import api from 'api';
 
 interface IProps {
   isOpen: boolean;
   onClose: () => void;
 }
 const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
-  const [elRef, { width }] = useElementSize();
-
   const router = useRouter();
   const areaB = String(router.query.areaB ?? '');
   const genre = String(router.query.genre ?? '');
@@ -31,6 +30,11 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
   const activity = String(router.query.activity ?? '');
   const minLockingRatio = Number(router.query.minLockingRatio ?? 0);
   const maxLockingRatio = Number(router.query.maxLockingRatio ?? 100);
+
+  const location = useAppSelector(state => state.data.location);
+  const areaAData = '서울';
+  const areaBData = location[areaAData];
+  const [elRef, { width }] = useElementSize();
 
   const [_areaB, _setAreaB] = useState(areaB);
   const [_genre, _setGenre] = useState(genre);
@@ -140,32 +144,11 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
             onChange={(e: any) => _setAreaB(e.target.value)}
           >
             <option value="">전체</option>
-            <option value="강남">강남</option>
-            <option value="건대">건대</option>
-            <option value="구로">구로</option>
-            <option value="김포">김포</option>
-            <option value="노량진">노량진</option>
-            <option value="노원">노원</option>
-            <option value="대학로">대학로</option>
-            <option value="명동">명동</option>
-            <option value="목동">목동</option>
-            <option value="서울대입구">서울대입구</option>
-            <option value="성수">성수</option>
-            <option value="성신여대">성신여대</option>
-            <option value="수유">수유</option>
-            <option value="신림">신림</option>
-            <option value="신사">신사</option>
-            <option value="신촌">신촌</option>
-            <option value="연신내">연신내</option>
-            <option value="영등포">영등포</option>
-            <option value="용산">용산</option>
-            <option value="왕십리">왕십리</option>
-            <option value="이수">이수</option>
-            <option value="잠실">잠실</option>
-            <option value="종로">종로</option>
-            <option value="천호">천호</option>
-            <option value="홍대">홍대</option>
-            <option value="회기">회기</option>
+            {areaBData?.map(v => (
+              <option key={v} value={v}>
+                {v}
+              </option>
+            ))}
           </Select>
         </Box>
 
