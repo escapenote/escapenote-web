@@ -28,14 +28,6 @@ export const searchSlice = createSlice({
       state.values.splice(8);
     },
   },
-  extraReducers(builder) {
-    builder.addCase(hydrate, (state, action) => {
-      return {
-        ...state,
-        ...action.payload.search,
-      };
-    });
-  },
 });
 
 export const { setTerm, addRecentlySearchKeyword } = searchSlice.actions;

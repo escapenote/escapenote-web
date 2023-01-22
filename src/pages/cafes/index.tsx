@@ -1,5 +1,5 @@
-import HeadPageMeta from 'components/templates/HeadPageMeta';
 import CafeList from 'components/pages/CafeList';
+import HeadPageMeta from 'components/templates/HeadPageMeta';
 
 const CafeListPage = () => {
   return (

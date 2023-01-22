@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 
 import api from 'api';
-import { useAppDispatch } from 'store';
+import { useAppDispatch, useAppSelector } from 'store';
 import { addRecentlySearchKeyword } from 'store/searchSlice';
 import Layout from 'components/templates/Layout';
 import NoXAxisScrollBar from 'components/templates/NoXAxisScrollBar';
@@ -17,13 +17,16 @@ import iconMessage from 'assets/icons/message.svg';
 
 const HomePage = () => {
   const router = useRouter();
+
+  const user = useAppSelector(state => state.auth.user);
   const dispatch = useAppDispatch();
 
   const {
     isLoading: isCafeLoading,
     data: cafes,
     error: cafeError,
-  } = useQuery(['fetchCafes', 'home'], () => {
+    refetch: cafeRefetch,
+  } = useQuery(['fetchCafes', 'home', Boolean(user)], () => {
     return api.cafes.fetchCafes({ sort: 'view' });
   });
 
@@ -31,7 +34,8 @@ const HomePage = () => {
     isLoading: isThemeLoading,
     data: themes,
     error: themeError,
-  } = useQuery(['fetchThemes', 'home'], () => {
+    refetch: themeRefetch,
+  } = useQuery(['fetchThemes', 'home', Boolean(user)], () => {
     return api.themes.fetchThemes({ sort: 'view' });
   });
 
@@ -77,7 +81,7 @@ const HomePage = () => {
                 <Box width="24px" />
                 {themes?.items.slice(0, 4).map(item => (
                   <ThemeItem key={item.id}>
-                    <ThemeBigCard theme={item} />
+                    <ThemeBigCard theme={item} refetch={themeRefetch} />
                   </ThemeItem>
                 ))}
               </NoXAxisScrollBar>
@@ -108,7 +112,7 @@ const HomePage = () => {
             <CafeItems>
               {cafes?.items.slice(0, 4).map(item => (
                 <CafeItem key={item.id}>
-                  <CafeCard cafe={item} />
+                  <CafeCard cafe={item} refetch={cafeRefetch} />
                 </CafeItem>
               ))}
             </CafeItems>

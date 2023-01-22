@@ -1,15 +1,66 @@
 import Link from 'next/link';
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import { useMutation } from '@tanstack/react-query';
 
+import api from 'api';
 import { ITheme } from 'types';
 import { numberWithComma } from 'utils/common';
+import { useAppSelector } from 'store';
 import { Box } from 'components/atoms';
 import iconLock from 'assets/icons/lock.svg';
+import iconHeartFilled from 'assets/icons/heart-filled.svg';
+import iconHeartFilledActive from 'assets/icons/heart-filled-active.svg';
 
 interface IProps {
   theme: ITheme;
+  refetch?: any;
 }
-const ThemeBigCard: React.FC<IProps> = ({ theme }) => {
+const ThemeBigCard: React.FC<IProps> = ({ theme, refetch }) => {
+  const router = useRouter();
+  const user = useAppSelector(state => state.auth.user);
+
+  const saveMutation = useMutation(
+    () => api.themes.saveTheme({ id: theme.id }),
+    {
+      onSuccess: () => refetch && refetch(),
+      onError: ({ response }) => {
+        const { detail } = response.data;
+        alert(detail);
+      },
+    },
+  );
+  const unSaveMutation = useMutation(
+    () => api.themes.unSaveTheme({ id: theme.id }),
+    {
+      onSuccess: () => refetch && refetch(),
+      onError: ({ response }) => {
+        const { detail } = response.data;
+        alert(detail);
+      },
+    },
+  );
+
+  function handleSaveTheme(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!user) {
+      router.push(`/accounts/login?rd_url=${router.asPath}`);
+      return;
+    }
+    saveMutation.mutate();
+  }
+
+  function handleUnSaveTheme(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!user) {
+      router.push(`/accounts/login?rd_url=${router.asPath}`);
+      return;
+    }
+    unSaveMutation.mutate();
+  }
+
   return (
     <Link href={`/themes/${theme.id}`} passHref>
       <Container
@@ -46,6 +97,21 @@ const ThemeBigCard: React.FC<IProps> = ({ theme }) => {
             <Price>₩{numberWithComma(theme.price)}</Price>
           </Box>
         </Contents>
+
+        {theme?.saves && theme?.saves.length > 0 ? (
+          <SaveButton onClick={handleUnSaveTheme}>
+            <img
+              src={iconHeartFilledActive}
+              alt="save-active"
+              width="24px"
+              height="24px"
+            />
+          </SaveButton>
+        ) : (
+          <SaveButton onClick={handleSaveTheme}>
+            <img src={iconHeartFilled} alt="save" width="24px" height="24px" />
+          </SaveButton>
+        )}
       </Container>
     </Link>
   );
@@ -116,6 +182,14 @@ const Price = styled.span`
   font-size: 12px;
   font-weight: 500;
   color: rgb(var(--primary));
+`;
+const SaveButton = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  z-index: 9;
 `;
 
 export default ThemeBigCard;

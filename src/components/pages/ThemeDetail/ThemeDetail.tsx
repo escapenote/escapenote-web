@@ -120,6 +120,7 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-bottom: 72px;
 `;
 const ThumbnailBox = styled.div`
   position: relative;

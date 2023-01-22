@@ -8,15 +8,15 @@ const ModalSheet = Sheet as any;
 
 interface IProps {
   children: React.ReactNode;
+  title: string;
   isOpen: boolean;
-  onReset: () => void;
   onClose: () => void;
-  onFinish: () => void;
+  onFinish?: () => void;
 }
 const BottomSheet: React.FC<IProps> = ({
   children,
+  title,
   isOpen,
-  onReset,
   onClose,
   onFinish,
 }) => {
@@ -38,7 +38,7 @@ const BottomSheet: React.FC<IProps> = ({
       <ModalSheet.Container>
         <HeadingContainer>
           <Box width="24px" />
-          <Title>필터</Title>
+          <Title>{title}</Title>
           <CloseButton onClick={onClose}>
             <img src={closeIcon} alt="close" width="24px" height="24px" />
           </CloseButton>
@@ -47,8 +47,8 @@ const BottomSheet: React.FC<IProps> = ({
           <BodyContainer>{children}</BodyContainer>
         </ModalSheet.Content>
         <ModalSheetFooter>
-          <UnFilter onClick={onReset}>전체 해제</UnFilter>
-          <ApplyButton onClick={onFinish}>필터 적용</ApplyButton>
+          <Box />
+          <ApplyButton onClick={onFinish}>동의</ApplyButton>
         </ModalSheetFooter>
       </ModalSheet.Container>
 

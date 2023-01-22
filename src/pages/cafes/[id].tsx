@@ -1,14 +1,19 @@
 import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
-import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
+import {
+  dehydrate,
+  QueryClient,
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
 
 import api from 'api';
-import { wrapper } from 'store';
+import { useAppSelector, wrapper } from 'store';
+import CafeDetail from 'components/pages/CafeDetail';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
 import { Back } from 'components/atoms';
-
-const CafeDetail = dynamic(() => import('components/pages/CafeDetail'));
+import iconHeart from 'assets/icons/heart.svg';
+import iconHeartActive from 'assets/icons/heart-active.svg';
 
 interface IProps {
   initial: boolean;
@@ -17,13 +22,45 @@ const CafeDetailPage = ({ initial }: IProps) => {
   const router = useRouter();
   const id = String(router.query.id);
 
-  const { data } = useQuery(['fetchCafe', id], () => {
+  const user = useAppSelector(state => state.auth.user);
+  const { data, refetch } = useQuery(['fetchCafe', id], () => {
     return api.cafes.fetchCafe({ id });
   });
 
   function handleGoBack() {
     if (initial) router.push('/');
     else router.back();
+  }
+
+  const saveMutation = useMutation(() => api.cafes.saveCafe({ id }), {
+    onSuccess: () => refetch(),
+    onError: ({ response }) => {
+      const { detail } = response.data;
+      alert(detail);
+    },
+  });
+  const unSaveMutation = useMutation(() => api.cafes.unSaveCafe({ id }), {
+    onSuccess: () => refetch(),
+    onError: ({ response }) => {
+      const { detail } = response.data;
+      alert(detail);
+    },
+  });
+
+  function handleSaveCafe() {
+    if (!user) {
+      router.push(`/accounts/login?rd_url=${router.asPath}`);
+      return;
+    }
+    saveMutation.mutate();
+  }
+
+  function handleUnSaveCafe() {
+    if (!user) {
+      router.push(`/accounts/login?rd_url=${router.asPath}`);
+      return;
+    }
+    unSaveMutation.mutate();
   }
 
   return (
@@ -42,7 +79,22 @@ const CafeDetailPage = ({ initial }: IProps) => {
       <Layout
         title="카페"
         leftAction={<Back onClick={handleGoBack} />}
-        rightAction={<></>}
+        rightAction={
+          data?.saves && data.saves.length > 0 ? (
+            <button onClick={handleUnSaveCafe}>
+              <img
+                src={iconHeartActive}
+                alt="save-active"
+                width="24px"
+                height="24px"
+              />
+            </button>
+          ) : (
+            <button onClick={handleSaveCafe}>
+              <img src={iconHeart} alt="save" width="24px" height="24px" />
+            </button>
+          )
+        }
         hideBottom
       >
         <CafeDetail id={id} cafe={data} />

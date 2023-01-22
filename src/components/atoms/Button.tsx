@@ -1,20 +1,25 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { space, SpaceProps, layout, LayoutProps } from 'styled-system';
 
-interface IProps extends SpaceProps, LayoutProps {}
+type ButtonType = 'primary' | 'default' | 'text';
+
+interface IProps extends SpaceProps, LayoutProps {
+  kind?: ButtonType;
+}
 const Button = styled.button<IProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  border: 1px solid rgb(var(--border));
-  padding: 0 10px;
+  border-radius: 16px;
+  border: 1px solid rgb(var(--primary));
+  padding: 16px;
   width: auto;
-  height: 42px;
+  height: 56px;
   background-color: rgb(var(--content));
-  font-weight: bold;
+  font-weight: 500;
   text-align: center;
-  color: rgb(var(--text));
+  color: rgb(var(--primary));
   cursor: pointer;
   text-align: center;
   text-transform: inherit;
@@ -23,9 +28,34 @@ const Button = styled.button<IProps>`
   :disabled {
     cursor: not-allowed;
     opacity: 0.3;
+
+    ${p =>
+      p.kind === 'primary' &&
+      css`
+        background-color: rgb(var(--greyscale200));
+        opacity: 1;
+      `}
   }
   ${space};
   ${layout};
+  ${p =>
+    p.kind === 'primary' &&
+    css`
+      border: none;
+      background-color: rgb(var(--primary));
+      font-weight: 700;
+      color: white;
+    `}
+
+  ${p =>
+    p.kind === 'text' &&
+    css`
+      border: none;
+      padding: 0;
+      height: auto;
+      font-weight: 700;
+      color: rgb(var(--primary));
+    `}
 `;
 
 export default Button;

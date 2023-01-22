@@ -5,11 +5,12 @@ import { useRouter } from 'next/router';
 
 import api from 'api';
 import sortOptions from 'data/sortOptions';
+import { useAppSelector } from 'store';
 import Layout from 'components/templates/Layout';
 import FetchMore from 'components/templates/FetchMore';
 import CafeCard from 'components/molecules/CafeCard';
-import IconFilter from 'components/icons/IconFilter';
 import { Box } from 'components/atoms';
+import { IconFilter } from 'components/icons';
 import iconSearch from 'assets/icons/search.svg';
 import iconArrowsDownUp from 'assets/icons/arrows-down-up.svg';
 import CafeFilter from './CafeFilter';
@@ -19,8 +20,9 @@ const CafeListPage = () => {
   const sort = String(router.query.sort ?? 'createdAt');
   const order = String(router.query.order ?? 'desc');
   const areaB = String(router.query.areaB ?? '');
-
   const isActiveFilter = Boolean(areaB);
+
+  const user = useAppSelector(state => state.auth.user);
   const [isOpen, setOpen] = useState(false);
 
   const {
@@ -30,8 +32,9 @@ const CafeListPage = () => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
+    refetch,
   } = useInfiniteQuery(
-    ['fetchCafes', areaB, sort, order],
+    ['fetchCafes', Boolean(user), areaB, sort, order],
     ({ pageParam }) => {
       return api.cafes.fetchCafes({
         areaB,
@@ -98,7 +101,7 @@ const CafeListPage = () => {
               <Items>
                 {group.items?.map(item => (
                   <Item key={item.id}>
-                    <CafeCard cafe={item} />
+                    <CafeCard cafe={item} refetch={refetch} />
                   </Item>
                 ))}
               </Items>

@@ -27,14 +27,6 @@ export const dataSlice = createSlice({
       state.location = action.payload;
     },
   },
-  extraReducers(builder) {
-    builder.addCase(hydrate, (state, action) => {
-      return {
-        ...state,
-        ...action.payload.data,
-      };
-    });
-  },
 });
 
 export const { setLocation } = dataSlice.actions;

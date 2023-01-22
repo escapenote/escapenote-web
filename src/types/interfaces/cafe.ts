@@ -18,6 +18,7 @@ export interface ICafe {
   openingHours: IOpeningHour[];
   closingHour: number;
   themes: ITheme[];
+  saves: any[];
   status: string;
   createdAt: string;
   updatedAt: string;

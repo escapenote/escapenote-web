@@ -1,22 +1,36 @@
 import { HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import iconChevronDown from 'assets/icons/chevron-down.svg';
 
 interface IProps extends HTMLAttributes<HTMLSelectElement> {
+  placeholder?: string;
   value: string;
+  prefixIcon?: React.ReactNode;
   children: React.ReactNode;
 }
-const Select: React.FC<IProps> = ({ value, children, ...props }) => {
+const Select: React.FC<IProps> = ({
+  placeholder,
+  value,
+  prefixIcon,
+  children,
+  ...props
+}) => {
   return (
-    <Container>
+    <Container isIcon={Boolean(prefixIcon)}>
+      {prefixIcon && <PrefixIcon>{prefixIcon}</PrefixIcon>}
       <select {...props}>{children}</select>
-      {value || '전체'}
+      {Boolean(placeholder) && !value ? (
+        <Placeholder>{placeholder}</Placeholder>
+      ) : (
+        value || '전체'
+      )}
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ isIcon: boolean }>`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -48,5 +62,20 @@ const Container = styled.div`
     background-image: url(${iconChevronDown});
     background-size: 16px 16px;
   }
+  ${p =>
+    p.isIcon &&
+    css`
+      padding-left: 52px;
+    `}
 `;
+const PrefixIcon = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 18px 12px 18px 20px;
+`;
+const Placeholder = styled.span`
+  color: rgb(var(--greyscale400));
+`;
+
 export default Select;

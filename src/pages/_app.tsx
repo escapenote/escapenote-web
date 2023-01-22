@@ -10,6 +10,7 @@ import {
 
 import globalStyles from '../styles/globalStyles';
 import { useAppDispatch, wrapper } from 'store';
+import { currentAuthenticatedUserAsync } from 'store/authSlice';
 import { fetchCommonData } from 'store/dataSlice';
 import HeadDefaultMeta from 'components/templates/HeadDefaultMeta';
 
@@ -39,9 +40,17 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-MyApp.getInitialProps = wrapper.getInitialAppProps(() => async appContext => {
-  const appProps = await App.getInitialProps(appContext);
-  return appProps;
-});
+MyApp.getInitialProps = wrapper.getInitialAppProps(
+  store => async appContext => {
+    const { req } = appContext.ctx;
+
+    if (req) {
+      await store.dispatch(currentAuthenticatedUserAsync(req.headers.cookie));
+    }
+
+    const appProps = await App.getInitialProps(appContext);
+    return { ...appProps };
+  },
+);
 
 export default wrapper.withRedux(MyApp);

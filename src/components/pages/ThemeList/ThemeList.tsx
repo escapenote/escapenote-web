@@ -5,11 +5,12 @@ import { useRouter } from 'next/router';
 
 import api from 'api';
 import sortOptions from 'data/sortOptions';
+import { useAppSelector } from 'store';
 import Layout from 'components/templates/Layout';
 import FetchMore from 'components/templates/FetchMore';
 import ThemeCard from 'components/molecules/ThemeCard';
-import IconFilter from 'components/icons/IconFilter';
 import { Box } from 'components/atoms';
+import { IconFilter } from 'components/icons';
 import iconSearch from 'assets/icons/search.svg';
 import iconArrowsDownUp from 'assets/icons/arrows-down-up.svg';
 import ThemeFilter from './ThemeFilter';
@@ -22,24 +23,13 @@ const ThemeListPage = () => {
   const genre = String(router.query.genre ?? '');
   const level = String(router.query.level ?? '');
   const person = String(router.query.person ?? '');
-  const minPrice = String(router.query.minPrice ?? '');
-  const maxPrice = String(router.query.maxPrice ?? '');
   const fearScore = String(router.query.fearScore ?? '');
   const activity = String(router.query.activity ?? '');
-  const minLockingRatio = String(router.query.minLockingRatio ?? '');
-  const maxLockingRatio = String(router.query.maxLockingRatio ?? '');
-
+  const lockingRatio = String(router.query.lockingRatio ?? '');
   const isActiveFilter =
-    areaB ||
-    genre ||
-    level ||
-    person ||
-    minPrice ||
-    maxPrice ||
-    fearScore ||
-    activity ||
-    minLockingRatio ||
-    maxLockingRatio;
+    areaB || genre || level || person || fearScore || activity || lockingRatio;
+
+  const user = useAppSelector(state => state.auth.user);
   const [isOpen, setOpen] = useState(false);
 
   const {
@@ -49,19 +39,18 @@ const ThemeListPage = () => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
+    refetch,
   } = useInfiniteQuery(
     [
       'fetchThemes',
+      Boolean(user),
       areaB,
       genre,
       level,
       person,
-      minPrice,
-      maxPrice,
       fearScore,
       activity,
-      minLockingRatio,
-      maxLockingRatio,
+      lockingRatio,
       sort,
       order,
     ],
@@ -71,12 +60,9 @@ const ThemeListPage = () => {
         genre,
         level,
         person,
-        minPrice,
-        maxPrice,
         fearScore,
         activity,
-        minLockingRatio,
-        maxLockingRatio,
+        lockingRatio,
         cursor: pageParam,
         sort,
         order,
@@ -148,7 +134,7 @@ const ThemeListPage = () => {
               <Items>
                 {group.items?.map(item => (
                   <Item key={item.id}>
-                    <ThemeCard theme={item} />
+                    <ThemeCard theme={item} refetch={refetch} />
                   </Item>
                 ))}
               </Items>

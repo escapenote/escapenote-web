@@ -54,7 +54,7 @@ const StyledHeader = styled.header`
   }
 `;
 const Title = styled.h1`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 `;
 const SubTitle = styled.small`
@@ -64,7 +64,8 @@ const SubTitle = styled.small`
 const Action = styled.div`
   display: flex;
   flex-direction: row;
-  min-width: 48px;
+  justify-content: flex-end;
+  min-width: 32px;
 `;
 
 export default Header;

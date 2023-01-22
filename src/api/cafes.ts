@@ -42,3 +42,25 @@ export const fetchCafe = async ({ id }: IFetchCafeProps) => {
   const { data } = await api.get<ICafe>(`cafes/${id}`);
   return data;
 };
+
+/**
+ * 카페 저장
+ */
+interface ISaveCafeProps {
+  id: string;
+}
+export const saveCafe = async ({ id }: ISaveCafeProps) => {
+  const { data } = await api.post(`cafes/${id}/save`);
+  return data;
+};
+
+/**
+ * 카페 저장 취소
+ */
+interface IUnSaveCafeProps {
+  id: string;
+}
+export const unSaveCafe = async ({ id }: IUnSaveCafeProps) => {
+  const { data } = await api.post(`cafes/${id}/unsave`);
+  return data;
+};

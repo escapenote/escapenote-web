@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import AppBar from 'components/organisms/AppBar';
 import BottomNavigationBar from 'components/organisms/BottomNavigationBar';
+import { css } from '@emotion/react';
 
 interface IProps {
   title?: string;
@@ -31,7 +32,7 @@ const Layout: React.FC<IProps> = ({
         rightAction={rightAction}
         appBar={appBar}
       />
-      <Main>{children}</Main>
+      <Main hideBottom={hideBottom}>{children}</Main>
       {!hideBottom && <BottomNavigationBar />}
     </Wrapper>
   );
@@ -42,7 +43,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   flex-grow: 1;
 `;
-const Main = styled.main`
+const Main = styled.main<{ hideBottom: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -53,6 +54,11 @@ const Main = styled.main`
   padding-bottom: calc(96px + env(safe-area-inset-bottom));
   width: 100%;
   overflow: hidden;
+  ${p =>
+    p.hideBottom &&
+    css`
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    `}
   @media (min-width: 480px) {
     margin: 0 auto;
     max-width: 480px;

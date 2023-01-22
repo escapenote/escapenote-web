@@ -1,14 +1,19 @@
 import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
-import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
+import {
+  dehydrate,
+  QueryClient,
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
 
 import api from 'api';
-import { wrapper } from 'store';
+import { useAppSelector, wrapper } from 'store';
+import ThemeDetail from 'components/pages/ThemeDetail';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
 import { Back } from 'components/atoms';
-
-const ThemeDetail = dynamic(() => import('components/pages/ThemeDetail'));
+import iconHeart from 'assets/icons/heart.svg';
+import iconHeartActive from 'assets/icons/heart-active.svg';
 
 interface IProps {
   initial: boolean;
@@ -17,13 +22,45 @@ const ThemeDetailPage = ({ initial }: IProps) => {
   const router = useRouter();
   const id = String(router.query.id);
 
-  const { data } = useQuery(['fetchTheme', id], () => {
+  const user = useAppSelector(state => state.auth.user);
+  const { data, refetch } = useQuery(['fetchTheme', Boolean(user), id], () => {
     return api.themes.fetchTheme({ id });
   });
 
   function handleGoBack() {
     if (initial) router.push('/');
     else router.back();
+  }
+
+  const saveMutation = useMutation(() => api.themes.saveTheme({ id }), {
+    onSuccess: () => refetch(),
+    onError: ({ response }) => {
+      const { detail } = response.data;
+      alert(detail);
+    },
+  });
+  const unSaveMutation = useMutation(() => api.themes.unSaveTheme({ id }), {
+    onSuccess: () => refetch(),
+    onError: ({ response }) => {
+      const { detail } = response.data;
+      alert(detail);
+    },
+  });
+
+  function handleSaveTheme() {
+    if (!user) {
+      router.push(`/accounts/login?rd_url=${router.asPath}`);
+      return;
+    }
+    saveMutation.mutate();
+  }
+
+  function handleUnSaveTheme() {
+    if (!user) {
+      router.push(`/accounts/login?rd_url=${router.asPath}`);
+      return;
+    }
+    unSaveMutation.mutate();
   }
 
   return (
@@ -40,7 +77,22 @@ const ThemeDetailPage = ({ initial }: IProps) => {
       <Layout
         title="테마"
         leftAction={<Back onClick={handleGoBack} />}
-        rightAction={<></>}
+        rightAction={
+          data?.saves && data.saves.length > 0 ? (
+            <button onClick={handleUnSaveTheme}>
+              <img
+                src={iconHeartActive}
+                alt="save-active"
+                width="24px"
+                height="24px"
+              />
+            </button>
+          ) : (
+            <button onClick={handleSaveTheme}>
+              <img src={iconHeart} alt="save" width="24px" height="24px" />
+            </button>
+          )
+        }
         hideBottom
       >
         <ThemeDetail id={id} theme={data} />

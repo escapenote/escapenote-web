@@ -1,5 +1,5 @@
-import HeadPageMeta from 'components/templates/HeadPageMeta';
 import ThemeList from 'components/pages/ThemeList';
+import HeadPageMeta from 'components/templates/HeadPageMeta';
 
 const ThemeListPage = () => {
   return (

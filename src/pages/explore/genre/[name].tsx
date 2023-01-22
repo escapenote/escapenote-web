@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 
+import GenreDetail from 'components/pages/GenreDetail';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
-import GenreDetail from 'components/pages/GenreDetail';
 import { Back } from 'components/atoms';
 
 const GenreDetailPage = () => {

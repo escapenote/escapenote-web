@@ -1,5 +1,5 @@
-import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Search from 'components/pages/Search';
+import HeadPageMeta from 'components/templates/HeadPageMeta';
 
 const SearchPage = () => {
   return (

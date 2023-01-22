@@ -23,6 +23,7 @@ export interface ITheme {
   openDate: string;
   detailUrl: string;
   reservationUrl: string;
+  saves: any[];
   status: string;
   createdAt: string;
   updatedAt: string;

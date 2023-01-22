@@ -11,12 +11,9 @@ interface IFetchThemesProps {
   areaB?: string;
   level?: string;
   person?: string;
-  minPrice?: string;
-  maxPrice?: string;
   fearScore?: string;
   activity?: string;
-  minLockingRatio?: string;
-  maxLockingRatio?: string;
+  lockingRatio?: string;
   take?: number;
   cursor?: string;
   sort?: string;
@@ -29,12 +26,9 @@ export const fetchThemes = async ({
   genre,
   level,
   person,
-  minPrice,
-  maxPrice,
   fearScore,
   activity,
-  minLockingRatio,
-  maxLockingRatio,
+  lockingRatio,
   take = 20,
   cursor,
   sort,
@@ -47,12 +41,9 @@ export const fetchThemes = async ({
   if (genre) params.genre = genre;
   if (level) params.level = Number(level);
   if (person) params.person = Number(person);
-  if (minPrice) params.minPrice = Number(minPrice);
-  if (maxPrice) params.maxPrice = Number(maxPrice);
   if (fearScore) params.fearScore = fearScore;
   if (activity) params.activity = activity;
-  if (minLockingRatio) params.minLockingRatio = Number(minLockingRatio);
-  if (maxLockingRatio) params.maxLockingRatio = Number(maxLockingRatio);
+  if (lockingRatio) params.lockingRatio = lockingRatio;
   if (sort) params.sort = sort;
   if (order) params.order = order;
 
@@ -71,5 +62,27 @@ interface IFetchThemeProps {
 }
 export const fetchTheme = async ({ id }: IFetchThemeProps) => {
   const { data } = await api.get<ITheme>(`themes/${id}`);
+  return data;
+};
+
+/**
+ * 테마 저장
+ */
+interface ISaveThemeProps {
+  id: string;
+}
+export const saveTheme = async ({ id }: ISaveThemeProps) => {
+  const { data } = await api.post(`themes/${id}/save`);
+  return data;
+};
+
+/**
+ * 테마 저장 취소
+ */
+interface IUnSaveThemeProps {
+  id: string;
+}
+export const unSaveTheme = async ({ id }: IUnSaveThemeProps) => {
+  const { data } = await api.post(`themes/${id}/unsave`);
   return data;
 };

@@ -6,7 +6,7 @@ import { css } from '@emotion/react';
 import api from 'api';
 import { useAppSelector } from 'store';
 import useElementSize from 'hooks/useElementSize';
-import BottomSheet from 'components/templates/BottomSheet';
+import BottomSheetFilter from 'components/templates/BottomSheetFilter';
 import { Box, Select, Slider } from 'components/atoms';
 import iconMinus from 'assets/icons/minus.svg';
 import iconPlus from 'assets/icons/plus.svg';
@@ -24,12 +24,9 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
   const genre = String(router.query.genre ?? '');
   const level = String(router.query.level ?? '');
   const person = Number(router.query.person ?? 0);
-  const minPrice = Number(router.query.minPrice ?? 0);
-  const maxPrice = Number(router.query.maxPrice ?? 100000);
   const fearScore = String(router.query.fearScore ?? '');
   const activity = String(router.query.activity ?? '');
-  const minLockingRatio = Number(router.query.minLockingRatio ?? 0);
-  const maxLockingRatio = Number(router.query.maxLockingRatio ?? 100);
+  const lockingRatio = String(router.query.lockingRatio ?? '');
 
   const location = useAppSelector(state => state.data.location);
   const areaAData = '서울';
@@ -40,12 +37,9 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
   const [_genre, _setGenre] = useState(genre);
   const [_level, _setLevel] = useState(level);
   const [_person, _setPerson] = useState(person);
-  const [_minPrice, _setMinPrice] = useState(minPrice);
-  const [_maxPrice, _setMaxPrice] = useState(maxPrice);
   const [_fearScore, _setFearScore] = useState(fearScore);
   const [_activity, _setActivity] = useState(activity);
-  const [_minLockingRatio, _setMinLockingRatio] = useState(minLockingRatio);
-  const [_maxLockingRatio, _setMaxLockingRatio] = useState(maxLockingRatio);
+  const [_lockingRatio, _setLockingRatio] = useState(lockingRatio);
 
   const { data: genreList } = useQuery(['fetchGenreList'], () => {
     return api.genre.fetchGenreList();
@@ -56,12 +50,9 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
     _setGenre(genre);
     _setLevel(level);
     _setPerson(person);
-    _setMinPrice(minPrice);
-    _setMaxPrice(maxPrice);
     _setFearScore(fearScore);
     _setActivity(activity);
-    _setMinLockingRatio(minLockingRatio);
-    _setMaxLockingRatio(maxLockingRatio);
+    _setLockingRatio(lockingRatio);
   }, [isOpen, router.query]);
 
   function handleReset() {
@@ -69,12 +60,9 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
     _setGenre('');
     _setLevel('');
     _setPerson(0);
-    _setMinPrice(0);
-    _setMaxPrice(100000);
     _setFearScore('');
     _setActivity('');
-    _setMinLockingRatio(0);
-    _setMaxLockingRatio(100);
+    _setLockingRatio('');
   }
 
   function handleFinish() {
@@ -92,21 +80,14 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
     if (!_person) delete query['person'];
     else query['person'] = _person;
 
-    if (_minPrice === 0) delete query['minPrice'];
-    else query['minPrice'] = _minPrice;
-    if (_maxPrice === 100000) delete query['maxPrice'];
-    else query['maxPrice'] = _maxPrice;
-
     if (!_fearScore) delete query['fearScore'];
     else query['fearScore'] = _fearScore;
 
     if (!_activity) delete query['activity'];
     else query['activity'] = _activity;
 
-    if (_minLockingRatio === 0) delete query['minLockingRatio'];
-    else query['minLockingRatio'] = _minLockingRatio;
-    if (_maxLockingRatio === 100) delete query['maxLockingRatio'];
-    else query['maxLockingRatio'] = _maxLockingRatio;
+    if (!_lockingRatio) delete query['lockingRatio'];
+    else query['lockingRatio'] = _lockingRatio;
 
     router.replace({ query });
     return onClose();
@@ -128,8 +109,16 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
     }
   }
 
+  function handleChangeLockingRatio(value: string) {
+    if (_lockingRatio === value) {
+      _setLockingRatio('');
+    } else {
+      _setLockingRatio(value);
+    }
+  }
+
   return (
-    <BottomSheet
+    <BottomSheetFilter
       isOpen={isOpen}
       onReset={handleReset}
       onClose={onClose}
@@ -202,24 +191,6 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
         </Box>
 
         <Box mb="24px">
-          <Title>가격</Title>
-          <Slider
-            width={width}
-            step={1000}
-            min={0}
-            max={100000}
-            minVal={_minPrice}
-            maxVal={_maxPrice}
-            setMinVal={_setMinPrice}
-            setMaxVal={_setMaxPrice}
-            onChange={({ min, max }) => {
-              _setMinPrice(min);
-              _setMaxPrice(max);
-            }}
-          />
-        </Box>
-
-        <Box mb="24px">
           <Title>공포도</Title>
           <Box flexDirection="row">
             <CheckButton
@@ -269,23 +240,29 @@ const ThemeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
 
         <Box mb="24px">
           <Title>잠금 장치 비율</Title>
-          <Slider
-            width={width}
-            step={10}
-            min={0}
-            max={100}
-            minVal={_minLockingRatio}
-            maxVal={_maxLockingRatio}
-            setMinVal={_setMinLockingRatio}
-            setMaxVal={_setMaxLockingRatio}
-            onChange={({ min, max }) => {
-              _setMinLockingRatio(min);
-              _setMaxLockingRatio(max);
-            }}
-          />
+          <Box flexDirection="row">
+            <CheckButton
+              active={_lockingRatio === 'low'}
+              onClick={() => handleChangeLockingRatio('low')}
+            >
+              낮음
+            </CheckButton>
+            <CheckButton
+              active={_lockingRatio === 'medium'}
+              onClick={() => handleChangeLockingRatio('medium')}
+            >
+              보통
+            </CheckButton>
+            <CheckButton
+              active={_lockingRatio === 'high'}
+              onClick={() => handleChangeLockingRatio('high')}
+            >
+              높음
+            </CheckButton>
+          </Box>
         </Box>
       </div>
-    </BottomSheet>
+    </BottomSheetFilter>
   );
 };
 

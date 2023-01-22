@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import { useAppSelector } from 'store';
-import BottomSheet from 'components/templates/BottomSheet';
+import BottomSheetFilter from 'components/templates/BottomSheetFilter';
 import { Box, Select } from 'components/atoms';
 
 interface IProps {
@@ -37,7 +37,7 @@ const CafeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
   }
 
   return (
-    <BottomSheet
+    <BottomSheetFilter
       isOpen={isOpen}
       onReset={handleReset}
       onClose={onClose}
@@ -58,7 +58,7 @@ const CafeFilter: React.FC<IProps> = ({ isOpen, onClose }) => {
           ))}
         </Select>
       </Box>
-    </BottomSheet>
+    </BottomSheetFilter>
   );
 };
 

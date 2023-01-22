@@ -63,7 +63,9 @@ const CafeDetail: React.FC<IProps> = ({ id, cafe }) => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  margin-bottom: 72px;
+`;
 const Image = styled.img`
   margin-bottom: 12px;
   border-radius: 50px;
