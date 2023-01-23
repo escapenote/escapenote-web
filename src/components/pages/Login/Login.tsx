@@ -9,7 +9,7 @@ import { ILoginProps } from 'api/auth';
 import { useAppDispatch } from 'store';
 import { login } from 'store/authSlice';
 import { loginSchema } from 'utils/validators';
-import { Box, Input, Button } from 'components/atoms';
+import { Box, Input, Button, Text } from 'components/atoms';
 import iconEmail from 'assets/icons/mail.svg';
 import iconPassword from 'assets/icons/password.svg';
 import iconEyeOff from 'assets/icons/eye-off.svg';
@@ -163,6 +163,30 @@ const Login: React.FC = () => {
             </Button>
           </Box>
         </form>
+      </Box>
+
+      <Box alignItems="center" mt="auto">
+        <Box>
+          <Text fontSize="12px" color="rgb(var(--greyscale400))">
+            계정에 문제가 있는 경우
+          </Text>
+        </Box>
+        <Box flexDirection="row" alignItems="baseline">
+          <Link href="/faq">
+            <a>
+              <Text
+                fontSize="12px"
+                fontWeight="500"
+                color="rgb(var(--secondary))"
+              >
+                자주묻는질문
+              </Text>
+            </a>
+          </Link>
+          <Text fontSize="12px" color="rgb(var(--greyscale400))">
+            을 확인해보세요.
+          </Text>
+        </Box>
       </Box>
     </Box>
   );
