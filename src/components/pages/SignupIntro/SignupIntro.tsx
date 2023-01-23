@@ -145,7 +145,7 @@ const SignupIntro = () => {
           setAgreePrivacy(true);
         }}
       >
-        <Terms />
+        <Privacy />
       </BottomSheet>
     </>
   );
