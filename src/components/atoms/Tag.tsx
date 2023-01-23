@@ -10,7 +10,6 @@ const Tag: React.FC<IProps> = ({ children, onClick }) => {
 };
 
 const StyledTag = styled.span`
-  margin-right: 8px;
   border-radius: 12px;
   padding: 11px 16px;
   background-color: rgb(var(--greyscale50));

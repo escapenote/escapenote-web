@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
@@ -87,21 +87,27 @@ const Search = () => {
         <>
           <Title>다른 방탈러들이 많이 찾고 있어요!</Title>
           <Box flexDirection="row" flexWrap="wrap">
-            <Tag
-              onClick={() => router.push('/themes/clbdocm8a0051g4qf7iyv8bz0')}
-            >
-              히로인
-            </Tag>
-            <Tag
-              onClick={() => router.push('/themes/clbp3pbxq84820bznr9tggvk4')}
-            >
-              호텔레토
-            </Tag>
-            <Tag
-              onClick={() => router.push('/themes/clca1shq113640bzjn1lqvgpj')}
-            >
-              이웃집또털어
-            </Tag>
+            <Box mr="8px">
+              <Tag
+                onClick={() => router.push('/themes/clch79ex110270bzshsqi3zho')}
+              >
+                꼬레아 우라
+              </Tag>
+            </Box>
+            <Box mr="8px">
+              <Tag
+                onClick={() => router.push('/themes/clbp3pbxq84820bznr9tggvk4')}
+              >
+                호텔레토
+              </Tag>
+            </Box>
+            <Box mr="8px">
+              <Tag
+                onClick={() => router.push('/themes/clca1shq113640bzjn1lqvgpj')}
+              >
+                이웃집또털어
+              </Tag>
+            </Box>
           </Box>
 
           <Box height="24px" />
@@ -110,9 +116,9 @@ const Search = () => {
           <Box flexDirection="row" flexWrap="wrap">
             {recentlySearchKeywords.length > 0
               ? recentlySearchKeywords.map(v => (
-                  <Tag key={v} onClick={() => handleSubmit(v)}>
-                    {v}
-                  </Tag>
+                  <Box key={v} mr="8px" mb="8px">
+                    <Tag onClick={() => handleSubmit(v)}>{v}</Tag>
+                  </Box>
                 ))
               : '없음'}
           </Box>
