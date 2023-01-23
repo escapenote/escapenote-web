@@ -1,11 +1,14 @@
+import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import Privacy from 'components/pages/Privacy';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
-import { Box } from 'components/atoms';
+import { Back } from 'components/atoms';
 
 const PrivacyPage = () => {
+  const router = useRouter();
+
   return (
     <>
       <HeadPageMeta
@@ -15,11 +18,9 @@ const PrivacyPage = () => {
       />
 
       <Layout
-        appBar={
-          <Box justifyContent="center" alignItems="center" flex="1">
-            <Title>개인정보 처리방침</Title>
-          </Box>
-        }
+        title="개인정보 처리방침"
+        leftAction={<Back onClick={router.back} />}
+        rightAction={<></>}
         hideBottom
       >
         <Privacy />

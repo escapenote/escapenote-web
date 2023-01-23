@@ -1,11 +1,14 @@
+import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import Terms from 'components/pages/Terms';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
-import { Box } from 'components/atoms';
+import { Back } from 'components/atoms';
 
 const TermsPage = () => {
+  const router = useRouter();
+
   return (
     <>
       <HeadPageMeta
@@ -15,11 +18,9 @@ const TermsPage = () => {
       />
 
       <Layout
-        appBar={
-          <Box justifyContent="center" alignItems="center" flex="1">
-            <Title>이용약관</Title>
-          </Box>
-        }
+        title="이용약관"
+        leftAction={<Back onClick={router.back} />}
+        rightAction={<></>}
         hideBottom
       >
         <Terms />

@@ -1,11 +1,14 @@
+import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import Faq from 'components/pages/Faq';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
-import { Box } from 'components/atoms';
+import { Back } from 'components/atoms';
 
 const FaqPage = () => {
+  const router = useRouter();
+
   return (
     <>
       <HeadPageMeta
@@ -15,11 +18,9 @@ const FaqPage = () => {
       />
 
       <Layout
-        appBar={
-          <Box justifyContent="center" alignItems="center" flex="1">
-            <Title>자주묻는질문</Title>
-          </Box>
-        }
+        title="자주묻는질문"
+        leftAction={<Back onClick={router.back} />}
+        rightAction={<></>}
         hideBottom
       >
         <Faq />
