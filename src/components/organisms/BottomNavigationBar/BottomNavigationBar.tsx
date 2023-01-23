@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
+import { IUser } from 'types';
 import { useAppSelector } from 'store';
 import iconHome from 'assets/icons/home.svg';
 import iconHomeActive from 'assets/icons/home-active.svg';
@@ -11,9 +12,10 @@ import iconCafe from 'assets/icons/cafe.svg';
 import iconCafeActive from 'assets/icons/cafe-active.svg';
 import iconTicket from 'assets/icons/ticket.svg';
 import iconTicketActive from 'assets/icons/ticket-active.svg';
+import iconBookmark from 'assets/icons/bookmark.svg';
+import iconBookmarkActive from 'assets/icons/bookmark-active.svg';
 import iconProfile from 'assets/icons/profile.svg';
 import iconProfileActive from 'assets/icons/profile-active.svg';
-import { IUser } from 'types';
 
 const BottomNavigationBar: React.FC = () => {
   const user = useAppSelector(state => state.auth.user);
@@ -84,6 +86,7 @@ const PublicNav: React.FC = () => {
   const isHomePage = ['/'].includes(router.pathname);
   const isCafePage = ['/cafes', '/cafes/[id]'].includes(router.pathname);
   const isThemePage = ['/themes', '/themes/[id]'].includes(router.pathname);
+  const isSavedPage = ['/saved'].includes(router.pathname);
 
   return (
     <NavItems>
@@ -127,6 +130,19 @@ const PublicNav: React.FC = () => {
         </Link>
       </NavBox>
       <NavBox>
+        <Link href="/saved" passHref>
+          <NavItem isActive={isSavedPage}>
+            <img
+              src={isSavedPage ? iconBookmarkActive : iconBookmark}
+              alt="bookmark"
+              width="24px"
+              height="24px"
+            />
+            찜
+          </NavItem>
+        </Link>
+      </NavBox>
+      <NavBox>
         <Link href="/accounts/login" passHref>
           <NavItem>
             <img src={iconProfile} alt="profile" width="24px" height="24px" />
@@ -146,6 +162,7 @@ const PrivateNav: React.FC<IPrivateNavProps> = ({ user }) => {
   const isHomePage = ['/'].includes(router.pathname);
   const isCafePage = ['/cafes', '/cafes/[id]'].includes(router.pathname);
   const isThemePage = ['/themes', '/themes/[id]'].includes(router.pathname);
+  const isSavedPage = ['/saved'].includes(router.pathname);
   const isProfilePage = ['/users/[nickname]'].includes(router.pathname);
 
   return (
@@ -186,6 +203,19 @@ const PrivateNav: React.FC<IPrivateNavProps> = ({ user }) => {
               height="24px"
             />
             테마
+          </NavItem>
+        </Link>
+      </NavBox>
+      <NavBox>
+        <Link href="/saved" passHref>
+          <NavItem isActive={isSavedPage}>
+            <img
+              src={isSavedPage ? iconBookmarkActive : iconBookmark}
+              alt="bookmark"
+              width="24px"
+              height="24px"
+            />
+            찜
           </NavItem>
         </Link>
       </NavBox>

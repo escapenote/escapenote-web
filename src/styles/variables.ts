@@ -37,6 +37,9 @@ export const variables = css`
     --background: 255, 255, 255;
     --border: 243, 244, 246; // greyscale100
     --hover: 250, 250, 250;
+    --success: 34, 197, 94;
+    --warning: 250, 204, 21;
+    --error: 255, 71, 71;
     --shadow: 238, 238, 238;
     --invert: invert(0);
   }

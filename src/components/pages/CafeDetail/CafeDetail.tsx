@@ -48,7 +48,7 @@ const CafeDetail: React.FC<IProps> = ({ id, cafe }) => {
         </Tab>
       </Tabs>
 
-      {tab === 'themes' && <CafeThemes themes={cafe?.themes} />}
+      {tab === 'themes' && <CafeThemes cafeId={id} />}
       {tab === 'info' && <CafeInfo cafe={cafe} />}
 
       <Footer>

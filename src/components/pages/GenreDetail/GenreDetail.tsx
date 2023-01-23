@@ -17,6 +17,7 @@ const GenreDetailPage: React.FC<IProps> = ({ genre }) => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
+    refetch,
   } = useInfiniteQuery(
     ['fetchThemes'],
     ({ pageParam }) => {
@@ -44,7 +45,7 @@ const GenreDetailPage: React.FC<IProps> = ({ genre }) => {
             <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
-                  <ThemeCard theme={item} />
+                  <ThemeCard theme={item} refetch={refetch} />
                 </Item>
               ))}
             </Items>

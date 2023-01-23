@@ -6,10 +6,7 @@ import api from 'api';
 import FetchMore from 'components/templates/FetchMore';
 import CafeCard from 'components/molecules/CafeCard';
 
-interface IProps {
-  term: string;
-}
-const SearchedCafes: React.FC<IProps> = ({ term }) => {
+const SavedCafes = () => {
   const {
     status,
     data,
@@ -19,10 +16,9 @@ const SearchedCafes: React.FC<IProps> = ({ term }) => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery(
-    ['fetchCafes', term],
+    ['fetchSavedCafes'],
     ({ pageParam }) => {
-      return api.cafes.fetchCafes({
-        term,
+      return api.users.fetchSavedCafes({
         cursor: pageParam,
       });
     },
@@ -82,4 +78,4 @@ const Item = styled.li`
   }
 `;
 
-export default SearchedCafes;
+export default SavedCafes;

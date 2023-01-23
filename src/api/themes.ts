@@ -7,8 +7,8 @@ import { IPage, ITheme } from 'types';
 interface IFetchThemesProps {
   term?: string;
   cafeId?: string;
-  genre?: string;
   areaB?: string;
+  genre?: string;
   level?: string;
   person?: string;
   fearScore?: string;

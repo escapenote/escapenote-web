@@ -84,7 +84,7 @@ const CafeDetailPage = ({ initial }: IProps) => {
             <button onClick={handleUnSaveCafe}>
               <img
                 src={iconHeartActive}
-                alt="save-active"
+                alt="save-filled"
                 width="24px"
                 height="24px"
               />

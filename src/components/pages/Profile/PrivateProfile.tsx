@@ -6,10 +6,9 @@ import api from 'api';
 import { useAppDispatch } from 'store';
 import { logout } from 'store/authSlice';
 import Layout from 'components/templates/Layout';
-import { Box, Button } from 'components/atoms';
+import { Box } from 'components/atoms';
 import iconSettings from 'assets/icons/settings.svg';
 import iconAvatar from 'assets/icons/avatar.svg';
-import { css } from '@emotion/react';
 
 interface IProps {
   user?: IUser;
@@ -29,7 +28,7 @@ const PrivateProfile: React.FC<IProps> = ({ user }) => {
       title="프로필"
       leftAction={<></>}
       rightAction={
-        <button onClick={() => alert('준비중입니다.')}>
+        <button onClick={() => router.push('/accounts/settings')}>
           <img src={iconSettings} alt="settings" width="24px" height="24px" />
         </button>
       }
@@ -63,12 +62,6 @@ const PrivateProfile: React.FC<IProps> = ({ user }) => {
           <EditProfileButton onClick={() => router.push('/accounts/edit')}>
             프로필 수정
           </EditProfileButton>
-        </Box>
-
-        <Box mb="24px">
-          <Button kind="text" onClick={handleLogout}>
-            로그아웃
-          </Button>
         </Box>
       </Container>
     </Layout>

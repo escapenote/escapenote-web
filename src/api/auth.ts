@@ -22,6 +22,17 @@ export const updateProfile = (body: IUpdateProfileProps) => {
 };
 
 /**
+ * 비밀번호 변경
+ */
+export interface IResetPasswordProps {
+  oldPassword: string;
+  newPassword: string;
+}
+export const resetPassword = (body: IResetPasswordProps) => {
+  return api.patch('/auth/password/reset', body);
+};
+
+/**
  * 임시 비밀번호 발급
  */
 export interface ISendTemporaryPasswordProps {
@@ -93,6 +104,21 @@ export const checkForDuplicateNickname = (
 };
 
 /**
+ * 토큰 재발행
+ */
+interface IRefreshTokenRes {
+  accessToken: string;
+  user: IUser;
+}
+export const refreshToken = (cookies?: string) => {
+  let options = undefined;
+  if (cookies) {
+    options = { headers: { Cookie: cookies } };
+  }
+  return api.post<IRefreshTokenRes>('/auth/refresh', {}, options);
+};
+
+/**
  * 로그인
  */
 export interface ILoginProps {
@@ -107,21 +133,6 @@ export const login = ({ email, password }: ILoginProps) => {
   const data = { email, password };
 
   return api.post<ILoginRes>('/auth/login', data);
-};
-
-/**
- * 토큰 재발행
- */
-interface IRefreshTokenRes {
-  accessToken: string;
-  user: IUser;
-}
-export const refreshToken = (cookies?: string) => {
-  let options = undefined;
-  if (cookies) {
-    options = { headers: { Cookie: cookies } };
-  }
-  return api.post<IRefreshTokenRes>('/auth/refresh', {}, options);
 };
 
 /**

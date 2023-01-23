@@ -39,8 +39,9 @@ const globalStyles = css`
   }
   button,
   input {
-    padding: 0;
+    margin: 0;
     border: 0;
+    padding: 0;
   }
   button {
     background-color: transparent;

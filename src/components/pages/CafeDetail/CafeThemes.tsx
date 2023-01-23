@@ -1,23 +1,45 @@
 import styled from '@emotion/styled';
 
-import { ITheme } from 'types';
+import api from 'api';
 import ThemeCard from 'components/molecules/ThemeCard';
+import { useQuery } from '@tanstack/react-query';
 
 interface IProps {
-  themes?: ITheme[];
+  cafeId: string;
 }
-const CafeThemes: React.FC<IProps> = ({ themes }) => {
+const CafeThemes: React.FC<IProps> = ({ cafeId }) => {
+  const { isLoading, data, error, refetch } = useQuery(
+    ['fetchThemes', 'cafe', cafeId],
+    () => {
+      return api.themes.fetchThemes({ cafeId });
+    },
+  );
+
   return (
     <List>
-      {themes?.map(theme => (
-        <Item key={theme.id}>
-          <ThemeCard theme={theme} />
-        </Item>
-      ))}
+      {isLoading ? (
+        <Loading>로딩중...</Loading>
+      ) : error ? (
+        <Error>에러</Error>
+      ) : data?.items.length === 0 ? (
+        <NoData>데이터가 없습니다.</NoData>
+      ) : (
+        data?.items.map(theme => (
+          <Item key={theme.id}>
+            <ThemeCard theme={theme} refetch={refetch} />
+          </Item>
+        ))
+      )}
     </List>
   );
 };
 
+const Loading = styled.strong`
+  font-size: 14px;
+  font-weight: 500;
+`;
+const Error = styled(Loading)``;
+const NoData = styled(Loading)``;
 const List = styled.ul`
   padding-top: 18px;
 `;

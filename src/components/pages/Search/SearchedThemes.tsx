@@ -17,6 +17,7 @@ const SearchedThemes: React.FC<IProps> = ({ term }) => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
+    refetch,
   } = useInfiniteQuery(
     ['fetchThemes', term],
     ({ pageParam }) => {
@@ -44,7 +45,7 @@ const SearchedThemes: React.FC<IProps> = ({ term }) => {
             <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
-                  <ThemeCard theme={item} />
+                  <ThemeCard theme={item} refetch={refetch} />
                 </Item>
               ))}
             </Items>

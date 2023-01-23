@@ -54,7 +54,7 @@ const StyledHeader = styled.header`
   }
 `;
 const Title = styled.h1`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
 `;
 const SubTitle = styled.small`

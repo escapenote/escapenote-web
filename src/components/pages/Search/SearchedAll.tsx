@@ -16,6 +16,7 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
     isLoading: isCafeLoading,
     data: cafes,
     error: cafeError,
+    refetch: cafeRefetch,
   } = useQuery(['fetchCafes', 'search', term], () => {
     return api.cafes.fetchCafes({ term });
   });
@@ -24,6 +25,7 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
     isLoading: isThemeLoading,
     data: themes,
     error: themeError,
+    refetch: themeRefetch,
   } = useQuery(['fetchThemes', 'search', term], () => {
     return api.themes.fetchThemes({ term });
   });
@@ -53,7 +55,7 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
           <CafeItems>
             {cafes?.items.slice(0, 4).map(item => (
               <CafeItem key={item.id}>
-                <CafeCard cafe={item} />
+                <CafeCard cafe={item} refetch={cafeRefetch} />
               </CafeItem>
             ))}
           </CafeItems>
@@ -83,7 +85,7 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
           <ThemeItems>
             {themes?.items.slice(0, 4).map(item => (
               <ThemeItem key={item.id}>
-                <ThemeCard theme={item} />
+                <ThemeCard theme={item} refetch={themeRefetch} />
               </ThemeItem>
             ))}
           </ThemeItems>

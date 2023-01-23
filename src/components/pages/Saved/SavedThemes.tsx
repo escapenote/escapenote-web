@@ -4,12 +4,9 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 import api from 'api';
 import FetchMore from 'components/templates/FetchMore';
-import CafeCard from 'components/molecules/CafeCard';
+import ThemeCard from 'components/molecules/ThemeCard';
 
-interface IProps {
-  term: string;
-}
-const SearchedCafes: React.FC<IProps> = ({ term }) => {
+const SavedThemes = () => {
   const {
     status,
     data,
@@ -19,15 +16,14 @@ const SearchedCafes: React.FC<IProps> = ({ term }) => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery(
-    ['fetchCafes', term],
+    ['fetchSavedThemes'],
     ({ pageParam }) => {
-      return api.cafes.fetchCafes({
-        term,
+      return api.users.fetchSavedThemes({
         cursor: pageParam,
       });
     },
     {
-      getNextPageParam: lastPage => lastPage?.pageInfo.endCursor,
+      getNextPageParam: lastPage => lastPage.pageInfo.endCursor,
     },
   );
 
@@ -45,7 +41,7 @@ const SearchedCafes: React.FC<IProps> = ({ term }) => {
             <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
-                  <CafeCard cafe={item} refetch={refetch} />
+                  <ThemeCard theme={item} refetch={refetch} />
                 </Item>
               ))}
             </Items>
@@ -69,17 +65,9 @@ const Loading = styled.strong`
 `;
 const Error = styled(Loading)``;
 const NoData = styled(Loading)``;
-const Items = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-`;
+const Items = styled.ul``;
 const Item = styled.li`
-  margin-right: 18px;
   margin-bottom: 18px;
-  width: calc(50% - 9px);
-  :nth-of-type(2n) {
-    margin-right: 0;
-  }
 `;
 
-export default SearchedCafes;
+export default SavedThemes;
