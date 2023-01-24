@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
@@ -20,6 +20,11 @@ const HomePage = () => {
 
   const user = useAppSelector(state => state.auth.user);
   const dispatch = useAppDispatch();
+  const slider = useRef<HTMLDivElement>(null);
+  const [isDown, setIsDown] = useState(false);
+  const [isMove, setIsMove] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const {
     isLoading: isCafeLoading,
@@ -42,6 +47,35 @@ const HomePage = () => {
   function handleSearch(term: string) {
     dispatch(addRecentlySearchKeyword(term));
     router.push(`/search?tab=all&q=${term}`);
+  }
+
+  function handleScrollMouseDown(e: React.MouseEvent<HTMLDivElement>) {
+    setIsDown(true);
+    setIsMove(false);
+
+    if (!slider.current) return;
+    const startX = e.pageX - slider.current.offsetLeft;
+    setStartX(startX);
+    const scrollLeft = slider.current.scrollLeft;
+    setScrollLeft(scrollLeft);
+  }
+  function handleScrollMouseLeave() {
+    setIsDown(false);
+    setIsMove(false);
+  }
+  function handleScrollMouseUp(e: React.MouseEvent<HTMLDivElement>) {
+    setIsDown(false);
+    setIsMove(false);
+  }
+  function handleScrollMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (!isDown) return;
+    e.preventDefault();
+    setIsMove(true);
+
+    if (!slider.current) return;
+    const x = e.pageX - slider.current.offsetLeft;
+    const walk = (x - startX) * 1;
+    slider.current.scrollLeft = scrollLeft - walk;
   }
 
   return (
@@ -76,11 +110,17 @@ const HomePage = () => {
           ) : themes?.items.length === 0 ? (
             <NoData>데이터가 없습니다.</NoData>
           ) : (
-            <Box mx="-24px">
-              <NoXAxisScrollBar>
+            <Box
+              mx="-24px"
+              onMouseDown={handleScrollMouseDown}
+              onMouseLeave={handleScrollMouseLeave}
+              onMouseUp={handleScrollMouseUp}
+              onMouseMove={handleScrollMouseMove}
+            >
+              <NoXAxisScrollBar ref={slider}>
                 <Box width="24px" />
                 {themes?.items.slice(0, 4).map(item => (
-                  <ThemeItem key={item.id}>
+                  <ThemeItem key={item.id} preventClick={isDown && isMove}>
                     <ThemeBigCard theme={item} refetch={themeRefetch} />
                   </ThemeItem>
                 ))}
@@ -167,8 +207,9 @@ const CafeItem = styled.li`
     margin-right: 0;
   }
 `;
-const ThemeItem = styled.div`
+const ThemeItem = styled.div<{ preventClick: boolean }>`
   margin-right: 16px;
+  pointer-events: ${p => (p.preventClick ? 'none' : 'auto')};
 `;
 const Question = styled.a`
   display: flex;

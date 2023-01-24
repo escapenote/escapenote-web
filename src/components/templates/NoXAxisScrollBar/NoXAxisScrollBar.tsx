@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-interface IProps {
+interface IProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
+  ref?: React.ForwardedRef<HTMLDivElement>;
   children: React.ReactNode;
 }
-const NoXAxisScrollBar: React.FC<IProps> = ({ children }) => (
-  <Wrapper>
-    <Container>{children}</Container>
-  </Wrapper>
+const NoXAxisScrollBar: React.FC<IProps> = React.forwardRef(
+  ({ children }, ref, ...props) => (
+    <Wrapper>
+      <Container ref={ref} {...props}>
+        {children}
+      </Container>
+    </Wrapper>
+  ),
 );
 
 const Wrapper = styled.div`
