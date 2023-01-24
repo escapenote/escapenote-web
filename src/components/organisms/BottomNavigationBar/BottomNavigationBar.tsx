@@ -32,8 +32,8 @@ const Wrapper = styled.footer`
   left: 0;
   right: 0;
   border-top: 1px solid rgb(var(--border));
-  height: 64px;
-  min-height: calc(64px + env(safe-area-inset-bottom));
+  height: 56px;
+  min-height: calc(56px + env(safe-area-inset-bottom));
   background-color: rgb(var(--content));
   z-index: 999;
   @media (min-width: 480px) {
@@ -54,7 +54,7 @@ const NavBox = styled.div`
   align-items: center;
   flex: 1;
   width: 100%;
-  height: 64px;
+  height: 56px;
 `;
 const NavItems = styled.div`
   display: flex;
@@ -68,8 +68,9 @@ const NavItem = styled.a<{ isActive?: boolean }>`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 64px;
-  font-size: 12px;
+  height: 56px;
+  font-size: 10px;
+  font-weight: 500;
   color: rgb(var(--greyscale400));
   > img {
     margin-bottom: 4px;
