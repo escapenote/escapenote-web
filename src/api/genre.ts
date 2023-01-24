@@ -1,5 +1,5 @@
 import { api } from 'api';
-import { IPage, IGenre } from 'types';
+import { IGenre } from 'types';
 
 /**
  * 장르 리스트 조회
