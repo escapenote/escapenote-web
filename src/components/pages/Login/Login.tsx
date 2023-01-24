@@ -168,7 +168,7 @@ const Login: React.FC = () => {
       <Box alignItems="center" mt="auto">
         <Box>
           <Text fontSize="12px" color="rgb(var(--greyscale400))">
-            계정에 문제가 있는 경우
+            계정에 문제가 있으신가요?
           </Text>
         </Box>
         <Box flexDirection="row" alignItems="baseline">
