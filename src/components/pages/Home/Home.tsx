@@ -98,8 +98,8 @@ const HomePage = () => {
             mb="18px"
           >
             <Title>추천 테마</Title>
-            <Link href="/themes" passHref>
-              <More>전체 보기</More>
+            <Link href="/themes?sort=view" passHref>
+              <More>더보기</More>
             </Link>
           </Box>
 
@@ -137,8 +137,8 @@ const HomePage = () => {
             mb="18px"
           >
             <Title>추천 방탈출 카페</Title>
-            <Link href="/cafes" passHref>
-              <More>전체 보기</More>
+            <Link href="/cafes?sort=view" passHref>
+              <More>더보기</More>
             </Link>
           </Box>
 
