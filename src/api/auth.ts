@@ -24,12 +24,12 @@ export const updateProfile = (body: IUpdateProfileProps) => {
 /**
  * 비밀번호 변경
  */
-export interface IResetPasswordProps {
+export interface IChangePasswordProps {
   oldPassword: string;
   newPassword: string;
 }
-export const resetPassword = (body: IResetPasswordProps) => {
-  return api.patch('/auth/password/reset', body);
+export const changePassword = (body: IChangePasswordProps) => {
+  return api.patch('/auth/password/change', body);
 };
 
 /**

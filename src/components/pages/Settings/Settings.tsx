@@ -42,12 +42,12 @@ const Settings = () => {
               프로필 수정
             </Item>
           </Link>
-          <Link href="/acounts/password/reset" passHref>
+          <Link href="/accounts/password/change" passHref>
             <Item>
               <ImageBox>
                 <img
                   src={iconLockGrey}
-                  alt="reset-password"
+                  alt="change-password"
                   width="24px"
                   height="24px"
                 />
