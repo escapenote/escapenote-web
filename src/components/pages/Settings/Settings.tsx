@@ -61,17 +61,6 @@ const Settings = () => {
       <Box>
         <Title>고객센터</Title>
         <Items>
-          <Item href="mailto:escapenote.team@gmail.com">
-            <ImageBox>
-              <img
-                src={iconMessageCircle}
-                alt="contact-us"
-                width="24px"
-                height="24px"
-              />
-            </ImageBox>
-            문의하기
-          </Item>
           <Link href="/faq" passHref>
             <Item>
               <ImageBox>
@@ -101,6 +90,17 @@ const Settings = () => {
               개인정보 처리방침
             </Item>
           </Link>
+          <Item href="mailto:escapenote.team@gmail.com">
+            <ImageBox>
+              <img
+                src={iconMessageCircle}
+                alt="contact-us"
+                width="24px"
+                height="24px"
+              />
+            </ImageBox>
+            문의하기
+          </Item>
         </Items>
       </Box>
 
