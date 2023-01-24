@@ -7,8 +7,8 @@ import api from 'api';
 import { ICafe } from 'types';
 import { useAppSelector } from 'store';
 import iconCafeThumbnail from 'assets/icons/cafe-thumbnail.svg';
-import iconHeart from 'assets/icons/heart.svg';
-import iconHeartActive from 'assets/icons/heart-active.svg';
+import iconBookmark from 'assets/icons/bookmark.svg';
+import iconBookmarkActive from 'assets/icons/bookmark-active.svg';
 
 interface IProps {
   cafe: ICafe;
@@ -75,7 +75,7 @@ const CafeCard: React.FC<IProps> = ({ cafe, refetch }) => {
         {cafe?.saves && cafe?.saves.length > 0 ? (
           <SaveButton onClick={handleUnSaveCafe}>
             <img
-              src={iconHeartActive}
+              src={iconBookmarkActive}
               alt="save-active"
               width="14px"
               height="14px"
@@ -83,7 +83,7 @@ const CafeCard: React.FC<IProps> = ({ cafe, refetch }) => {
           </SaveButton>
         ) : (
           <SaveButton onClick={handleSaveCafe}>
-            <img src={iconHeart} alt="save" width="14px" height="14px" />
+            <img src={iconBookmark} alt="save" width="14px" height="14px" />
           </SaveButton>
         )}
       </Container>

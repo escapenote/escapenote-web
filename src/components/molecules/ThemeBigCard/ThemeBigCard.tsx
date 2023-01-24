@@ -9,8 +9,8 @@ import { numberWithComma } from 'utils/common';
 import { useAppSelector } from 'store';
 import { Box } from 'components/atoms';
 import iconLock from 'assets/icons/lock.svg';
-import iconHeartFilled from 'assets/icons/heart-filled.svg';
-import iconHeartFilledActive from 'assets/icons/heart-filled-active.svg';
+import iconBookmarkFilled from 'assets/icons/bookmark-filled.svg';
+import iconBookmarkFilledActive from 'assets/icons/bookmark-filled-active.svg';
 
 interface IProps {
   theme: ITheme;
@@ -101,7 +101,7 @@ const ThemeBigCard: React.FC<IProps> = ({ theme, refetch }) => {
         {theme?.saves && theme?.saves.length > 0 ? (
           <SaveButton onClick={handleUnSaveTheme}>
             <img
-              src={iconHeartFilledActive}
+              src={iconBookmarkFilledActive}
               alt="save-active"
               width="24px"
               height="24px"
@@ -109,7 +109,12 @@ const ThemeBigCard: React.FC<IProps> = ({ theme, refetch }) => {
           </SaveButton>
         ) : (
           <SaveButton onClick={handleSaveTheme}>
-            <img src={iconHeartFilled} alt="save" width="24px" height="24px" />
+            <img
+              src={iconBookmarkFilled}
+              alt="save"
+              width="24px"
+              height="24px"
+            />
           </SaveButton>
         )}
       </Container>

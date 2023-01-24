@@ -12,8 +12,8 @@ import ThemeDetail from 'components/pages/ThemeDetail';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
 import { Back } from 'components/atoms';
-import iconHeart from 'assets/icons/heart.svg';
-import iconHeartActive from 'assets/icons/heart-active.svg';
+import iconBookmark from 'assets/icons/bookmark.svg';
+import iconBookmarkActive from 'assets/icons/bookmark-active.svg';
 
 interface IProps {
   initial: boolean;
@@ -81,7 +81,7 @@ const ThemeDetailPage = ({ initial }: IProps) => {
           data?.saves && data.saves.length > 0 ? (
             <button onClick={handleUnSaveTheme}>
               <img
-                src={iconHeartActive}
+                src={iconBookmarkActive}
                 alt="save-active"
                 width="24px"
                 height="24px"
@@ -89,7 +89,7 @@ const ThemeDetailPage = ({ initial }: IProps) => {
             </button>
           ) : (
             <button onClick={handleSaveTheme}>
-              <img src={iconHeart} alt="save" width="24px" height="24px" />
+              <img src={iconBookmark} alt="save" width="24px" height="24px" />
             </button>
           )
         }

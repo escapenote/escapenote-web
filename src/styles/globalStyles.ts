@@ -76,6 +76,9 @@ const globalStyles = css`
     flex-shrink: 0;
   }
 
+  .bold {
+    font-weight: bold;
+  }
   .link {
     color: rgb(var(--primary));
     text-decoration: underline;

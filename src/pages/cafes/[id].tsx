@@ -12,8 +12,8 @@ import CafeDetail from 'components/pages/CafeDetail';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
 import { Back } from 'components/atoms';
-import iconHeart from 'assets/icons/heart.svg';
-import iconHeartActive from 'assets/icons/heart-active.svg';
+import iconBookmark from 'assets/icons/bookmark.svg';
+import iconBookmarkActive from 'assets/icons/bookmark-active.svg';
 
 interface IProps {
   initial: boolean;
@@ -83,7 +83,7 @@ const CafeDetailPage = ({ initial }: IProps) => {
           data?.saves && data.saves.length > 0 ? (
             <button onClick={handleUnSaveCafe}>
               <img
-                src={iconHeartActive}
+                src={iconBookmarkActive}
                 alt="save-filled"
                 width="24px"
                 height="24px"
@@ -91,7 +91,7 @@ const CafeDetailPage = ({ initial }: IProps) => {
             </button>
           ) : (
             <button onClick={handleSaveCafe}>
-              <img src={iconHeart} alt="save" width="24px" height="24px" />
+              <img src={iconBookmark} alt="save" width="24px" height="24px" />
             </button>
           )
         }
