@@ -5,7 +5,7 @@ interface IProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   ref?: React.ForwardedRef<HTMLDivElement>;
   children: React.ReactNode;
 }
-const NoXAxisScrollBar: React.FC<IProps> = React.forwardRef(
+const NoXAxisScrollBar: React.FC<IProps> = React.forwardRef<HTMLDivElement>(
   ({ children }, ref, ...props) => (
     <Wrapper>
       <Container ref={ref} {...props}>
@@ -34,5 +34,7 @@ const Container = styled.div`
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -ms-overflow-style: none;
 `;
+
+NoXAxisScrollBar.displayName = 'NoXAxisScrollBar';
 
 export default NoXAxisScrollBar;
