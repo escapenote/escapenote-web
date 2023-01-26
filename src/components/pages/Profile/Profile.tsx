@@ -8,10 +8,11 @@ interface IProps {
 }
 const Profile: React.FC<IProps> = ({ user }) => {
   const authUser = useAppSelector(state => state.auth.user);
+  const isAuth = authUser?.id === user?.id;
 
   return (
     <>
-      {authUser ? (
+      {authUser && isAuth ? (
         <PrivateProfile user={user} />
       ) : (
         <PublicProfile user={user} />
