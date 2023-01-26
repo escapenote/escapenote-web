@@ -137,30 +137,6 @@ const Desc = styled.p`
   font-weight: 500;
   line-height: 27px;
 `;
-const Tabs = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const Tab = styled.div<{ active?: boolean }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  border-bottom: 1.5px solid transparent;
-  border-color: rgb(var(--border));
-  height: 48px;
-  font-size: 14px;
-  font-weight: 500;
-  color: rgb(var(--greyscale400));
-  cursor: pointer;
-  ${p =>
-    p.active &&
-    css`
-      border-color: rgb(var(--primary));
-      font-weight: 700;
-      color: rgb(var(--primary));
-    `}
-`;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
