@@ -4,6 +4,7 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import authSlice from './authSlice';
 import signupSlice from './signupSlice';
+import passwordSlice from './passwordSlice';
 import dataSlice from './dataSlice';
 import commonSlice from './commonSlice';
 import searchSlice from './searchSlice';
@@ -11,6 +12,7 @@ import searchSlice from './searchSlice';
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
   [signupSlice.name]: signupSlice.reducer,
+  [passwordSlice.name]: passwordSlice.reducer,
   [dataSlice.name]: dataSlice.reducer,
   [commonSlice.name]: commonSlice.reducer,
   [searchSlice.name]: searchSlice.reducer,

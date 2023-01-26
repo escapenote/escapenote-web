@@ -6,12 +6,15 @@ import { useMutation } from '@tanstack/react-query';
 import api from 'api';
 import { ISendCodeByEmailProps } from 'api/auth';
 import { signupSchema } from 'utils/validators';
+import { useAppDispatch } from 'store';
+import { setEmailForForgotPassword } from 'store/passwordSlice';
 import { Box, Input, Button } from 'components/atoms';
 import iconEmail from 'assets/icons/mail.svg';
 import imgInputCode from 'assets/images/input-code.svg';
 
 const ForgotPassword: React.FC = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -20,6 +23,7 @@ const ForgotPassword: React.FC = () => {
     (data: ISendCodeByEmailProps) => api.auth.sendTemporaryPassword(data),
     {
       onSuccess: () => {
+        dispatch(setEmailForForgotPassword(email));
         setSubmitting(false);
         router.push('/accounts/password/sent');
       },
