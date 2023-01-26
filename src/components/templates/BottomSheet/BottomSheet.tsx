@@ -69,7 +69,7 @@ const Title = styled.strong`
   font-weight: 700;
   line-height: 24px;
 `;
-const CloseButton = styled.strong``;
+const CloseButton = styled.button``;
 const BodyContainer = styled.div`
   padding: 24px;
   overflow: scroll;

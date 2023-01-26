@@ -83,9 +83,13 @@ const SignupIntro = () => {
                 onChange={e => setAgreeTerms(e.target.checked)}
               />
               (필수)&nbsp;
-              <span className="link" onClick={() => setOpenTerms(true)}>
+              <button
+                type="button"
+                className="link"
+                onClick={() => setOpenTerms(true)}
+              >
                 이용약관
-              </span>
+              </button>
               &nbsp;동의
             </Box>
             <Box flexDirection="row" alignItems="center" mb="12px">
@@ -95,9 +99,13 @@ const SignupIntro = () => {
                 onChange={e => setAgreePrivacy(e.target.checked)}
               />
               (필수)&nbsp;
-              <span className="link" onClick={() => setOpenPrivacy(true)}>
+              <button
+                type="button"
+                className="link"
+                onClick={() => setOpenPrivacy(true)}
+              >
                 개인정보 수집 및 이용
-              </span>
+              </button>
               &nbsp;동의
             </Box>
             <Box flexDirection="row" alignItems="center">
