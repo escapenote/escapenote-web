@@ -19,6 +19,7 @@ const PrivateSaved = () => {
     <Layout title="찜">
       <Tabs>
         <Tab
+          role="button"
           active={tab === 'themes'}
           onClick={() => handleChangeTab('themes')}
         >
@@ -44,6 +45,7 @@ const Tabs = styled.ul`
 const Tab = styled.li<{ active: boolean }>`
   margin-right: 20px;
   color: rgb(var(--greyscale400));
+  cursor: pointer;
   ${p =>
     p.active &&
     css`
