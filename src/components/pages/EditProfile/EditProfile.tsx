@@ -27,7 +27,7 @@ const EditProfile = () => {
     {
       onSuccess: ({ data }) => {
         dispatch(editProfile(data));
-        alert('성공적으로 프로필 수정 완료하였습니다.');
+        alert('프로필이 수정되었습니다.');
         setSubmitting(false);
         return router.push(`/users/${data?.nickname}`);
       },
