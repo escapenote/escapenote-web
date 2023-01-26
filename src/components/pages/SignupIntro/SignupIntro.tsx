@@ -153,7 +153,7 @@ const SignupIntro = () => {
 
 const Title = styled.h1`
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 36px;
 `;
 const Desc = styled.p`
