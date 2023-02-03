@@ -8,7 +8,7 @@ import { ISignupByEmailProps } from 'api/auth';
 import { readUrl } from 'utils/common';
 import { signupSchema } from 'utils/validators';
 import { useAppDispatch, useAppSelector } from 'store';
-import { setImportImageFile } from 'store/imageSlice';
+import { resetImageFile, setImportImageFile } from 'store/imageSlice';
 import { login } from 'store/authSlice';
 import { Box, Input, Button, Select } from 'components/atoms';
 import iconAvatar from 'assets/icons/avatar.svg';
@@ -82,6 +82,7 @@ const SignupComplete: React.FC = () => {
     const files: FileList | null = e.target.files;
     if (files !== null && files.length > 0) {
       const file = files[0];
+      dispatch(resetImageFile());
       dispatch(
         setImportImageFile({ importType: 'user', importedImageFile: file }),
       );

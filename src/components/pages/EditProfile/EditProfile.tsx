@@ -9,7 +9,7 @@ import { readUrl } from 'utils/common';
 import { signupSchema } from 'utils/validators';
 import { useAppDispatch, useAppSelector } from 'store';
 import { editProfile } from 'store/authSlice';
-import { setImportImageFile } from 'store/imageSlice';
+import { resetImageFile, setImportImageFile } from 'store/imageSlice';
 import { Box, Input, Select, Button } from 'components/atoms';
 import iconAvatar from 'assets/icons/avatar.svg';
 import iconCamera from 'assets/icons/camera.svg';
@@ -61,6 +61,7 @@ const EditProfile = () => {
     const files: FileList | null = e.target.files;
     if (files !== null && files.length > 0) {
       const file = files[0];
+      dispatch(resetImageFile());
       dispatch(
         setImportImageFile({ importType: 'user', importedImageFile: file }),
       );
