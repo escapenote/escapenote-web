@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
 
 import api from 'api';
@@ -53,7 +54,7 @@ const CreateThemeReview: React.FC<IProps> = ({ id }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Box mb="24px">
-        <Label>성공여부</Label>
+        <Label required>성공여부</Label>
         <Box flexDirection="row" justifyContent="space-evenly">
           <Button
             type="button"
@@ -77,7 +78,7 @@ const CreateThemeReview: React.FC<IProps> = ({ id }) => {
       </Box>
 
       <BorderBox>
-        <Label>테마 평점</Label>
+        <Label required>테마 평점</Label>
         <Box flexDirection="row" justifyContent="center" alignItems="center">
           {[...Array(5)].map((_, index) => {
             index += 1;
@@ -234,10 +235,18 @@ const BorderBox = styled(DefaultBox)`
   border-bottom: 1px solid rgb(var(--greyscale100));
   padding-bottom: 16px;
 `;
-const Label = styled.label`
+const Label = styled.label<{ required?: boolean }>`
   margin-bottom: 16px;
   font-weight: 700;
   font-size: 16px;
+  ${p =>
+    p.required &&
+    css`
+      ::after {
+        content: '*';
+        color: rgb(var(--error));
+      }
+    `}
 `;
 const Star = styled.button`
   padding: 0 8px;
