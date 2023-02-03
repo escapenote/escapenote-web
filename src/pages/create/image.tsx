@@ -1,6 +1,3 @@
-import Router from 'next/router';
-
-import { wrapper } from 'store';
 import CreateImage from 'components/pages/CreateImage';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 
@@ -17,23 +14,5 @@ const CreateImagePage = () => {
     </>
   );
 };
-
-CreateImagePage.getInitialProps = wrapper.getInitialPageProps(
-  store =>
-    ({ res }) => {
-      const user = store.getState().auth.user;
-
-      if (!user) {
-        if (res) {
-          res.writeHead(308, { Location: '/accounts/login' });
-          res.end();
-        } else {
-          Router.push('/accounts/login');
-        }
-      }
-
-      return {};
-    },
-);
 
 export default CreateImagePage;
