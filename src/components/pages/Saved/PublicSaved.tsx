@@ -53,7 +53,7 @@ const Container = styled.div`
 `;
 const Title = styled.h2`
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 30px;
   text-align: center;
 `;
