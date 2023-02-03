@@ -312,6 +312,7 @@ const ImageItem = styled.div<{ background: string }>`
   background-size: 64px 64px;
   box-shadow: 4px 16px 50px rgba(107, 114, 128, 0.12);
   overflow: hidden;
+  z-index: 1;
 `;
 const ImageInput = styled.input`
   position: absolute;
