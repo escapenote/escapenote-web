@@ -12,7 +12,7 @@ const PrivacyPage = () => {
   return (
     <>
       <HeadPageMeta
-        title="개인정보 처리방침 - Escape Note"
+        title="개인정보 처리방침 - 이스케이프노트"
         description="개인정보 처리방침"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/privacy`}
       />
@@ -21,7 +21,7 @@ const PrivacyPage = () => {
         title="개인정보 처리방침"
         leftAction={<Back onClick={router.back} />}
         rightAction={<></>}
-        hideBottom
+        noBottom
       >
         <Privacy />
       </Layout>

@@ -1,22 +1,24 @@
-import { useState } from 'react';
+import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 import { ICafe } from 'types';
-import { Box } from 'components/atoms';
-import iconCafeThumbnail from 'assets/icons/cafe-thumbnail.svg';
+import { Box, Stars } from 'components/atoms';
 import CafeThemes from './CafeThemes';
 import CafeInfo from './CafeInfo';
+import CafeReviews from './CafeReviews';
+import iconCafeThumbnail from 'assets/icons/cafe-thumbnail.svg';
 
 interface IProps {
   id: string;
+  tab: string;
   cafe?: ICafe;
 }
-const CafeDetail: React.FC<IProps> = ({ id, cafe }) => {
-  const [tab, setTab] = useState('themes');
+const CafeDetail: React.FC<IProps> = ({ id, tab, cafe }) => {
+  const router = useRouter();
 
   function handleChangeTab(activeTab: string) {
-    setTab(activeTab);
+    router.push(`/cafes/${id}/${activeTab}`);
   }
 
   return (
@@ -34,6 +36,12 @@ const CafeDetail: React.FC<IProps> = ({ id, cafe }) => {
         <Location>
           {cafe?.areaA} {cafe?.areaB}
         </Location>
+        <Rating>
+          <Stars rating={cafe?.reviewsRating} />
+          <span>
+            {cafe?.reviewsRating}점({cafe?.reviewsCount})
+          </span>
+        </Rating>
       </Box>
 
       <Tabs>
@@ -46,10 +54,15 @@ const CafeDetail: React.FC<IProps> = ({ id, cafe }) => {
         <Tab active={tab === 'info'} onClick={() => handleChangeTab('info')}>
           기본정보
         </Tab>
+        <Tab
+          active={tab === 'reviews'}
+          onClick={() => handleChangeTab('reviews')}
+        >
+          리뷰 ({cafe?.reviewsCount})
+        </Tab>
       </Tabs>
 
-      {tab === 'themes' && <CafeThemes cafeId={id} />}
-      {tab === 'info' && <CafeInfo cafe={cafe} />}
+      {renderTabContents(tab, id, cafe)}
 
       <Footer>
         <FooterContainer>
@@ -63,8 +76,16 @@ const CafeDetail: React.FC<IProps> = ({ id, cafe }) => {
   );
 };
 
+const renderTabContents = (tab: string, id: string, cafe?: ICafe) => {
+  return {
+    themes: <CafeThemes cafeId={id} />,
+    info: <CafeInfo cafe={cafe} />,
+    reviews: <CafeReviews cafeId={id} cafe={cafe} />,
+  }[tab];
+};
+
 const Wrapper = styled.div`
-  margin-bottom: 72px;
+  margin-bottom: 48px;
 `;
 const Image = styled.img`
   margin-bottom: 12px;
@@ -82,8 +103,16 @@ const Name = styled.strong`
   text-align: center;
 `;
 const Location = styled.span`
+  margin-bottom: 2px;
   font-size: 12px;
   color: rgb(var(--greyscale400));
+`;
+const Rating = styled.span`
+  margin-left: -1px;
+  font-size: 10px;
+  > span:last-of-type {
+    margin-left: 4px;
+  }
 `;
 const Tabs = styled.div`
   display: flex;

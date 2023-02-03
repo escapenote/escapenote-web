@@ -2,20 +2,24 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 
+import commonSlice from './commonSlice';
+import dataSlice from './dataSlice';
 import authSlice from './authSlice';
 import signupSlice from './signupSlice';
 import passwordSlice from './passwordSlice';
-import dataSlice from './dataSlice';
-import commonSlice from './commonSlice';
 import searchSlice from './searchSlice';
+import imageSlice from './imageSlice';
+import reviewSlice from './reviewSlice';
 
 const rootReducer = combineReducers({
+  [commonSlice.name]: commonSlice.reducer,
+  [dataSlice.name]: dataSlice.reducer,
   [authSlice.name]: authSlice.reducer,
   [signupSlice.name]: signupSlice.reducer,
   [passwordSlice.name]: passwordSlice.reducer,
-  [dataSlice.name]: dataSlice.reducer,
-  [commonSlice.name]: commonSlice.reducer,
   [searchSlice.name]: searchSlice.reducer,
+  [imageSlice.name]: imageSlice.reducer,
+  [reviewSlice.name]: reviewSlice.reducer,
 });
 
 const store = configureStore({

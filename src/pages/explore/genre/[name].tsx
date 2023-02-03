@@ -12,7 +12,7 @@ const GenreDetailPage = () => {
   return (
     <>
       <HeadPageMeta
-        title={`#${name} - Escape Note`}
+        title={`#${name} - 이스케이프노트`}
         description="방탈출에 대한 모든 것"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/explore/genre/${name}`}
       />
@@ -21,7 +21,7 @@ const GenreDetailPage = () => {
         title={`#${name}`}
         leftAction={<Back onClick={router.back} />}
         rightAction={<></>}
-        hideBottom
+        noBottom
       >
         <GenreDetail genre={name} />
       </Layout>

@@ -11,12 +11,12 @@ const SentPasswordPage = () => {
   return (
     <>
       <HeadPageMeta
-        title="임시 비밀번호 발급 완료 - Escape Note"
+        title="임시 비밀번호 발급 완료 - 이스케이프노트"
         description="임시 비밀번호 발급 완료"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/accounts/password/sent`}
       />
 
-      <Layout leftAction={<Back onClick={router.back} />} hideBottom>
+      <Layout leftAction={<Back onClick={router.back} />} noBottom>
         <SentPassword />
       </Layout>
     </>

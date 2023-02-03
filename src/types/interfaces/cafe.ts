@@ -1,4 +1,4 @@
-import { ITheme } from './theme';
+import { ITheme } from 'types';
 
 /**
  * 테마
@@ -19,6 +19,8 @@ export interface ICafe {
   closingHour: number;
   themes: ITheme[];
   saves: any[];
+  reviewsRating: number;
+  reviewsCount: number;
   status: string;
   createdAt: string;
   updatedAt: string;

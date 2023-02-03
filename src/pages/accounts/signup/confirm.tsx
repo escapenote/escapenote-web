@@ -11,12 +11,12 @@ const SignupConfirmPage = () => {
   return (
     <>
       <HeadPageMeta
-        title="회원가입 확인 - Escape Note"
+        title="회원가입 확인 - 이스케이프노트"
         description="회원가입 확인"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/accounts/signup/confirm`}
       />
 
-      <Layout leftAction={<Back onClick={router.back} />} hideBottom>
+      <Layout leftAction={<Back onClick={router.back} />} noBottom>
         <SignupConfirm />
       </Layout>
     </>

@@ -29,7 +29,7 @@ const Login: React.FC = () => {
     {
       onSuccess: ({ data }) => {
         dispatch(login(data));
-        alert('ESCAPE NOTE에 오신걸 환영합니다 🤗');
+        alert('이스케이프노트에 오신걸 환영합니다 🤗');
         const searchParams = new URLSearchParams(location.search);
         const rdUrl = searchParams.get('rd_url');
         if (rdUrl) {
@@ -83,7 +83,7 @@ const Login: React.FC = () => {
     <Box flex="1">
       <Box mt="8px" mb="58px">
         <Title>
-          <small>방탈출의 모든 것</small>ESCAPE NOTE
+          <small>방탈출의 모든 것</small>이스케이프노트
         </Title>
       </Box>
 

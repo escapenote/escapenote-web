@@ -12,7 +12,7 @@ const SettingsPage = () => {
   return (
     <>
       <HeadPageMeta
-        title="설정 - Escape Note"
+        title="설정 - 이스케이프노트"
         description="설정"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/accounts/edit`}
       />
@@ -21,7 +21,7 @@ const SettingsPage = () => {
         title="설정"
         leftAction={<Back onClick={router.back} />}
         rightAction={<></>}
-        hideBottom
+        noBottom
       >
         <Settings />
       </Layout>
@@ -39,7 +39,7 @@ SettingsPage.getInitialProps = wrapper.getInitialPageProps(
           res.writeHead(308, { Location: '/accounts/login' });
           res.end();
         } else {
-          Router.replace('/accounts/login');
+          Router.push('/accounts/login');
         }
       }
 

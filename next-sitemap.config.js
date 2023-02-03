@@ -8,14 +8,7 @@ module.exports = {
     policies: [
       {
         userAgent: '*',
-        disallow: [
-          '/accounts/*',
-          '/users/*',
-          '/posts/*',
-          '/404',
-          '/500',
-          '/store',
-        ],
+        disallow: ['/accounts/*', '/create/*', '/users/*', '/404', '/500'],
       },
     ],
   },

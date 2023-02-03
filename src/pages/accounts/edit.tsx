@@ -12,7 +12,7 @@ const EditProfilePage = () => {
   return (
     <>
       <HeadPageMeta
-        title="프로필 수정 - Escape Note"
+        title="프로필 수정 - 이스케이프노트"
         description="프로필 수정"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/accounts/edit`}
       />
@@ -21,7 +21,7 @@ const EditProfilePage = () => {
         title="프로필 수정"
         leftAction={<Back onClick={router.back} />}
         rightAction={<></>}
-        hideBottom
+        noBottom
       >
         <EditProfile />
       </Layout>
@@ -39,7 +39,7 @@ EditProfilePage.getInitialProps = wrapper.getInitialPageProps(
           res.writeHead(308, { Location: '/accounts/login' });
           res.end();
         } else {
-          Router.replace('/accounts/login');
+          Router.push('/accounts/login');
         }
       }
 

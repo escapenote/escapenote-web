@@ -3,9 +3,11 @@ import styled from '@emotion/styled';
 import { space, SpaceProps, layout, LayoutProps } from 'styled-system';
 
 type ButtonType = 'primary' | 'default' | 'text';
+type ButtonSize = 'small' | 'default';
 
 interface IProps extends SpaceProps, LayoutProps {
   kind?: ButtonType;
+  size?: ButtonSize;
 }
 const Button = styled.button<IProps>`
   display: flex;
@@ -55,6 +57,14 @@ const Button = styled.button<IProps>`
       height: auto;
       font-weight: 700;
       color: rgb(var(--primary));
+    `}
+
+  ${p =>
+    p.size === 'small' &&
+    css`
+      border-radius: 10px;
+      padding: 6px;
+      height: 32px;
     `}
 `;
 

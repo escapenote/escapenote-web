@@ -1,5 +1,5 @@
 import { api } from 'api';
-import { IPage, ITheme } from 'types';
+import { IPage, ITheme, IThemeReview } from 'types';
 
 /**
  * 테마 리스트 조회
@@ -84,5 +84,62 @@ interface IUnSaveThemeProps {
 }
 export const unSaveTheme = async ({ id }: IUnSaveThemeProps) => {
   const { data } = await api.post(`themes/${id}/unsave`);
+  return data;
+};
+
+/**
+ * 테마 리뷰 리스트 조회
+ */
+interface IFetchThemeReviewProps {
+  id: string;
+  take?: number;
+  cursor?: string;
+  sort?: string;
+  order?: string;
+}
+export const fetchThemeReviews = async ({
+  id,
+  take = 5,
+  cursor,
+  sort,
+  order,
+}: IFetchThemeReviewProps) => {
+  const params = { take } as IFetchThemesProps;
+  if (cursor) params.cursor = cursor;
+  if (sort) params.sort = sort;
+  if (order) params.order = order;
+
+  const { data } = await api.get<{ items: IThemeReview[]; pageInfo: IPage }>(
+    `themes/${id}/reviews`,
+    {
+      params,
+    },
+  );
+  return data;
+};
+
+/**
+ * 테마 리뷰 작성
+ */
+export interface IWriteReviewOnThemeProps {
+  id: string;
+  rating: number;
+  success: boolean;
+  level: number;
+  fear: number;
+  activity: number;
+  text: string;
+}
+export const writeReviewOnTheme = async ({
+  id,
+  rating,
+  success,
+  level,
+  fear,
+  activity,
+  text,
+}: IWriteReviewOnThemeProps) => {
+  const body = { rating, success, level, fear, activity, text };
+  const { data } = await api.post<boolean>(`themes/${id}/reviews`, body);
   return data;
 };

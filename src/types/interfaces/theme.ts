@@ -1,5 +1,4 @@
-import { ICafe } from './cafe';
-import { IGenre } from './genre';
+import { ICafe, IGenre } from 'types';
 
 /**
  * 테마
@@ -24,6 +23,11 @@ export interface ITheme {
   detailUrl: string;
   reservationUrl: string;
   saves: any[];
+  reviewsRating: number;
+  reviewsLevel: number;
+  reviewsFear: number;
+  reviewsActivity: number;
+  reviewsCount: number;
   status: string;
   createdAt: string;
   updatedAt: string;

@@ -11,12 +11,12 @@ const SignupIntroPage = () => {
   return (
     <>
       <HeadPageMeta
-        title="약관 동의 - Escape Note"
+        title="약관 동의 - 이스케이프노트"
         description="약관 동의"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/accounts/signup/intro`}
       />
 
-      <Layout leftAction={<Back onClick={router.back} />} hideBottom>
+      <Layout leftAction={<Back onClick={router.back} />} noBottom>
         <SignupIntro />
       </Layout>
     </>

@@ -1,6 +1,6 @@
 {
-  "name": "ESCAPE NOTE",
-  "short_name": "ESCAPE NOTE",
+  "name": "이스케이프노트",
+  "short_name": "이스케이프노트",
   "description": "방탈출에 대한 모든 것",
   "start_url": "/?utm_source=a2hs",
   "display": "standalone",

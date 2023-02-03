@@ -8,7 +8,7 @@ import {
 
 import api from 'api';
 import { useAppSelector, wrapper } from 'store';
-import ThemeDetail from 'components/pages/ThemeDetail';
+import CafeDetail from 'components/pages/CafeDetail';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
 import { Back } from 'components/atoms';
@@ -18,13 +18,14 @@ import iconBookmarkActive from 'assets/icons/bookmark-active.svg';
 interface IProps {
   initial: boolean;
 }
-const ThemeDetailPage = ({ initial }: IProps) => {
+const CafeDetailPage = ({ initial }: IProps) => {
   const router = useRouter();
   const id = String(router.query.id);
+  const tab = String(router.query.tab);
 
   const user = useAppSelector(state => state.auth.user);
-  const { data, refetch } = useQuery(['fetchTheme', Boolean(user), id], () => {
-    return api.themes.fetchTheme({ id });
+  const { data, refetch } = useQuery(['fetchCafe', id], () => {
+    return api.cafes.fetchCafe({ id });
   });
 
   function handleGoBack() {
@@ -32,14 +33,14 @@ const ThemeDetailPage = ({ initial }: IProps) => {
     else router.back();
   }
 
-  const saveMutation = useMutation(() => api.themes.saveTheme({ id }), {
+  const saveMutation = useMutation(() => api.cafes.saveCafe({ id }), {
     onSuccess: () => refetch(),
     onError: ({ response }) => {
       const { detail } = response.data;
       alert(detail);
     },
   });
-  const unSaveMutation = useMutation(() => api.themes.unSaveTheme({ id }), {
+  const unSaveMutation = useMutation(() => api.cafes.unSaveCafe({ id }), {
     onSuccess: () => refetch(),
     onError: ({ response }) => {
       const { detail } = response.data;
@@ -47,7 +48,7 @@ const ThemeDetailPage = ({ initial }: IProps) => {
     },
   });
 
-  function handleSaveTheme() {
+  function handleSaveCafe() {
     if (!user) {
       router.push(`/accounts/login?rd_url=${router.asPath}`);
       return;
@@ -55,7 +56,7 @@ const ThemeDetailPage = ({ initial }: IProps) => {
     saveMutation.mutate();
   }
 
-  function handleUnSaveTheme() {
+  function handleUnSaveCafe() {
     if (!user) {
       router.push(`/accounts/login?rd_url=${router.asPath}`);
       return;
@@ -67,48 +68,50 @@ const ThemeDetailPage = ({ initial }: IProps) => {
     <>
       {data && (
         <HeadPageMeta
-          title={`${data.name} - Escape Note`}
-          description={data.intro}
-          pageUrl={`${process.env.NEXT_PUBLIC_URL}/themes/${id}`}
-          imageUrl={`${process.env.NEXT_PUBLIC_IMAGE_URL}${data.thumbnail}`}
+          title={`${data.name} - 이스케이프노트`}
+          description={data.addressLine}
+          pageUrl={`${process.env.NEXT_PUBLIC_URL}/cafes/${id}`}
+          {...(data.images && {
+            imageUrl: `${process.env.NEXT_PUBLIC_IMAGE_URL}${data.images[0]}`,
+          })}
         />
       )}
 
       <Layout
-        title="테마"
+        title="카페"
         leftAction={<Back onClick={handleGoBack} />}
         rightAction={
           data?.saves && data.saves.length > 0 ? (
-            <button onClick={handleUnSaveTheme}>
+            <button onClick={handleUnSaveCafe}>
               <img
                 src={iconBookmarkActive}
-                alt="save-active"
+                alt="save-filled"
                 width="24px"
                 height="24px"
               />
             </button>
           ) : (
-            <button onClick={handleSaveTheme}>
+            <button onClick={handleSaveCafe}>
               <img src={iconBookmark} alt="save" width="24px" height="24px" />
             </button>
           )
         }
-        hideBottom
+        noBottom
       >
-        <ThemeDetail id={id} theme={data} />
+        <CafeDetail id={id} tab={tab} cafe={data} />
       </Layout>
     </>
   );
 };
 
-ThemeDetailPage.getInitialProps = wrapper.getInitialPageProps(
+CafeDetailPage.getInitialProps = wrapper.getInitialPageProps(
   store =>
     async ({ req, query }) => {
       if (req) {
         const id = query.id as string;
         const queryClient = new QueryClient();
-        await queryClient.prefetchQuery(['fetchTheme', id], () => {
-          return api.themes.fetchTheme({ id });
+        await queryClient.prefetchQuery(['fetchCafe', id], () => {
+          return api.cafes.fetchCafe({ id });
         });
         return { dehydratedState: dehydrate(queryClient), initial: true };
       }
@@ -116,4 +119,4 @@ ThemeDetailPage.getInitialProps = wrapper.getInitialPageProps(
     },
 );
 
-export default ThemeDetailPage;
+export default CafeDetailPage;

@@ -12,7 +12,7 @@ const TermsPage = () => {
   return (
     <>
       <HeadPageMeta
-        title="이용약관 - Escape Note"
+        title="이용약관 - 이스케이프노트"
         description="이용약관"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/terms`}
       />
@@ -21,7 +21,7 @@ const TermsPage = () => {
         title="이용약관"
         leftAction={<Back onClick={router.back} />}
         rightAction={<></>}
-        hideBottom
+        noBottom
       >
         <Terms />
       </Layout>

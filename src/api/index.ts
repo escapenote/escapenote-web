@@ -10,6 +10,7 @@ import * as genre from './genre';
 import * as themes from './themes';
 import * as sitemaps from './sitemaps';
 import * as faq from './faq';
+import * as images from './images';
 
 export const staticApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_STATIC_URL,
@@ -61,4 +62,5 @@ export default {
   themes,
   sitemaps,
   faq,
+  images,
 };

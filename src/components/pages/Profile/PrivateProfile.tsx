@@ -46,7 +46,16 @@ const PrivateProfile: React.FC<IProps> = ({ user }) => {
 
         <Box mt="-60px" mb="18px">
           <AvatarCircle>
-            <img src={iconAvatar} alt="avatar" width="68px" height="68px" />
+            {user?.avatar ? (
+              <img
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${user.avatar}`}
+                alt={user.nickname}
+                width="92px"
+                height="92px"
+              />
+            ) : (
+              <img src={iconAvatar} alt="avatar" width="68px" height="68px" />
+            )}
           </AvatarCircle>
         </Box>
 
@@ -114,10 +123,14 @@ const AvatarCircle = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50px;
+  border: 4px solid rgb(var(--greyscale50));
   width: 100px;
   height: 100px;
   background-color: rgb(var(--greyscale50));
   z-index: 1;
+  > img {
+    border-radius: 100px;
+  }
 `;
 const Nickname = styled.strong`
   font-size: 18px;

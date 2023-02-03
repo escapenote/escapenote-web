@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 
 const HeadDefaultMeta: React.FC = () => {
-  const title = 'ESCAPE NOTE';
+  const title = '이스케이프노트';
   const color = '#ffffff';
 
   return (

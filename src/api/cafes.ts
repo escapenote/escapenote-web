@@ -1,5 +1,5 @@
 import { api } from 'api';
-import { IPage, ICafe } from 'types';
+import { IPage, ICafe, ICafeReview } from 'types';
 
 /**
  * 카페 리스트 조회
@@ -62,5 +62,54 @@ interface IUnSaveCafeProps {
 }
 export const unSaveCafe = async ({ id }: IUnSaveCafeProps) => {
   const { data } = await api.post(`cafes/${id}/unsave`);
+  return data;
+};
+
+/**
+ * 카페 리뷰 리스트 조회
+ */
+interface IFetchCafeReviewProps {
+  id: string;
+  take?: number;
+  cursor?: string;
+  sort?: string;
+  order?: string;
+}
+export const fetchCafeReviews = async ({
+  id,
+  take = 20,
+  cursor,
+  sort,
+  order,
+}: IFetchCafeReviewProps) => {
+  const params = { take } as IFetchCafesProps;
+  if (cursor) params.cursor = cursor;
+  if (sort) params.sort = sort;
+  if (order) params.order = order;
+
+  const { data } = await api.get<{ items: ICafeReview[]; pageInfo: IPage }>(
+    `cafes/${id}/reviews`,
+    {
+      params,
+    },
+  );
+  return data;
+};
+
+/**
+ * 카페 리뷰 작성
+ */
+export interface IWriteReviewOnCafeProps {
+  id: string;
+  rating: number;
+  text: string;
+}
+export const writeReviewOnCafe = async ({
+  id,
+  rating,
+  text,
+}: IWriteReviewOnCafeProps) => {
+  const body = { rating, text };
+  const { data } = await api.post<boolean>(`cafes/${id}/reviews`, body);
   return data;
 };

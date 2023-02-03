@@ -11,12 +11,12 @@ const LoginPage = () => {
   return (
     <>
       <HeadPageMeta
-        title="로그인 - Escape Note"
+        title="로그인 - 이스케이프노트"
         description="로그인"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/accounts/login`}
       />
 
-      <Layout leftAction={<Back onClick={router.back} />} hideBottom>
+      <Layout leftAction={<Back onClick={router.back} />} noBottom>
         <Login />
       </Layout>
     </>

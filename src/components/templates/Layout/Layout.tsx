@@ -10,7 +10,8 @@ interface IProps {
   subTitle?: string;
   leftAction?: React.ReactNode;
   rightAction?: React.ReactNode;
-  hideBottom?: boolean;
+  noPadding?: boolean;
+  noBottom?: boolean;
   appBar?: React.ReactNode;
   children: React.ReactNode;
 }
@@ -19,7 +20,8 @@ const Layout: React.FC<IProps> = ({
   subTitle,
   leftAction,
   rightAction,
-  hideBottom = false,
+  noPadding = false,
+  noBottom = false,
   appBar,
   children,
 }) => {
@@ -32,8 +34,10 @@ const Layout: React.FC<IProps> = ({
         rightAction={rightAction}
         appBar={appBar}
       />
-      <Main hideBottom={hideBottom}>{children}</Main>
-      {!hideBottom && <BottomNavigationBar />}
+      <Main noPadding={noPadding} noBottom={noBottom}>
+        {children}
+      </Main>
+      {!noBottom && <BottomNavigationBar />}
     </Wrapper>
   );
 };
@@ -43,7 +47,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   flex-grow: 1;
 `;
-const Main = styled.main<{ hideBottom: boolean }>`
+const Main = styled.main<{ noPadding: boolean; noBottom: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -55,9 +59,16 @@ const Main = styled.main<{ hideBottom: boolean }>`
   width: 100%;
   overflow: hidden;
   ${p =>
-    p.hideBottom &&
+    p.noBottom &&
     css`
       padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    `}
+  ${p =>
+    p.noPadding &&
+    css`
+      padding: 0;
+      padding-top: 56px;
+      padding-bottom: calc(0 + env(safe-area-inset-bottom));
     `}
   @media (min-width: 480px) {
     margin: 0 auto;

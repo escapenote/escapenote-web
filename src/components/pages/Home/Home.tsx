@@ -80,7 +80,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Layout title="ESCAPE NOTE" subTitle="방탈출 찾을 땐">
+      <Layout title="이스케이프노트" subTitle="방탈출 찾을 땐">
         <Section>
           <Box height="56px">
             <SearchBar
@@ -167,7 +167,7 @@ const HomePage = () => {
             <Box ml="12px">
               <QuestionTitle>문의하기</QuestionTitle>
               <QuestionText>
-                ESCAPE NOTE에 대해 궁금하신 점이 있으신가요?
+                이스케이프노트에 대해 궁금하신 점이 있으신가요?
               </QuestionText>
             </Box>
           </Question>

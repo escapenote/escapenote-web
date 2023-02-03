@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 import { variables } from './variables';
 import reset from './reset';
+import cropperStyles from 'vendors/cropper';
 
 const globalStyles = css`
   /* Global CSS Variables */
@@ -114,6 +115,9 @@ const globalStyles = css`
       border-bottom-left-radius: 0 !important;
     }
   }
+
+  /* Cropper styles */
+  ${cropperStyles}
 `;
 
 export default globalStyles;

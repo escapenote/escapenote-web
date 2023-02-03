@@ -10,7 +10,7 @@ import { signupSchema } from 'utils/validators';
 import { useAppDispatch, useAppSelector } from 'store';
 import { setSignupCode } from 'store/signupSlice';
 import { Box, Input, Button } from 'components/atoms';
-import iconEdit from 'assets/icons/edit.svg';
+import iconEdit from 'assets/icons/edit-grey.svg';
 import imgValification from 'assets/images/valification.svg';
 
 const SignupConfirm: React.FC = () => {

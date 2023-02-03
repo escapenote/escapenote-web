@@ -35,3 +35,18 @@ export const obscurePhoneNumber = (originPhoneNumber: string) => {
     return phoneNumber;
   }
 };
+
+export const readUrl = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      resolve(String(e.target?.result));
+    };
+    reader.readAsDataURL(file);
+    reader.onerror = reject;
+  });
+};
+
+export const blobToFile = (theBlob: Blob, fileName: string): File => {
+  return new File([theBlob], fileName, { lastModified: new Date().getTime() });
+};

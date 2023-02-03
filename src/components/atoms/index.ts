@@ -8,3 +8,4 @@ export { default as Tag } from './Tag';
 export { default as Select } from './Select';
 export { default as Slider } from './Slider';
 export { default as Checkbox } from './Checkbox';
+export { default as Stars } from './Stars';

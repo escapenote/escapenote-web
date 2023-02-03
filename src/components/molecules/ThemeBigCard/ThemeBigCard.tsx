@@ -7,7 +7,7 @@ import api from 'api';
 import { ITheme } from 'types';
 import { numberWithComma } from 'utils/common';
 import { useAppSelector } from 'store';
-import { Box } from 'components/atoms';
+import { Box, Stars } from 'components/atoms';
 import iconLock from 'assets/icons/lock.svg';
 import iconBookmarkFilled from 'assets/icons/bookmark-filled.svg';
 import iconBookmarkFilledActive from 'assets/icons/bookmark-filled-active.svg';
@@ -70,6 +70,12 @@ const ThemeBigCard: React.FC<IProps> = ({ theme, refetch }) => {
           <Box>
             <Name>{theme.name}</Name>
             {theme.cafe && <Cafe>{theme.cafe.name}</Cafe>}
+            <Rating>
+              <Stars rating={theme?.reviewsRating} />
+              <span>
+                {theme?.reviewsRating}점({theme?.reviewsCount})
+              </span>
+            </Rating>
             <LevelBox>
               {Array.from({ length: theme.level }, (_, i) => (
                 <img
@@ -80,23 +86,19 @@ const ThemeBigCard: React.FC<IProps> = ({ theme, refetch }) => {
                   height="16px"
                 />
               ))}
+              {theme.during && ` | ${theme.during}분`}
             </LevelBox>
-          </Box>
-          <Box
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="flex-end"
-          >
             <GenreBox>
               {theme.genre.length > 0 &&
                 theme.genre
-                  .slice(0, 3)
+                  .slice(0, 2)
                   .map(v => <Genre key={v.id}>#{v.id}</Genre>)}
-              {theme.genre.length > 3 && '...'}
+              {theme.genre.length > 2 && '...'}
             </GenreBox>
-            <Price>₩{numberWithComma(theme.price)}</Price>
           </Box>
         </Contents>
+
+        <Price>₩{numberWithComma(theme.price)}</Price>
 
         {theme?.saves && theme?.saves.length > 0 ? (
           <SaveButton onClick={handleUnSaveTheme}>
@@ -146,6 +148,7 @@ const Contents = styled.div`
   margin: 12px;
   border-radius: 16px;
   padding: 12px;
+  height: 118px;
   background-color: rgb(var(--content));
   box-shadow: 4px 8px 16px rgba(17, 24, 39, 0.2);
 `;
@@ -159,15 +162,25 @@ const Name = styled.strong`
   line-height: 24px;
 `;
 const Cafe = styled.span`
+  margin-bottom: 4px;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
   color: rgb(var(--greyscale400));
 `;
+const Rating = styled.span`
+  margin-left: -1px;
+  font-size: 10px;
+  > span:last-of-type {
+    margin-left: 4px;
+  }
+`;
 const LevelBox = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin-left: -1px;
+  font-size: 10px;
 `;
 const GenreBox = styled.div`
   display: flex;
@@ -179,13 +192,19 @@ const GenreBox = styled.div`
 `;
 const Genre = styled.span`
   margin-right: 4px;
+  white-space: nowrap;
 `;
 const Price = styled.span`
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
   border-radius: 8px;
   padding: 7px 8px;
+  height: 32px;
   background-color: rgb(var(--primary100));
   font-size: 12px;
   font-weight: 500;
+  line-height: 18px;
   color: rgb(var(--primary));
 `;
 const SaveButton = styled.button`

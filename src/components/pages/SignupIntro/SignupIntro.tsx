@@ -54,7 +54,7 @@ const SignupIntro = () => {
         </Box>
 
         <Box mb="188px">
-          <Desc>ESCAPE NOTE 가입을 환영합니다!</Desc>
+          <Desc>이스케이프노트 가입을 환영합니다!</Desc>
         </Box>
 
         <Form onSubmit={handleSubmit}>

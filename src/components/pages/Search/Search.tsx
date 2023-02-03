@@ -51,7 +51,7 @@ const Search = () => {
           </Box>
         </Box>
       }
-      hideBottom
+      noBottom
     >
       {term ? (
         <>

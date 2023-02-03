@@ -12,7 +12,7 @@ const FaqPage = () => {
   return (
     <>
       <HeadPageMeta
-        title="자주묻는질문 - Escape Note"
+        title="자주묻는질문 - 이스케이프노트"
         description="자주묻는질문"
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/faq`}
       />
@@ -21,7 +21,7 @@ const FaqPage = () => {
         title="자주묻는질문"
         leftAction={<Back onClick={router.back} />}
         rightAction={<></>}
-        hideBottom
+        noBottom
       >
         <Faq />
       </Layout>

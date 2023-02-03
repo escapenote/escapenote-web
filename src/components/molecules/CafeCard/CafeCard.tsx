@@ -6,6 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import api from 'api';
 import { ICafe } from 'types';
 import { useAppSelector } from 'store';
+import { Stars } from 'components/atoms';
 import iconCafeThumbnail from 'assets/icons/cafe-thumbnail.svg';
 import iconBookmark from 'assets/icons/bookmark.svg';
 import iconBookmarkActive from 'assets/icons/bookmark-active.svg';
@@ -57,7 +58,7 @@ const CafeCard: React.FC<IProps> = ({ cafe, refetch }) => {
   }
 
   return (
-    <Link href={`/cafes/${cafe.id}`} passHref>
+    <Link href={`/cafes/${cafe.id}/themes`} passHref>
       <Container>
         {cafe.images.length > 0 ? (
           <Image
@@ -71,6 +72,12 @@ const CafeCard: React.FC<IProps> = ({ cafe, refetch }) => {
         <Location>
           {cafe.areaA} {cafe.areaB}
         </Location>
+        <Rating>
+          <Stars rating={cafe?.reviewsRating} />
+          <span>
+            {cafe?.reviewsRating}점({cafe?.reviewsCount})
+          </span>
+        </Rating>
 
         {cafe?.saves && cafe?.saves.length > 0 ? (
           <SaveButton onClick={handleUnSaveCafe}>
@@ -114,8 +121,16 @@ const Name = styled.strong`
   text-align: center;
 `;
 const Location = styled.span`
+  margin-bottom: 4px;
   font-size: 12px;
   color: rgb(var(--greyscale400));
+`;
+const Rating = styled.span`
+  margin-left: -1px;
+  font-size: 10px;
+  > span:last-of-type {
+    margin-left: 4px;
+  }
 `;
 const SaveButton = styled.button`
   position: absolute;

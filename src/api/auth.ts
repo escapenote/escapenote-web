@@ -80,6 +80,7 @@ export interface ISignupByEmailProps {
   email: string;
   password: string;
   code: string;
+  avatar?: string;
   nickname: string;
   type: string;
   agreeOlder14Years: boolean;

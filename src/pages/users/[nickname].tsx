@@ -18,7 +18,7 @@ const ProfilePage = () => {
     <>
       {data && (
         <HeadPageMeta
-          title={`${nickname} 프로필 - Escape Note`}
+          title={`${nickname} 프로필 - 이스케이프노트`}
           description={`${data.type}의 방탈출 성향을 가진 ${data.nickname} 입니다.`}
           pageUrl={`${process.env.NEXT_PUBLIC_URL}/users/${nickname}`}
           {...(data.avatar && {
