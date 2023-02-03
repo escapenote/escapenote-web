@@ -202,6 +202,7 @@ const SignupComplete: React.FC = () => {
             }
             onChange={(e: any) => setType(e.target.value)}
           >
+            <option value="">방탈출 성향을 선택해주세요</option>
             <option value="탱">탱</option>
             <option value="쫄탱">쫄탱</option>
             <option value="마지모탱">마지모탱</option>
