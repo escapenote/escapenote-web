@@ -2,9 +2,6 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import { IUser } from 'types';
-import api from 'api';
-import { useAppDispatch } from 'store';
-import { logout } from 'store/authSlice';
 import Layout from 'components/templates/Layout';
 import { Box } from 'components/atoms';
 import iconSettings from 'assets/icons/settings.svg';
@@ -15,13 +12,6 @@ interface IProps {
 }
 const PrivateProfile: React.FC<IProps> = ({ user }) => {
   const router = useRouter();
-  const dispatch = useAppDispatch();
-
-  async function handleLogout() {
-    await api.auth.logout();
-    dispatch(logout());
-    router.push('/');
-  }
 
   return (
     <Layout
