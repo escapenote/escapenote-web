@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import Cropper from 'react-cropper';
 import Pica from 'pica';
 
@@ -10,6 +11,8 @@ import { setExportImageFile } from 'store/imageSlice';
 import Layout from 'components/templates/Layout';
 import { Spinner, Text } from 'components/atoms';
 import iconX from 'assets/icons/x.svg';
+import iconSwap from 'assets/icons/swap.svg';
+import iconRotate from 'assets/icons/rotate.svg';
 
 const maxScreenWidth = 480;
 
@@ -21,7 +24,8 @@ const CreateImage = () => {
     state => state.image.importedImageFile,
   );
 
-  const cropperRef = useRef<HTMLImageElement>(null);
+  const cropperRef = useRef<any>(null);
+  const [_isScaleX, setIsScaleX] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [imageUrl, setImageUrl] = useState('');
@@ -45,6 +49,19 @@ const CreateImage = () => {
 
   function handleReady() {
     setIsReady(true);
+  }
+
+  function handleSwap() {
+    if (!cropperRef.current) return;
+    setIsScaleX(prev => {
+      cropperRef.current.cropper.scaleX(prev ? -1 : 1);
+      return !prev;
+    });
+  }
+
+  function handleRotate() {
+    if (!cropperRef.current) return;
+    cropperRef.current.cropper.rotate(45);
   }
 
   async function handleSubmit() {
@@ -117,12 +134,19 @@ const CreateImage = () => {
           minCropBoxWidth={screenWidth}
           minCropBoxHeight={screenWidth}
         />
+        <Swap onClick={handleSwap}>
+          <img src={iconSwap} alt="swap" width="20px" height="20px" />
+        </Swap>
+        <Rotate onClick={handleRotate}>
+          <img src={iconRotate} alt="rotate" width="16px" height="16px" />
+        </Rotate>
       </Wrapper>
     </Layout>
   );
 };
 
 const Wrapper = styled.div`
+  position: relative;
   .cropper-view-box,
   .cropper-face {
     border-radius: 50%;
@@ -132,6 +156,27 @@ const Ready = styled.div`
   padding: 24px;
   font-size: 14px;
   font-weight: 500;
+`;
+const buttonStyles = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  width: 32px;
+  height: 32px;
+  background-color: rgb(0, 0, 0, 0.7);
+`;
+const Swap = styled.button`
+  ${buttonStyles}
+  position: absolute;
+  bottom: 12px;
+  right: 52px;
+`;
+const Rotate = styled.button`
+  ${buttonStyles}
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
 `;
 
 export default CreateImage;
