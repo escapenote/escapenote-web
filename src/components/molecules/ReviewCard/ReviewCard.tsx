@@ -56,17 +56,19 @@ const ReviewCard: React.FC<IProps> = ({ review }) => {
         <CreatedAt>{createdAt}</CreatedAt>
       </Box>
       <Box>
-        <Box mb="8px">
+        <Box>
           <Rating>
             <Stars rating={review.rating} />
           </Rating>
         </Box>
-        <Box alignItems="flex-start">
-          <Text ref={textRef}>{review.text}</Text>
-          {overHeightText && (
-            <MoreText onClick={handleMoreText}>더보기</MoreText>
-          )}
-        </Box>
+        {review.text && (
+          <Box alignItems="flex-start" mt="8px">
+            <Text ref={textRef}>{review.text}</Text>
+            {overHeightText && (
+              <MoreText onClick={handleMoreText}>더보기</MoreText>
+            )}
+          </Box>
+        )}
       </Box>
     </Container>
   );
