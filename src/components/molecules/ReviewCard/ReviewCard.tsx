@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import format from 'date-fns/format';
@@ -11,6 +12,32 @@ interface IProps {
 }
 const ReviewCard: React.FC<IProps> = ({ review }) => {
   const createdAt = format(new Date(review.createdAt), 'yyyy.MM.dd');
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const [overHeightText, setOverHeightText] = useState(false);
+
+  useEffect(() => {
+    handleAdjustHeight();
+  }, [textRef]);
+
+  function handleAdjustHeight() {
+    if (!textRef.current) return;
+
+    const { height } = textRef.current.getBoundingClientRect();
+    if (height > 80) {
+      textRef.current.style.display = '-webkit-box';
+      textRef.current.style.webkitLineClamp = '4';
+      textRef.current.style.webkitBoxOrient = 'vertical';
+      textRef.current.style.overflow = 'hidden';
+      setOverHeightText(true);
+    }
+  }
+
+  function handleMoreText() {
+    if (!textRef.current) return;
+    textRef.current.style.display = 'block';
+    textRef.current.style.overflow = 'auto';
+    setOverHeightText(false);
+  }
 
   return (
     <Container>
@@ -34,7 +61,12 @@ const ReviewCard: React.FC<IProps> = ({ review }) => {
             <Stars rating={review.rating} />
           </Rating>
         </Box>
-        <Text>{review.text}</Text>
+        <Box alignItems="flex-start">
+          <Text ref={textRef}>{review.text}</Text>
+          {overHeightText && (
+            <MoreText onClick={handleMoreText}>더보기</MoreText>
+          )}
+        </Box>
       </Box>
     </Container>
   );
@@ -67,6 +99,9 @@ const Rating = styled.span``;
 const Text = styled.p`
   color: rgb(var(--greyscale600));
   white-space: pre-line;
+`;
+const MoreText = styled.button`
+  color: rgb(var(--primary));
 `;
 
 export default ReviewCard;
