@@ -1,7 +1,7 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { AppState } from 'store';
+import { AppState, revertAll } from 'store';
 
 export interface IState {
   term: string;
@@ -19,6 +19,7 @@ export const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
+    reset: () => initialState,
     setTerm: (state, action: PayloadAction<string>) => {
       state.term = action.payload;
     },
@@ -27,6 +28,9 @@ export const searchSlice = createSlice({
       state.values = [action.payload, ...filteredValue];
       state.values.splice(8);
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(revertAll, () => initialState);
   },
 });
 

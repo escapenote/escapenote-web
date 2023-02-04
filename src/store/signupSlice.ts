@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { revertAll } from 'store';
+
 type SliceState = {
   email: string;
   code: string;
@@ -22,6 +24,7 @@ export const signupSlice = createSlice({
   name: 'signup',
   initialState,
   reducers: {
+    reset: () => initialState,
     setSignupEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
@@ -42,6 +45,9 @@ export const signupSlice = createSlice({
       state.agreePrivacy = action.payload.agreePrivacy;
       state.agreeMarketing = action.payload.agreeMarketing;
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(revertAll, () => initialState);
   },
 });
 

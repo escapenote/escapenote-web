@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { revertAll } from 'store';
+
 type IImportType = 'user' | 'review';
 
 type SliceState = {
@@ -18,6 +20,7 @@ export const imageSlice = createSlice({
   name: 'image',
   initialState,
   reducers: {
+    reset: () => initialState,
     resetImageFile: state => {
       state.importType = 'user';
       state.importedImageFile = null;
@@ -38,6 +41,9 @@ export const imageSlice = createSlice({
     setExportImageFile: (state, action: PayloadAction<File>) => {
       state.exportedImageFile = action.payload;
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(revertAll, () => initialState);
   },
 });
 

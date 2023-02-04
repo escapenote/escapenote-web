@@ -8,7 +8,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import api from 'api';
 import { IUser } from 'types';
-import { AppState } from 'store';
+import { AppState, revertAll } from 'store';
 
 type SliceState = {
   accessToken: string;
@@ -26,6 +26,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    reset: () => initialState,
     setAccessToken: (state, action: PayloadAction<string>) => {
       state.accessToken = action.payload;
     },
@@ -57,6 +58,7 @@ export const authSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(revertAll, () => initialState);
     builder.addCase(hydrate, (state, action) => {
       return {
         ...state,

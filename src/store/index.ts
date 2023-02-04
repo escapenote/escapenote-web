@@ -1,5 +1,9 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import {
+  configureStore,
+  combineReducers,
+  createAction,
+} from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 
 import commonSlice from './commonSlice';
@@ -10,6 +14,8 @@ import passwordSlice from './passwordSlice';
 import searchSlice from './searchSlice';
 import imageSlice from './imageSlice';
 import reviewSlice from './reviewSlice';
+
+export const revertAll = createAction('REVERT_ALL');
 
 const rootReducer = combineReducers({
   [commonSlice.name]: commonSlice.reducer,

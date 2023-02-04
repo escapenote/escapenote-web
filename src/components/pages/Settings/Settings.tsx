@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import api from 'api';
-import { useAppDispatch } from 'store';
+import { revertAll, useAppDispatch } from 'store';
 import { logout } from 'store/authSlice';
 import { Box, Text } from 'components/atoms';
 import iconProfileCircle from 'assets/icons/profile-circle.svg';
@@ -21,6 +21,7 @@ const Settings = () => {
   async function handleLogout() {
     await api.auth.logout();
     dispatch(logout());
+    dispatch(revertAll());
     router.push('/');
   }
 

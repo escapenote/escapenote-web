@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { revertAll } from 'store';
+
 type ReviewType = 'cafe' | 'theme' | '';
 
 type SliceState = {
@@ -16,6 +18,7 @@ export const reviewSlice = createSlice({
   name: 'review',
   initialState,
   reducers: {
+    reset: () => initialState,
     setReviewTypeAndId: (
       state,
       action: PayloadAction<{ type: ReviewType; id: string }>,
@@ -23,13 +26,17 @@ export const reviewSlice = createSlice({
       state.type = action.payload.type;
       state.id = action.payload.id;
     },
-    resetReviewTypeAndId: (state, action: PayloadAction) => {
+    resetReviewTypeAndId: state => {
       state.type = '';
       state.id = '';
     },
   },
+  extraReducers(builder) {
+    builder.addCase(revertAll, () => initialState);
+  },
 });
 
-export const { setReviewTypeAndId, resetReviewTypeAndId } = reviewSlice.actions;
+export const { reset, setReviewTypeAndId, resetReviewTypeAndId } =
+  reviewSlice.actions;
 
 export default reviewSlice;
