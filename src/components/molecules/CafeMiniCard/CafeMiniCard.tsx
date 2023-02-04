@@ -49,7 +49,6 @@ const Image = styled.img`
   height: 48px;
 `;
 const Name = styled.strong`
-  margin-bottom: 4px;
   font-size: 14px;
   font-weight: 700;
 `;
