@@ -201,6 +201,7 @@ const ImageInput = styled.input`
   width: 100%;
   height: 100%;
   opacity: 0;
+  cursor: pointer;
 `;
 const UploadImage = styled.img`
   border-radius: 50%;
