@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import { ITheme } from 'types';
 import { numberWithComma } from 'utils/common';
-import { useAppDispatch } from 'store';
+import { useAppDispatch, useAppSelector } from 'store';
 import { setReviewTypeAndId } from 'store/reviewSlice';
 import CafeMiniCard from 'components/molecules/CafeMiniCard';
 import { Box, Stars, Text } from 'components/atoms';
@@ -20,6 +20,7 @@ interface IProps {
 const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const user = useAppSelector(state => state.auth.user);
 
   const getRatingText = (rating: number) => {
     if (rating > 3.9) return '꽃길';
@@ -30,7 +31,11 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
 
   function handleWriteReview() {
     dispatch(setReviewTypeAndId({ type: 'theme', id }));
-    router.push('/create/review');
+    if (user) {
+      router.push('/create/review');
+    } else {
+      router.push(`/accounts/login?rd_url=${router.asPath}`);
+    }
   }
 
   const reviewsCount = theme?.reviewsCount ?? 0;

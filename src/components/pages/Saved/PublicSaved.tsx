@@ -37,7 +37,12 @@ const PublicSaved = () => {
         </Box>
 
         <Box width="180px">
-          <Button kind="primary" onClick={() => router.push('/accounts/login')}>
+          <Button
+            kind="primary"
+            onClick={() =>
+              router.push(`/accounts/login?rd_url=${router.asPath}`)
+            }
+          >
             로그인
           </Button>
         </Box>

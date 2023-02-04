@@ -48,7 +48,11 @@ const ThemeReviews: React.FC<IProps> = ({ id, theme }) => {
 
   function handleWriteReview() {
     dispatch(setReviewTypeAndId({ type: 'theme', id }));
-    router.push('/create/review');
+    if (user) {
+      router.push('/create/review');
+    } else {
+      router.push(`/accounts/login?rd_url=${router.asPath}`);
+    }
   }
 
   const reviewsCount = theme?.reviewsCount ?? 0;

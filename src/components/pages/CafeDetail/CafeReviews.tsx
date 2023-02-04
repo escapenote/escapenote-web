@@ -41,7 +41,11 @@ const CafeReviews: React.FC<IProps> = ({ cafeId, cafe }) => {
 
   function handleWriteReview() {
     dispatch(setReviewTypeAndId({ type: 'cafe', id: cafeId }));
-    router.push('/create/review');
+    if (user) {
+      router.push('/create/review');
+    } else {
+      router.push(`/accounts/login?rd_url=${router.asPath}`);
+    }
   }
 
   const reviewsCount = cafe?.reviewsCount ?? 0;
