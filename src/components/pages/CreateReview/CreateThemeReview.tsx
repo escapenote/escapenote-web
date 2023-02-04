@@ -200,16 +200,13 @@ const CreateThemeReview: React.FC<IProps> = ({ id }) => {
         <Textarea
           placeholder="내용을 입력해주세요."
           rows={7}
+          maxLength={1000}
           onChange={e => setText(e.target.value)}
         />
       </DefaultBox>
 
       <Box mt="auto">
-        <Button
-          type="submit"
-          kind="primary"
-          disabled={!rating || !text || submitting}
-        >
+        <Button type="submit" kind="primary" disabled={!rating || submitting}>
           {submitting ? '로딩중...' : '작성완료'}
         </Button>
       </Box>
