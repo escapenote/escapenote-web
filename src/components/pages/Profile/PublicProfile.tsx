@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import { IUser } from 'types';
 import { obscureEmail } from 'utils/common';
@@ -10,6 +11,25 @@ interface IProps {
   user?: IUser;
 }
 const PublicProfile: React.FC<IProps> = ({ user }) => {
+  const getSuccesPercent = () => {
+    if (user) {
+      const totalCount = user.themeReviews.length;
+      const successReviews = user.themeReviews.filter(v => v.success);
+      const successCount = successReviews.length;
+      return Math.round((successCount / totalCount) * 100);
+    }
+    return 0;
+  };
+
+  const getTotalReviewsCount = () => {
+    if (user) {
+      const cafeReviewsCount = user.cafeReviews.length;
+      const themeReviewsCount = user.themeReviews.length;
+      return cafeReviewsCount + themeReviewsCount;
+    }
+    return 0;
+  };
+
   return (
     <Layout title="프로필" leftAction={<></>} rightAction={<></>}>
       <Container>
@@ -23,7 +43,7 @@ const PublicProfile: React.FC<IProps> = ({ user }) => {
           ))}
         </Background>
 
-        <Box mt="-60px" mb="18px">
+        <Box mt="-60px" mb="8px">
           <AvatarCircle>
             {user?.avatar ? (
               <img
@@ -38,13 +58,28 @@ const PublicProfile: React.FC<IProps> = ({ user }) => {
           </AvatarCircle>
         </Box>
 
-        <Box mb="4px">
+        <Box mb="8px">
           <Nickname>{user?.nickname}</Nickname>
         </Box>
 
-        <Box mb="48px">
+        <Box mb="24px">
           <Email>{obscureEmail(user?.email ?? '')}</Email>
         </Box>
+
+        <Metas>
+          <Meta>
+            <MetaValue>{user?.type}</MetaValue>
+            <MetaLabel>방탈출 성향</MetaLabel>
+          </Meta>
+          <Meta>
+            <MetaValue>{getSuccesPercent()}%</MetaValue>
+            <MetaLabel>탈출 성공률</MetaLabel>
+          </Meta>
+          <Meta>
+            <MetaValue primary>{getTotalReviewsCount()}</MetaValue>
+            <MetaLabel>리뷰 작성수</MetaLabel>
+          </Meta>
+        </Metas>
       </Container>
     </Layout>
   );
@@ -107,17 +142,39 @@ const AvatarCircle = styled.div`
 `;
 const Nickname = styled.strong`
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 700;
 `;
 const Email = styled.span`
+  font-size: 14px;
+  color: rgb(var(--greyscale400));
+`;
+const Metas = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-radius: 16px;
+  border: 1px solid rgb(var(--greyscale200));
+  padding: 7px 16px;
+  width: 100%;
+`;
+const Meta = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const MetaLabel = styled.span`
   font-size: 12px;
   color: rgb(var(--greyscale400));
 `;
-const EditProfileButton = styled.button`
-  border-radius: 10px;
-  padding: 7px 15px;
-  background-color: rgb(var(--greyscale200));
-  font-size: 16px;
+const MetaValue = styled.strong<{ primary?: boolean }>`
+  margin-bottom: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  ${p =>
+    p.primary &&
+    css`
+      color: rgb(var(--primary));
+    `}
 `;
 
 export default PublicProfile;

@@ -1,3 +1,6 @@
+import { ICafeReview } from './cafeReview';
+import { IThemeReview } from './themeReview';
+
 /**
  * 사용지
  */
@@ -18,6 +21,8 @@ export interface IUser {
   agreeMarketing: boolean;
   cafeSaves: any[];
   themeSaves: any[];
+  cafeReviews: ICafeReview[];
+  themeReviews: IThemeReview[];
   createdAt: string;
   updatedAt: string;
 }
