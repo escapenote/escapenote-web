@@ -19,13 +19,12 @@ interface IProps {
   type: ReviewType;
   review: ICafeReview | IThemeReview;
 }
-const ReviewCard: React.FC<IProps> = ({ type, review }) => {
+const MyReviewCard: React.FC<IProps> = ({ type, review }) => {
   const router = useRouter();
   const user = useAppSelector(state => state.auth.user);
   const createdAt = format(new Date(review.createdAt), 'yyyy.MM.dd');
   const textRef = useRef<HTMLParagraphElement>(null);
   const [overHeightText, setOverHeightText] = useState(false);
-
   const isAuthor = user?.id === review.userId;
 
   const deleteCafeReview = useMutation(
@@ -76,7 +75,6 @@ const ReviewCard: React.FC<IProps> = ({ type, review }) => {
     textRef.current.style.overflow = 'auto';
     setOverHeightText(false);
   }
-
   function handleUpdateReview() {
     if (type === 'cafe') {
       router.push(`/reviews/${review.id}/cafe`);
@@ -186,4 +184,4 @@ const DeleteButton = styled.button`
   color: rgb(var(--primary));
 `;
 
-export default ReviewCard;
+export default MyReviewCard;

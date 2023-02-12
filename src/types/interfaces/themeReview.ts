@@ -1,4 +1,4 @@
-import { IUser, ICafe } from 'types';
+import { IUser, ITheme } from 'types';
 
 export interface IThemeReview {
   id: string;
@@ -10,8 +10,8 @@ export interface IThemeReview {
   text: string;
   user: IUser;
   userId: string;
-  cafe: ICafe;
-  cafeId: string;
+  theme: ITheme;
+  themeId: string;
   createdAt: string;
   updatedAt: string;
 }

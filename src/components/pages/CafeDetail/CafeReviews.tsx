@@ -90,7 +90,7 @@ const CafeReviews: React.FC<IProps> = ({ cafeId, cafe }) => {
               <Items>
                 {group.items?.map(item => (
                   <Item key={item.id}>
-                    <ReviewCard review={item} />
+                    <ReviewCard type="cafe" review={item} />
                   </Item>
                 ))}
               </Items>

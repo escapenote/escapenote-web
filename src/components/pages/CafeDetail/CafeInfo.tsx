@@ -78,6 +78,7 @@ const CafeInfo: React.FC<IProps> = ({ cafe }) => {
 };
 
 const Wrapper = styled.div`
+  margin-bottom: 18px;
   padding-top: 18px;
 `;
 const Title = styled.h2`

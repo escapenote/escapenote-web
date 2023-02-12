@@ -6,8 +6,10 @@ import * as common from './common';
 import * as auth from './auth';
 import * as users from './users';
 import * as cafes from './cafes';
+import * as cafeReviews from './cafeReviews';
 import * as genre from './genre';
 import * as themes from './themes';
+import * as themeReviews from './themeReviews';
 import * as sitemaps from './sitemaps';
 import * as faq from './faq';
 import * as images from './images';
@@ -58,8 +60,10 @@ export default {
   auth,
   users,
   cafes,
+  cafeReviews,
   genre,
   themes,
+  themeReviews,
   sitemaps,
   faq,
   images,

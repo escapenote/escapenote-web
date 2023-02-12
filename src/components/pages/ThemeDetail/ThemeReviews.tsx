@@ -50,7 +50,7 @@ const ThemeReviews: React.FC<IProps> = ({ themeId, reviewsCount }) => {
         ) : (
           data?.items.map(review => (
             <Item key={review.id}>
-              <ReviewCard review={review} />
+              <ReviewCard type="theme" review={review} />
             </Item>
           ))
         )}
