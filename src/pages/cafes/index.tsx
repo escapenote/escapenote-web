@@ -1,4 +1,4 @@
-import CafeList from 'components/pages/CafeList';
+import Explore from 'components/pages/Explore';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 
 const CafeListPage = () => {
@@ -10,7 +10,7 @@ const CafeListPage = () => {
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/cafes`}
       />
 
-      <CafeList />
+      <Explore tab="cafes" />
     </>
   );
 };

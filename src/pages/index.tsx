@@ -1,5 +1,5 @@
+import Explore from 'components/pages/Explore';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
-import Home from 'components/pages/Home';
 
 const HomePage = () => {
   return (
@@ -10,7 +10,7 @@ const HomePage = () => {
         pageUrl={`${process.env.NEXT_PUBLIC_URL}`}
       />
 
-      <Home />
+      <Explore tab="home" />
     </>
   );
 };

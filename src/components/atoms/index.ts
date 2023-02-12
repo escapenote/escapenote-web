@@ -6,6 +6,8 @@ export { default as Back } from './Back';
 export { default as Spinner } from './Spinner';
 export { default as Tag } from './Tag';
 export { default as Select } from './Select';
+export { default as MiniSelect } from './MiniSelect';
+export { default as SortMiniSelect } from './SortMiniSelect';
 export { default as Slider } from './Slider';
 export { default as Checkbox } from './Checkbox';
 export { default as Stars } from './Stars';

@@ -50,3 +50,9 @@ export const readUrl = (file: File): Promise<string> => {
 export const blobToFile = (theBlob: Blob, fileName: string): File => {
   return new File([theBlob], fileName, { lastModified: new Date().getTime() });
 };
+
+export const getGrade = (grade: string) => {
+  if (grade === '높음') return 'high';
+  else if (grade === '낮음') return 'low';
+  else return 'medium';
+};

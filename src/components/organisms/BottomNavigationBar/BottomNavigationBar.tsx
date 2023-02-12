@@ -6,12 +6,8 @@ import { css } from '@emotion/react';
 
 import { IUser } from 'types';
 import { useAppSelector } from 'store';
-import iconHome from 'assets/icons/home.svg';
-import iconHomeActive from 'assets/icons/home-active.svg';
-import iconCafe from 'assets/icons/cafe.svg';
-import iconCafeActive from 'assets/icons/cafe-active.svg';
-import iconTicket from 'assets/icons/ticket.svg';
-import iconTicketActive from 'assets/icons/ticket-active.svg';
+import iconExplore from 'assets/icons/explore.svg';
+import iconExploreActive from 'assets/icons/explore-active.svg';
 import iconBookmark from 'assets/icons/bookmark.svg';
 import iconBookmarkActive from 'assets/icons/bookmark-active.svg';
 import iconProfile from 'assets/icons/profile.svg';
@@ -84,49 +80,27 @@ const NavItem = styled.a<{ isActive?: boolean }>`
 
 const PublicNav: React.FC = () => {
   const router = useRouter();
-  const isHomePage = ['/'].includes(router.pathname);
-  const isCafePage = ['/cafes', '/cafes/[id]'].includes(router.pathname);
-  const isThemePage = ['/themes', '/themes/[id]'].includes(router.pathname);
+  const isExplorePage = [
+    '/',
+    '/cafes',
+    '/cafes/[id]',
+    '/themes',
+    '/themes/[id]',
+  ].includes(router.pathname);
   const isSavedPage = ['/saved'].includes(router.pathname);
 
   return (
     <NavItems>
       <NavBox>
         <Link href="/" passHref>
-          <NavItem isActive={isHomePage}>
+          <NavItem isActive={isExplorePage}>
             <img
-              src={isHomePage ? iconHomeActive : iconHome}
-              alt="home"
+              src={isExplorePage ? iconExploreActive : iconExplore}
+              alt="explore"
               width="24px"
               height="24px"
             />
-            홈
-          </NavItem>
-        </Link>
-      </NavBox>
-      <NavBox>
-        <Link href="/cafes" passHref>
-          <NavItem isActive={isCafePage}>
-            <img
-              src={isCafePage ? iconCafeActive : iconCafe}
-              alt="cafe"
-              width="24px"
-              height="24px"
-            />
-            방탈출 카페
-          </NavItem>
-        </Link>
-      </NavBox>
-      <NavBox>
-        <Link href="/themes" passHref>
-          <NavItem isActive={isThemePage}>
-            <img
-              src={isThemePage ? iconTicketActive : iconTicket}
-              alt="theme"
-              width="24px"
-              height="24px"
-            />
-            테마
+            탐색
           </NavItem>
         </Link>
       </NavBox>
@@ -160,9 +134,13 @@ interface IPrivateNavProps {
 }
 const PrivateNav: React.FC<IPrivateNavProps> = ({ user }) => {
   const router = useRouter();
-  const isHomePage = ['/'].includes(router.pathname);
-  const isCafePage = ['/cafes', '/cafes/[id]'].includes(router.pathname);
-  const isThemePage = ['/themes', '/themes/[id]'].includes(router.pathname);
+  const isExplorePage = [
+    '/',
+    '/cafes',
+    '/cafes/[id]',
+    '/themes',
+    '/themes/[id]',
+  ].includes(router.pathname);
   const isSavedPage = ['/saved'].includes(router.pathname);
   const isProfilePage = ['/users/[nickname]'].includes(router.pathname);
 
@@ -170,40 +148,14 @@ const PrivateNav: React.FC<IPrivateNavProps> = ({ user }) => {
     <NavItems>
       <NavBox>
         <Link href="/" passHref>
-          <NavItem isActive={isHomePage}>
+          <NavItem isActive={isExplorePage}>
             <img
-              src={isHomePage ? iconHomeActive : iconHome}
-              alt="home"
+              src={isExplorePage ? iconExploreActive : iconExplore}
+              alt="explore"
               width="24px"
               height="24px"
             />
             홈
-          </NavItem>
-        </Link>
-      </NavBox>
-      <NavBox>
-        <Link href="/cafes" passHref>
-          <NavItem isActive={isCafePage}>
-            <img
-              src={isCafePage ? iconCafeActive : iconCafe}
-              alt="cafe"
-              width="24px"
-              height="24px"
-            />
-            방탈출 카페
-          </NavItem>
-        </Link>
-      </NavBox>
-      <NavBox>
-        <Link href="/themes" passHref>
-          <NavItem isActive={isThemePage}>
-            <img
-              src={isThemePage ? iconTicketActive : iconTicket}
-              alt="theme"
-              width="24px"
-              height="24px"
-            />
-            테마
           </NavItem>
         </Link>
       </NavBox>

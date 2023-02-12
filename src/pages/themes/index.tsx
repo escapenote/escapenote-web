@@ -1,4 +1,4 @@
-import ThemeList from 'components/pages/ThemeList';
+import Explore from 'components/pages/Explore';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 
 const ThemeListPage = () => {
@@ -10,7 +10,7 @@ const ThemeListPage = () => {
         pageUrl={`${process.env.NEXT_PUBLIC_URL}/themes`}
       />
 
-      <ThemeList />
+      <Explore tab="themes" />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import { api } from 'api';
 import { IPage, ITheme, IThemeReview } from 'types';
+import { getGrade } from 'utils/common';
 
 /**
  * 테마 리스트 조회
@@ -41,9 +42,9 @@ export const fetchThemes = async ({
   if (genre) params.genre = genre;
   if (level) params.level = Number(level);
   if (person) params.person = Number(person);
-  if (fearScore) params.fearScore = fearScore;
-  if (activity) params.activity = activity;
-  if (lockingRatio) params.lockingRatio = lockingRatio;
+  if (fearScore) params.fearScore = getGrade(fearScore);
+  if (activity) params.activity = getGrade(activity);
+  if (lockingRatio) params.lockingRatio = getGrade(lockingRatio);
   if (sort) params.sort = sort;
   if (order) params.order = order;
 
