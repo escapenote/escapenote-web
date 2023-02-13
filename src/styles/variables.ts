@@ -38,8 +38,11 @@ export const variables = css`
     --border: 243, 244, 246; // greyscale100
     --hover: 250, 250, 250;
     --success: 34, 197, 94;
+    --successlight: 74, 222, 128;
     --warning: 250, 204, 21;
+    --warninglight: 253, 224, 71;
     --error: 255, 71, 71;
+    --errorlight: 255, 113, 113;
     --shadow: 238, 238, 238;
     --invert: invert(0);
   }

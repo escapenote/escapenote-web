@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import format from 'date-fns/format';
 import { useMutation } from '@tanstack/react-query';
@@ -156,7 +157,10 @@ const MyReviewCard: React.FC<IProps> = ({ type, review }) => {
           <CreatedAt>{createdAt}</CreatedAt>
         </Box>
 
-        <Box ml="-2px">
+        <Box flexDirection="row" alignItems="baseline">
+          {type === 'theme' && (
+            <EscpaeYn success={(review as IThemeReview).success} />
+          )}
           <Rating>
             <Stars rating={review.rating} />
           </Rating>
@@ -206,6 +210,33 @@ const CreatedAt = styled.span`
   top: 0;
   right: 0;
   color: rgb(var(--greyscale400));
+`;
+const EscpaeYn = styled.span<{ success: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  width: 34px;
+  height: 18px;
+  font-size: 10px;
+  ${p =>
+    p.success
+      ? css`
+          border-color: rgb(var(--success));
+          ::after {
+            content: '성공';
+            color: rgb(var(--success));
+          }
+        `
+      : css`
+          border-color: rgb(var(--errorlight));
+          ::after {
+            content: '실패';
+            color: rgb(var(--errorlight));
+          }
+        `}
 `;
 const Rating = styled.span``;
 const Text = styled.p`
