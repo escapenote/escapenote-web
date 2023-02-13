@@ -1,5 +1,31 @@
 import { api } from 'api';
-import { IThemeReview } from 'types';
+import { IPage, IThemeReview } from 'types';
+
+/**
+ * 테마 리뷰 리스트 조회
+ */
+interface IFetchThemeReviewsProps {
+  nickname: string;
+  take?: number;
+  cursor?: string;
+}
+export const fetchReviews = async ({
+  nickname,
+  take,
+  cursor,
+}: IFetchThemeReviewsProps) => {
+  const params = { nickname } as IFetchThemeReviewsProps;
+  if (take) params.take = take;
+  if (cursor) params.cursor = cursor;
+
+  const { data } = await api.get<{ items: IThemeReview[]; pageInfo: IPage }>(
+    '/theme-reviews',
+    {
+      params,
+    },
+  );
+  return data;
+};
 
 /**
  * 테마 리뷰 조회

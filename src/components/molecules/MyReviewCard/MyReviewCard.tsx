@@ -11,7 +11,7 @@ import { IDeleteThemeReviewProps } from 'api/themeReviews';
 import { ICafeReview, IThemeReview } from 'types';
 import { useAppSelector } from 'store';
 import { Box, Stars } from 'components/atoms';
-import iconAvatar from 'assets/icons/avatar.svg';
+import iconCafeThumbnail from 'assets/icons/cafe-thumbnail.svg';
 
 type ReviewType = 'cafe' | 'theme';
 
@@ -60,7 +60,7 @@ const MyReviewCard: React.FC<IProps> = ({ type, review }) => {
     if (!textRef.current) return;
 
     const { height } = textRef.current.getBoundingClientRect();
-    if (height > 80) {
+    if (height > 84) {
       textRef.current.style.display = '-webkit-box';
       textRef.current.style.webkitLineClamp = '4';
       textRef.current.style.webkitBoxOrient = 'vertical';
@@ -99,28 +99,69 @@ const MyReviewCard: React.FC<IProps> = ({ type, review }) => {
     }
   }
 
+  const themeReview = review as IThemeReview;
+  const cafeReview = review as ICafeReview;
+
   return (
     <Container>
-      <Box flexDirection="row" alignItems="center" mb="8px">
-        <Image
-          src={
-            review.user.avatar
-              ? `${process.env.NEXT_PUBLIC_IMAGE_URL}${review.user.avatar}`
-              : iconAvatar
-          }
-          alt={review.user.nickname}
-        />
-        <Link href={`/users/${review.user.nickname}`} passHref>
-          <Nickname>{review.user.nickname}</Nickname>
-        </Link>
-        <CreatedAt>{createdAt}</CreatedAt>
+      <Box mr="16px">
+        {type === 'theme' ? (
+          <Link href={`/themes/${themeReview.themeId}`}>
+            <a>
+              <ThemeThumbnail
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${themeReview.theme.thumbnail}`}
+                alt={themeReview.theme.name}
+              />
+            </a>
+          </Link>
+        ) : (
+          <Link href={`/cafes/${cafeReview.cafeId}`}>
+            <a>
+              {cafeReview.cafe.images.length > 0 ? (
+                <CafeThumbnail
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${cafeReview.cafe.images[0]}`}
+                  alt={cafeReview.cafe.name}
+                />
+              ) : (
+                <CafeThumbnail
+                  src={iconCafeThumbnail}
+                  alt={cafeReview.cafe.name}
+                />
+              )}
+            </a>
+          </Link>
+        )}
       </Box>
-      <Box>
-        <Box>
+
+      <Box flex="1">
+        <Box
+          position="relative"
+          flexDirection="row"
+          alignItems="center"
+          mb="8px"
+        >
+          {type === 'theme' ? (
+            <Link href={`/themes/${themeReview.themeId}`}>
+              <a>
+                <Name>{themeReview.theme.name}</Name>
+              </a>
+            </Link>
+          ) : (
+            <Link href={`/cafes/${cafeReview.cafeId}`}>
+              <a>
+                <Name>{cafeReview.cafe.name}</Name>
+              </a>
+            </Link>
+          )}
+          <CreatedAt>{createdAt}</CreatedAt>
+        </Box>
+
+        <Box ml="-2px">
           <Rating>
             <Stars rating={review.rating} />
           </Rating>
         </Box>
+
         {review.text && (
           <Box alignItems="flex-start" mt="8px">
             <Text ref={textRef}>{review.text}</Text>
@@ -129,13 +170,14 @@ const MyReviewCard: React.FC<IProps> = ({ type, review }) => {
             )}
           </Box>
         )}
+
+        {isAuthor && (
+          <Box flexDirection="row" justifyContent="flex-end" mt="8px" mb="-4px">
+            <UpdateButton onClick={handleUpdateReview}>수정</UpdateButton>
+            <DeleteButton onClick={handleDeleteReview}>삭제</DeleteButton>
+          </Box>
+        )}
       </Box>
-      {isAuthor && (
-        <Box flexDirection="row" justifyContent="flex-end" mt="8px" mb="-4px">
-          <UpdateButton onClick={handleUpdateReview}>수정</UpdateButton>
-          <DeleteButton onClick={handleDeleteReview}>삭제</DeleteButton>
-        </Box>
-      )}
     </Container>
   );
 };
@@ -143,29 +185,32 @@ const MyReviewCard: React.FC<IProps> = ({ type, review }) => {
 const Container = styled.div`
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 16px 0;
 `;
-const Image = styled.img`
-  margin-right: 8px;
-  border-radius: 12px;
-  width: 24px;
-  height: 24px;
-  background-color: rgb(var(--greyscale50));
+const ThemeThumbnail = styled.img`
+  width: 86px;
+  height: 106px;
 `;
-const Nickname = styled.a`
+const CafeThumbnail = styled.img`
+  border-radius: 32px;
+  width: 64px;
+  height: 64px;
+`;
+const Name = styled.strong`
   font-weight: 700;
   color: rgb(var(--greyscale700));
 `;
 const CreatedAt = styled.span`
   position: absolute;
-  top: 19px;
+  top: 0;
   right: 0;
   color: rgb(var(--greyscale400));
 `;
 const Rating = styled.span``;
 const Text = styled.p`
   color: rgb(var(--greyscale600));
+  line-height: 21px;
   white-space: pre-line;
 `;
 const MoreText = styled.button`

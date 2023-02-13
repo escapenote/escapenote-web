@@ -61,7 +61,7 @@ const ReviewCard: React.FC<IProps> = ({ type, review }) => {
     if (!textRef.current) return;
 
     const { height } = textRef.current.getBoundingClientRect();
-    if (height > 80) {
+    if (height > 84) {
       textRef.current.style.display = '-webkit-box';
       textRef.current.style.webkitLineClamp = '4';
       textRef.current.style.webkitBoxOrient = 'vertical';
@@ -168,6 +168,7 @@ const CreatedAt = styled.span`
 const Rating = styled.span``;
 const Text = styled.p`
   color: rgb(var(--greyscale600));
+  line-height: 21px;
   white-space: pre-line;
 `;
 const MoreText = styled.button`

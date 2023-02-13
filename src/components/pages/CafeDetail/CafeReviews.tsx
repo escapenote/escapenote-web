@@ -56,7 +56,7 @@ const CafeReviews: React.FC<IProps> = ({ cafeId, cafe }) => {
         <RatingBox>
           <Stars size="40px" rating={cafe?.reviewsRating} />
           <Box width="8px" />
-          {cafe?.reviewsRating}점({reviewsCount})
+          {(cafe?.reviewsRating ?? 0).toFixed(1)}점({reviewsCount})
         </RatingBox>
         <ReviewDesc>
           ※ 악의적 내용과 스포일러 등이 포함된 글은 삭제될 수 있습니다.

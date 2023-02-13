@@ -155,7 +155,7 @@ const PrivateNav: React.FC<IPrivateNavProps> = ({ user }) => {
               width="24px"
               height="24px"
             />
-            홈
+            탐색
           </NavItem>
         </Link>
       </NavBox>

@@ -1,5 +1,31 @@
 import { api } from 'api';
-import { ICafeReview } from 'types';
+import { ICafeReview, IPage } from 'types';
+
+/**
+ * 카페 리뷰 리스트 조회
+ */
+interface IFetchCafeReviewsProps {
+  nickname: string;
+  take?: number;
+  cursor?: string;
+}
+export const fetchReviews = async ({
+  nickname,
+  take,
+  cursor,
+}: IFetchCafeReviewsProps) => {
+  const params = { nickname } as IFetchCafeReviewsProps;
+  if (take) params.take = take;
+  if (cursor) params.cursor = cursor;
+
+  const { data } = await api.get<{ items: ICafeReview[]; pageInfo: IPage }>(
+    '/cafe-reviews',
+    {
+      params,
+    },
+  );
+  return data;
+};
 
 /**
  * 카페 리뷰 조회

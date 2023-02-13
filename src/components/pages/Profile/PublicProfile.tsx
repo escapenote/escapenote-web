@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
@@ -76,8 +77,12 @@ const PublicProfile: React.FC<IProps> = ({ user }) => {
             <MetaLabel>탈출 성공률</MetaLabel>
           </Meta>
           <Meta>
-            <MetaValue primary>{getTotalReviewsCount()}</MetaValue>
-            <MetaLabel>리뷰 작성수</MetaLabel>
+            <Link href={`/users/${user?.nickname}/reviews`}>
+              <a>
+                <MetaValue primary>{getTotalReviewsCount()}</MetaValue>
+                <MetaLabel>리뷰 작성수</MetaLabel>
+              </a>
+            </Link>
           </Meta>
         </Metas>
       </Container>
@@ -161,6 +166,11 @@ const Meta = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  > a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const MetaLabel = styled.span`
   font-size: 12px;

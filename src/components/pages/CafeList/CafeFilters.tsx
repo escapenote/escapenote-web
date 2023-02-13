@@ -39,14 +39,6 @@ const ThemeFilters = () => {
         >
           <option value="createdAt-desc">최신순</option>
           <option value="view-desc">인기순</option>
-          <option value="level-desc">난이도 높은순</option>
-          <option value="level-asc">난이도 낮은순</option>
-          <option value="price-desc">금액 높은순</option>
-          <option value="price-asc">금액 낮은순</option>
-          <option value="fear-desc">공포도 높은순</option>
-          <option value="fear-asc">공포도 낮은순</option>
-          <option value="activity-desc">활동성 높은순</option>
-          <option value="activity-asc">활동성 낮은순</option>
         </SortMiniSelect>
       </Box>
       <Box mr="12px">
