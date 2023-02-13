@@ -97,7 +97,7 @@ const HomePage = () => {
           >
             <NoXAxisScrollBar ref={slider}>
               <Box width="24px" />
-              {themes?.items.slice(0, 4).map(item => (
+              {themes?.items.slice(0, 8).map(item => (
                 <ThemeItem key={item.id} preventClick={isDown && isMove}>
                   <ThemeBigCard theme={item} refetch={themeRefetch} />
                 </ThemeItem>
@@ -128,7 +128,7 @@ const HomePage = () => {
           <NoData>데이터가 없습니다.</NoData>
         ) : (
           <CafeItems>
-            {cafes?.items.slice(0, 4).map(item => (
+            {cafes?.items.slice(0, 6).map(item => (
               <CafeItem key={item.id}>
                 <CafeCard cafe={item} refetch={cafeRefetch} />
               </CafeItem>
