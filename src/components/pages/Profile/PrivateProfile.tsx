@@ -170,7 +170,7 @@ const Metas = styled.div`
   justify-content: space-around;
   border-radius: 16px;
   border: 1px solid rgb(var(--greyscale200));
-  padding: 7px 16px;
+  padding: 8px 16px;
   width: 100%;
 `;
 const Meta = styled.div`
