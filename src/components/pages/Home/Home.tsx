@@ -23,18 +23,16 @@ const HomePage = () => {
     isLoading: isCafeLoading,
     data: cafes,
     error: cafeError,
-    refetch: cafeRefetch,
-  } = useQuery(['fetchCafes', 'home', Boolean(user)], () => {
-    return api.cafes.fetchCafes({ sort: 'view' });
+  } = useQuery(['fetchRecommendCafes', Boolean(user)], () => {
+    return api.cafes.fetchRecommendCafes();
   });
 
   const {
     isLoading: isThemeLoading,
     data: themes,
     error: themeError,
-    refetch: themeRefetch,
-  } = useQuery(['fetchThemes', 'home', Boolean(user)], () => {
-    return api.themes.fetchThemes({ sort: 'view' });
+  } = useQuery(['fetchRecommendThemes', Boolean(user)], () => {
+    return api.themes.fetchRecommendThemes();
   });
 
   function handleScrollMouseDown(e: React.MouseEvent<HTMLDivElement>) {
@@ -85,7 +83,7 @@ const HomePage = () => {
           <Loading>로딩중...</Loading>
         ) : themeError ? (
           <Error>에러</Error>
-        ) : themes?.items.length === 0 ? (
+        ) : themes?.length === 0 ? (
           <NoData>데이터가 없습니다.</NoData>
         ) : (
           <Box
@@ -97,9 +95,9 @@ const HomePage = () => {
           >
             <NoXAxisScrollBar ref={slider}>
               <Box width="24px" />
-              {themes?.items.slice(0, 8).map(item => (
+              {themes?.slice(0, 8).map(item => (
                 <ThemeItem key={item.id} preventClick={isDown && isMove}>
-                  <ThemeBigCard theme={item} refetch={themeRefetch} />
+                  <ThemeBigCard theme={item} />
                 </ThemeItem>
               ))}
               <Box width="8px" />
@@ -125,13 +123,13 @@ const HomePage = () => {
           <Loading>로딩중...</Loading>
         ) : cafeError ? (
           <Error>에러</Error>
-        ) : cafes?.items.length === 0 ? (
+        ) : cafes?.length === 0 ? (
           <NoData>데이터가 없습니다.</NoData>
         ) : (
           <CafeItems>
-            {cafes?.items.slice(0, 6).map(item => (
+            {cafes?.slice(0, 6).map(item => (
               <CafeItem key={item.id}>
-                <CafeCard cafe={item} refetch={cafeRefetch} />
+                <CafeCard cafe={item} hideSave />
               </CafeItem>
             ))}
           </CafeItems>

@@ -14,8 +14,9 @@ import iconBookmarkActive from 'assets/icons/bookmark-active.svg';
 interface IProps {
   cafe: ICafe;
   refetch?: any;
+  hideSave?: boolean;
 }
-const CafeCard: React.FC<IProps> = ({ cafe, refetch }) => {
+const CafeCard: React.FC<IProps> = ({ cafe, refetch, hideSave = false }) => {
   const router = useRouter();
   const user = useAppSelector(state => state.auth.user);
 
@@ -79,19 +80,23 @@ const CafeCard: React.FC<IProps> = ({ cafe, refetch }) => {
           </span>
         </Rating>
 
-        {cafe?.saves && cafe?.saves.length > 0 ? (
-          <SaveButton onClick={handleUnSaveCafe}>
-            <img
-              src={iconBookmarkActive}
-              alt="save-active"
-              width="14px"
-              height="14px"
-            />
-          </SaveButton>
-        ) : (
-          <SaveButton onClick={handleSaveCafe}>
-            <img src={iconBookmark} alt="save" width="14px" height="14px" />
-          </SaveButton>
+        {!hideSave && (
+          <>
+            {cafe?.saves && cafe?.saves.length > 0 ? (
+              <SaveButton onClick={handleUnSaveCafe}>
+                <img
+                  src={iconBookmarkActive}
+                  alt="save-active"
+                  width="14px"
+                  height="14px"
+                />
+              </SaveButton>
+            ) : (
+              <SaveButton onClick={handleSaveCafe}>
+                <img src={iconBookmark} alt="save" width="14px" height="14px" />
+              </SaveButton>
+            )}
+          </>
         )}
       </Container>
     </Link>

@@ -1,66 +1,15 @@
 import Link from 'next/link';
 import styled from '@emotion/styled';
-import { useRouter } from 'next/router';
-import { useMutation } from '@tanstack/react-query';
 
-import api from 'api';
 import { ITheme } from 'types';
 import { numberWithComma } from 'utils/common';
-import { useAppSelector } from 'store';
 import { Box, Stars } from 'components/atoms';
 import iconLock from 'assets/icons/lock.svg';
-import iconBookmarkFilled from 'assets/icons/bookmark-filled.svg';
-import iconBookmarkFilledActive from 'assets/icons/bookmark-filled-active.svg';
 
 interface IProps {
   theme: ITheme;
-  refetch?: any;
 }
-const ThemeBigCard: React.FC<IProps> = ({ theme, refetch }) => {
-  const router = useRouter();
-  const user = useAppSelector(state => state.auth.user);
-
-  const saveMutation = useMutation(
-    () => api.themes.saveTheme({ id: theme.id }),
-    {
-      onSuccess: () => refetch && refetch(),
-      onError: ({ response }) => {
-        const { detail } = response.data;
-        alert(detail);
-      },
-    },
-  );
-  const unSaveMutation = useMutation(
-    () => api.themes.unSaveTheme({ id: theme.id }),
-    {
-      onSuccess: () => refetch && refetch(),
-      onError: ({ response }) => {
-        const { detail } = response.data;
-        alert(detail);
-      },
-    },
-  );
-
-  function handleSaveTheme(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!user) {
-      router.push(`/accounts/login?rd_url=${router.asPath}`);
-      return;
-    }
-    saveMutation.mutate();
-  }
-
-  function handleUnSaveTheme(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!user) {
-      router.push(`/accounts/login?rd_url=${router.asPath}`);
-      return;
-    }
-    unSaveMutation.mutate();
-  }
-
+const ThemeBigCard: React.FC<IProps> = ({ theme }) => {
   return (
     <Link href={`/themes/${theme.id}`} passHref>
       <Container
@@ -88,37 +37,19 @@ const ThemeBigCard: React.FC<IProps> = ({ theme, refetch }) => {
               ))}
               {theme.during && ` | ${theme.during}분`}
             </LevelBox>
-            <GenreBox>
-              {theme.genre.length > 0 &&
-                theme.genre
-                  .slice(0, 2)
-                  .map(v => <Genre key={v.id}>#{v.id}</Genre>)}
-              {theme.genre.length > 2 && '...'}
-            </GenreBox>
+            {theme.genre && (
+              <GenreBox>
+                {theme.genre.length > 0 &&
+                  theme.genre
+                    .slice(0, 2)
+                    .map(v => <Genre key={v.id}>#{v.id}</Genre>)}
+                {theme.genre.length > 2 && '...'}
+              </GenreBox>
+            )}
           </Box>
         </Contents>
 
         <Price>₩{numberWithComma(theme.price)}</Price>
-
-        {theme?.saves && theme?.saves.length > 0 ? (
-          <SaveButton onClick={handleUnSaveTheme}>
-            <img
-              src={iconBookmarkFilledActive}
-              alt="save-active"
-              width="24px"
-              height="24px"
-            />
-          </SaveButton>
-        ) : (
-          <SaveButton onClick={handleSaveTheme}>
-            <img
-              src={iconBookmarkFilled}
-              alt="save"
-              width="24px"
-              height="24px"
-            />
-          </SaveButton>
-        )}
       </Container>
     </Link>
   );
@@ -206,14 +137,6 @@ const Price = styled.span`
   font-weight: 500;
   line-height: 18px;
   color: rgb(var(--primary));
-`;
-const SaveButton = styled.button`
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 24px;
-  height: 24px;
-  z-index: 9;
 `;
 
 export default ThemeBigCard;

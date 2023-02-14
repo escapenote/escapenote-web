@@ -2,6 +2,14 @@ import { api } from 'api';
 import { IPage, ICafe, ICafeReview } from 'types';
 
 /**
+ * 추천 카페 리스트 조회
+ */
+export const fetchRecommendCafes = async () => {
+  const { data } = await api.get<ICafe[]>('/recommend-cafes');
+  return data;
+};
+
+/**
  * 카페 리스트 조회
  */
 interface IFetchCafesProps {

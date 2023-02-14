@@ -3,6 +3,14 @@ import { IPage, ITheme, IThemeReview } from 'types';
 import { getGrade } from 'utils/common';
 
 /**
+ * 추천 테마 리스트 조회
+ */
+export const fetchRecommendThemes = async () => {
+  const { data } = await api.get<ITheme[]>('/recommend-themes');
+  return data;
+};
+
+/**
  * 테마 리스트 조회
  */
 interface IFetchThemesProps {
