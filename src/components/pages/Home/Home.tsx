@@ -102,6 +102,7 @@ const HomePage = () => {
                   <ThemeBigCard theme={item} refetch={themeRefetch} />
                 </ThemeItem>
               ))}
+              <Box width="8px" />
             </NoXAxisScrollBar>
           </Box>
         )}
