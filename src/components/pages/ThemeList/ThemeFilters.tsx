@@ -50,7 +50,7 @@ const ThemeFilters = () => {
           value={`${sort}-${order}`}
           onChange={handleChagneSortOrder}
         >
-          <option value="createdAt-desc">최신순</option>
+          <option value="createdAt-desc">업데이트순</option>
           <option value="view-desc">인기순</option>
           <option value="level-desc">난이도 높은순</option>
           <option value="level-asc">난이도 낮은순</option>

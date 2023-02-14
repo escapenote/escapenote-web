@@ -1,5 +1,5 @@
 export default {
-  'createdAt-desc': '최신순',
+  'createdAt-desc': '업데이트순',
   'view-desc': '인기순',
   'level-desc': '난이도 높은순',
   'level-asc': '난이도 낮은순',
