@@ -14,9 +14,6 @@ const ThemeFilters = () => {
   const genre = String(router.query.genre ?? '');
   const level = String(router.query.level ?? '');
   const person = String(router.query.person ?? '');
-  const fearScore = String(router.query.fearScore ?? '');
-  const activity = String(router.query.activity ?? '');
-  const lockingRatio = String(router.query.lockingRatio ?? '');
 
   const location = useAppSelector(state => state.data.location);
   const areaBData = location['서울'];
@@ -131,51 +128,6 @@ const ThemeFilters = () => {
           <option value="8">8</option>
           <option value="9">9</option>
           <option value="10">10</option>
-        </MiniSelect>
-      </Box>
-
-      <Box mr="12px">
-        <MiniSelect
-          name="fearScore"
-          label="공포도"
-          defaultValue={fearScore}
-          value={fearScore}
-          onChange={handleChangeValue}
-        >
-          <option value="">전체</option>
-          <option value="높음">높음</option>
-          <option value="보통">보통</option>
-          <option value="낮음">낮음</option>
-        </MiniSelect>
-      </Box>
-
-      <Box mr="12px">
-        <MiniSelect
-          name="activity"
-          label="활동성"
-          defaultValue={activity}
-          value={activity}
-          onChange={handleChangeValue}
-        >
-          <option value="">전체</option>
-          <option value="높음">높음</option>
-          <option value="보통">보통</option>
-          <option value="낮음">낮음</option>
-        </MiniSelect>
-      </Box>
-
-      <Box>
-        <MiniSelect
-          name="lockingRatio"
-          label="잠금장치비율"
-          defaultValue={lockingRatio}
-          value={lockingRatio}
-          onChange={handleChangeValue}
-        >
-          <option value="">전체</option>
-          <option value="높음">높음</option>
-          <option value="보통">보통</option>
-          <option value="낮음">낮음</option>
         </MiniSelect>
       </Box>
 

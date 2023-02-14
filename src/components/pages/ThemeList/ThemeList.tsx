@@ -19,9 +19,6 @@ const ThemeListPage = () => {
   const genre = String(router.query.genre ?? '');
   const level = String(router.query.level ?? '');
   const person = String(router.query.person ?? '');
-  const fearScore = String(router.query.fearScore ?? '');
-  const activity = String(router.query.activity ?? '');
-  const lockingRatio = String(router.query.lockingRatio ?? '');
 
   const user = useAppSelector(state => state.auth.user);
 
@@ -34,28 +31,13 @@ const ThemeListPage = () => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery(
-    [
-      'fetchThemes',
-      Boolean(user),
-      areaB,
-      genre,
-      level,
-      person,
-      fearScore,
-      activity,
-      lockingRatio,
-      sort,
-      order,
-    ],
+    ['fetchThemes', Boolean(user), areaB, genre, level, person, sort, order],
     ({ pageParam }) => {
       return api.themes.fetchThemes({
         areaB,
         genre,
         level,
         person,
-        fearScore,
-        activity,
-        lockingRatio,
         cursor: pageParam,
         sort,
         order,
