@@ -120,6 +120,13 @@ const HeadDefaultMeta: React.FC = () => {
         async
         src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP}`}
       />
+
+      {/* 구글 애드센스 */}
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
+        crossOrigin="anonymous"
+      ></script>
     </Head>
   );
 };
