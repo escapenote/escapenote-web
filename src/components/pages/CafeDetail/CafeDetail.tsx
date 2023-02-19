@@ -18,7 +18,7 @@ const CafeDetail: React.FC<IProps> = ({ id, tab, cafe }) => {
   const router = useRouter();
 
   function handleChangeTab(activeTab: string) {
-    router.push(`/cafes/${id}/${activeTab}`);
+    router.replace(`/cafes/${id}/${activeTab}`);
   }
 
   return (
