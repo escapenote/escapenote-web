@@ -9,6 +9,7 @@ import ThemeFilters from './ThemeFilters';
 import NoXAxisScrollBar from 'components/templates/NoXAxisScrollBar';
 import FetchMore from 'components/templates/FetchMore';
 import ThemeCard from 'components/molecules/ThemeCard';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 import { Box } from 'components/atoms';
 
 const ThemeListPage = () => {
@@ -66,6 +67,8 @@ const ThemeListPage = () => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
+              <GoogleAdsense layoutKey="-ff+6a-x-eh+tr" slot="3363518566" />
+
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <ThemeCard theme={item} refetch={refetch} />

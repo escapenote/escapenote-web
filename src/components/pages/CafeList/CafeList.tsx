@@ -9,6 +9,7 @@ import CafeFilters from './CafeFilters';
 import NoXAxisScrollBar from 'components/templates/NoXAxisScrollBar';
 import FetchMore from 'components/templates/FetchMore';
 import CafeCard from 'components/molecules/CafeCard';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 import { Box } from 'components/atoms';
 
 const CafeListPage = () => {
@@ -60,6 +61,8 @@ const CafeListPage = () => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
+              <GoogleAdsense layoutKey="-fv+5t+d-7z+dm" slot="1593526920" />
+
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <CafeCard cafe={item} refetch={refetch} />
