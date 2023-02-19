@@ -17,7 +17,9 @@ const PublicProfile: React.FC<IProps> = ({ user }) => {
       const totalCount = user.themeReviews.length;
       const successReviews = user.themeReviews.filter(v => v.success);
       const successCount = successReviews.length;
-      return Math.round((successCount / totalCount) * 100);
+      return totalCount === 0
+        ? 0
+        : Math.round((successCount / totalCount) * 100);
     }
     return 0;
   };
