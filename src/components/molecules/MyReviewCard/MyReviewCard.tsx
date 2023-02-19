@@ -193,6 +193,7 @@ const Container = styled.div`
   padding: 16px 0;
 `;
 const ThemeThumbnail = styled.img`
+  border-radius: 6px;
   width: 86px;
   height: 106px;
 `;
