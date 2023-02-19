@@ -66,11 +66,11 @@ const ThemeCard: React.FC<IProps> = ({ theme, refetch }) => {
       <Container>
         <Thumbnail
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme.thumbnail}`}
-          alt={theme.name}
+          alt={theme.displayName}
         />
         <Contents>
           <Box>
-            <Name>{theme.name}</Name>
+            <Name>{theme.displayName}</Name>
             {theme.cafe && <Cafe>{theme.cafe.name}</Cafe>}
             <Rating>
               <Stars rating={theme?.reviewsRating} />

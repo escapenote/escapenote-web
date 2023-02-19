@@ -17,7 +17,7 @@ const ThemeBigCard: React.FC<IProps> = ({ theme }) => {
       >
         <Contents>
           <Box>
-            <Name>{theme.name}</Name>
+            <Name>{theme.displayName}</Name>
             {theme.cafe && <Cafe>{theme.cafe.name}</Cafe>}
             <Rating>
               <Stars rating={theme?.reviewsRating} />

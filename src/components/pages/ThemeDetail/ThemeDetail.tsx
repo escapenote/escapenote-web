@@ -47,7 +47,7 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
           {theme && (
             <Thumbnail
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${theme.thumbnail}`}
-              alt={theme?.name}
+              alt={theme?.displayName}
             />
           )}
 
@@ -82,7 +82,7 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
           </SubProperties>
         </ThumbnailBox>
 
-        <ThemeName>{theme?.name}</ThemeName>
+        <ThemeName>{theme?.displayName}</ThemeName>
 
         <Properties>
           <Property>

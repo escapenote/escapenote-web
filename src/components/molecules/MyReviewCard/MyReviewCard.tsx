@@ -111,7 +111,7 @@ const MyReviewCard: React.FC<IProps> = ({ type, review }) => {
             <a>
               <ThemeThumbnail
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${themeReview.theme.thumbnail}`}
-                alt={themeReview.theme.name}
+                alt={themeReview.theme.displayName}
               />
             </a>
           </Link>
@@ -144,7 +144,7 @@ const MyReviewCard: React.FC<IProps> = ({ type, review }) => {
           {type === 'theme' ? (
             <Link href={`/themes/${themeReview.themeId}`}>
               <a>
-                <Name>{themeReview.theme.name}</Name>
+                <Name>{themeReview.theme.displayName}</Name>
               </a>
             </Link>
           ) : (
