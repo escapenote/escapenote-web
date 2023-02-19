@@ -1,17 +1,20 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 import { IUser } from 'types';
 import { obscureEmail } from 'utils/common';
 import Layout from 'components/templates/Layout';
-import { Box } from 'components/atoms';
+import { Box, Back } from 'components/atoms';
 import iconAvatar from 'assets/icons/avatar.svg';
 
 interface IProps {
   user?: IUser;
 }
 const PublicProfile: React.FC<IProps> = ({ user }) => {
+  const router = useRouter();
+
   const getSuccesPercent = () => {
     if (user) {
       const totalCount = user.themeReviews.length;
@@ -34,7 +37,11 @@ const PublicProfile: React.FC<IProps> = ({ user }) => {
   };
 
   return (
-    <Layout title="프로필" leftAction={<></>} rightAction={<></>}>
+    <Layout
+      title="프로필"
+      leftAction={<Back onClick={router.back} />}
+      rightAction={<></>}
+    >
       <Container>
         <Background len={user?.type.length ?? 0}>
           {Array.from({ length: 6 }).map((_, i) => (

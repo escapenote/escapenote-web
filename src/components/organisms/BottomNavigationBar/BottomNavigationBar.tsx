@@ -134,6 +134,7 @@ interface IPrivateNavProps {
 }
 const PrivateNav: React.FC<IPrivateNavProps> = ({ user }) => {
   const router = useRouter();
+  const nickname = router.query.nickname as string;
   const isExplorePage = [
     '/',
     '/cafes',
@@ -142,7 +143,9 @@ const PrivateNav: React.FC<IPrivateNavProps> = ({ user }) => {
     '/themes/[id]',
   ].includes(router.pathname);
   const isSavedPage = ['/saved'].includes(router.pathname);
-  const isProfilePage = ['/users/[nickname]'].includes(router.pathname);
+  const isProfilePage =
+    ['/users/[nickname]'].includes(router.pathname) &&
+    nickname === user.nickname;
 
   return (
     <NavItems>
