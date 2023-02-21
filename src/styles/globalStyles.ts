@@ -99,6 +99,7 @@ const globalStyles = css`
       margin: 0 auto;
       max-width: 480px;
     }
+    background-color: rgb(var(--content)) !important;
   }
   .react-modal-sheet-container {
     border-top-left-radius: 32px !important;

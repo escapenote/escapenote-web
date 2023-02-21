@@ -54,13 +54,25 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
           <SubProperties>
             {theme && theme.fear !== 0 && (
               <SubProperty>
-                <img src={iconGhost} alt="공포도" width="26px" height="26px" />
+                <img
+                  className="invert"
+                  src={iconGhost}
+                  alt="공포도"
+                  width="26px"
+                  height="26px"
+                />
                 {theme.fear > 3 ? '높음' : theme.fear > 2 ? '보통' : '낮음'}
               </SubProperty>
             )}
             {theme && theme.activity !== 0 && (
               <SubProperty>
-                <img src={iconActivity} alt="활동" width="22px" height="22px" />
+                <img
+                  className="invert"
+                  src={iconActivity}
+                  alt="활동"
+                  width="22px"
+                  height="22px"
+                />
                 {theme.activity > 3
                   ? '높음'
                   : theme.activity > 2
@@ -71,6 +83,7 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
             {theme && theme.lockingRatio !== 0 && (
               <SubProperty>
                 <img
+                  className="invert"
                   src={iconLockBlack}
                   alt="자물쇠 잠금장치 비율"
                   width="24px"
@@ -224,7 +237,7 @@ const Wrapper = styled.div`
 `;
 const Container = styled.div`
   padding: 14px 24px;
-  border-bottom: 10px solid rgb(var(--greyscale50));
+  border-bottom: 10px solid rgb(var(--background));
 `;
 const SubTitle = styled.strong`
   font-size: 16px;
@@ -279,7 +292,7 @@ const SubProperty = styled.li`
   border-radius: 38px;
   width: 38px;
   height: 68px;
-  background-color: rgba(var(--greyscale100), 0.95);
+  background-color: rgba(var(--border), 0.75);
   font-size: 12px;
   font-weight: 500;
   > img {
@@ -331,7 +344,7 @@ const Intro = styled.p`
   white-space: pre-line;
 `;
 const ReviewDashboard = styled.div`
-  border-bottom: 1px solid rgb(var(--greyscale100));
+  border-bottom: 1px solid rgb(var(--border));
 `;
 const RatingBox = styled.div`
   display: flex;
@@ -341,7 +354,7 @@ const RatingBox = styled.div`
   border-radius: 12px;
   padding: 24px 16px;
   height: 108px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
 `;
 const RatingLeftBox = styled.div`
   display: flex;

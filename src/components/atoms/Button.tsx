@@ -34,7 +34,7 @@ const Button = styled.button<IProps>`
     ${p =>
       p.kind === 'primary' &&
       css`
-        background-color: rgb(var(--greyscale200));
+        background-color: rgba(var(--disabled), 0.7);
         opacity: 1;
       `}
   }

@@ -2,8 +2,6 @@ import React, { HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-// import iconX from 'assets/icons/x-white.svg';
-
 interface IProps extends HTMLAttributes<HTMLSelectElement> {
   placeholder?: string;
   name: string;
@@ -34,7 +32,6 @@ const Select: React.FC<IProps> = ({
       ) : (
         label
       )}
-      {/* {active && <CloseIcon src={iconX} alt="close" />} */}
     </Container>
   );
 };
@@ -47,7 +44,7 @@ const Container = styled.div<{ active: boolean }>`
   border-radius: 12px;
   padding: 8px 16px 8px 16px;
   height: 40px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
   font-size: 12px;
   select {
     position: absolute;
@@ -64,16 +61,11 @@ const Container = styled.div<{ active: boolean }>`
     css`
       background-color: rgb(var(--primary));
       font-weight: 700;
-      color: white;
+      color: rgb(var(--text));
     `}
 `;
 const Placeholder = styled.span`
   color: rgb(var(--greyscale400));
 `;
-// const CloseIcon = styled.img`
-//   margin-left: 2px;
-//   width: 12px;
-//   height: 12px;
-// `;
 
 export default Select;

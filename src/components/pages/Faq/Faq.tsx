@@ -77,7 +77,7 @@ const NoData = styled(Loading)``;
 const Items = styled.ul``;
 const Item = styled.li<{ active: boolean }>`
   position: relative;
-  border-bottom: 1px solid rgb(var(--greyscale100));
+  border-bottom: 1px solid rgb(var(--border));
   height: 60px;
   overflow: hidden;
   ::after {

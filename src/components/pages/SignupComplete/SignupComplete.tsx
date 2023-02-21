@@ -305,7 +305,7 @@ const ImageItem = styled.div<{ background: string }>`
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  border: 4px solid #fff;
+  border: 4px solid rgb(var(--content));
   width: 100px;
   height: 100px;
   background-image: url('${p => p.background}');

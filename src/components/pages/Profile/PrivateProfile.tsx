@@ -40,7 +40,13 @@ const PrivateProfile: React.FC<IProps> = ({ user }) => {
       leftAction={<></>}
       rightAction={
         <button onClick={() => router.push('/accounts/settings')}>
-          <img src={iconSettings} alt="settings" width="24px" height="24px" />
+          <img
+            className="invert"
+            src={iconSettings}
+            alt="settings"
+            width="24px"
+            height="24px"
+          />
         </button>
       }
     >
@@ -128,8 +134,8 @@ const Background = styled.div<{ len: number }>`
     height: 100%;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0) -7.95%,
-      #ffffff 97.22%
+      rgba(var(--content), 0) -7.95%,
+      rgb(var(--content)) 97.22%
     );
   }
 `;
@@ -139,7 +145,7 @@ const Type = styled.span`
   font-size: 20px;
   font-weight: 700;
   line-height: 30px;
-  color: rgb(var(--greyscale300));
+  color: rgb(var(--text), 0.2);
   white-space: nowrap;
 `;
 const AvatarCircle = styled.div`
@@ -147,10 +153,10 @@ const AvatarCircle = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50px;
-  border: 4px solid rgb(var(--greyscale50));
+  border: 4px solid rgb(var(--content));
   width: 100px;
   height: 100px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
   z-index: 1;
   > img {
     border-radius: 100px;

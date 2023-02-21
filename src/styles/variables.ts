@@ -32,19 +32,40 @@ export const variables = css`
     --greyscale200: 229, 231, 235;
     --greyscale100: 243, 244, 246;
     --greyscale50: 249, 250, 251;
-    --text: 17, 24, 39; // greyscale900
-    --content: 255, 255, 255;
-    --background: 255, 255, 255;
-    --border: 243, 244, 246; // greyscale100
-    --hover: 250, 250, 250;
     --success: 34, 197, 94;
     --successlight: 74, 222, 128;
     --warning: 250, 204, 21;
     --warninglight: 253, 224, 71;
     --error: 255, 71, 71;
     --errorlight: 255, 113, 113;
+  }
+  body[data-theme='light'] {
+    --text: 17, 24, 39; // greyscale900
+    --textR: 250, 250, 251;
+    --content: 255, 255, 255;
+    --contentR: 28, 28, 36;
+    --background: 249, 250, 251; // greyscale50
+    --backgroundR: 19, 19, 26;
+    --border: 243, 244, 246; // greyscale100
+    --hover: 250, 250, 250;
+    --grey: 75, 85, 99; // greyscale600
     --shadow: 238, 238, 238;
+    --disabled: 209, 213, 219; // greyscale300
     --invert: invert(0);
+  }
+  body[data-theme='dark'] {
+    --text: 250, 250, 251;
+    --textR: 17, 24, 39;
+    --content: 28, 28, 36;
+    --contentR: 255, 255, 255;
+    --background: 19, 19, 26;
+    --backgroundR: 249, 250, 251;
+    --border: 68, 68, 79;
+    --hover: 41, 41, 50;
+    --grey: 156, 163, 175; // greyscale400
+    --shadow: 238, 238, 238;
+    --disabled: 75, 85, 99; // greyscale600
+    --invert: invert(1);
   }
 `;
 

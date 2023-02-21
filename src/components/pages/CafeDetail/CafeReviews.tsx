@@ -111,7 +111,7 @@ const CafeReviews: React.FC<IProps> = ({ cafeId, cafe }) => {
 
 const Dashboard = styled.div`
   margin-top: 24px;
-  border-bottom: 1px solid rgb(var(--greyscale100));
+  border-bottom: 1px solid rgb(var(--border));
 `;
 const RatingBox = styled.div`
   display: flex;
@@ -121,7 +121,7 @@ const RatingBox = styled.div`
   border-radius: 12px;
   padding: 33px 24px;
   height: 108px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
   font-size: 18px;
   font-weight: 700;
 `;
@@ -146,7 +146,7 @@ const NoData = styled(Loading)`
 `;
 const Items = styled.ul``;
 const Item = styled.li`
-  border-bottom: 1px solid rgb(var(--greyscale100));
+  border-bottom: 1px solid rgb(var(--border));
   :last-of-type {
     border-bottom: none;
   }

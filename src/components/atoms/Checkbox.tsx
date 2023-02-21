@@ -119,7 +119,7 @@ const Box = styled.span`
     // not checked
     input:not(:checked) + & {
       border: 1px solid rgb(var(--greyscale300));
-      background-color: white;
+      background-color: rgb(var(--content));
     }
 
     // disabled

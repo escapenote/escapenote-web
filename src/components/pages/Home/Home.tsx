@@ -209,7 +209,7 @@ const QuestionTitle = styled.strong`
 `;
 const QuestionText = styled.p`
   font-size: 12px;
-  color: rgb(var(--greyscale500));
+  color: rgb(var(--grey));
 `;
 
 export default HomePage;

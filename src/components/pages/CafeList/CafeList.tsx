@@ -19,6 +19,7 @@ const CafeListPage = () => {
   const areaB = String(router.query.areaB ?? '');
 
   const user = useAppSelector(state => state.auth.user);
+  const theme = useAppSelector(state => state.common.theme);
 
   const {
     status,
@@ -61,7 +62,11 @@ const CafeListPage = () => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              <GoogleAdsense layoutKey="-fv+5t+d-7z+dm" slot="1593526920" />
+              {theme === 'light' ? (
+                <GoogleAdsense layoutKey="-fv+5t+d-7z+dm" slot="1593526920" />
+              ) : (
+                <GoogleAdsense layoutKey="-ff+6a-x-eh+tr" slot="3723036241" />
+              )}
 
               {group.items?.map(item => (
                 <Item key={item.id}>

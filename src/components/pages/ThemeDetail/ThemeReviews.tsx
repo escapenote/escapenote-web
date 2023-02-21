@@ -75,7 +75,7 @@ const NoData = styled(Loading)`
 `;
 const Items = styled.ul``;
 const Item = styled.li`
-  border-bottom: 1px solid rgb(var(--greyscale100));
+  border-bottom: 1px solid rgb(var(--border));
   :last-of-type {
     border-bottom: none;
   }

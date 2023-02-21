@@ -553,13 +553,13 @@ const Published = styled.strong`
   margin-bottom: 24px;
   font-size: 12px;
   font-weight: 500;
-  color: rgb(var(--greyscale500));
+  color: rgb(var(--grey));
   line-height: 18px;
 `;
 const Container = styled.div`
   border-radius: 16px;
   padding: 16px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
   h2 {
     margin-bottom: 8px;
     font-weight: 700;
@@ -568,12 +568,12 @@ const Container = styled.div`
   h3 {
     font-size: 12px;
     font-weight: 700;
-    color: rgb(var(--greyscale600));
+    color: rgb(var(--grey));
     line-height: 18px;
   }
   p {
     font-size: 12px;
-    color: rgb(var(--greyscale600));
+    color: rgb(var(--grey));
     line-height: 18px;
   }
   h4,
@@ -583,7 +583,7 @@ const Container = styled.div`
   span,
   li {
     font-size: 12px;
-    color: rgb(var(--greyscale600));
+    color: rgb(var(--grey));
     line-height: 18px;
   }
   ul {

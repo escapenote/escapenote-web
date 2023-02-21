@@ -38,7 +38,7 @@ const Container = styled.div<{ isIcon: boolean }>`
   border-radius: 16px;
   padding: 16px;
   height: 56px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
   font-size: 14px;
   font-weight: 500;
   select {

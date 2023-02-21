@@ -82,11 +82,6 @@ const ModalSheetFooter = styled.div`
   border-top: 1px solid rgb(var(--border));
   padding: 16px 24px;
 `;
-const UnFilter = styled.button`
-  font-size: 14px;
-  color: rgb(var(--greyscale500));
-  text-decoration: underline;
-`;
 const ApplyButton = styled.button`
   display: flex;
   justify-content: center;

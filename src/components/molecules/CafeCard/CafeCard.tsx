@@ -110,7 +110,7 @@ const Container = styled.a`
   align-items: center;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 0 40px rgba(17, 24, 39, 0.06);
+  box-shadow: 0 0 40px rgba(var(--text), 0.06);
 `;
 const Image = styled.img`
   margin-bottom: 12px;

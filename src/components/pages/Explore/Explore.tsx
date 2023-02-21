@@ -73,18 +73,25 @@ const Tabs = styled.ul`
   align-items: center;
   margin: -24px -24px 24px -24px;
   padding: 0 24px;
-  border-bottom: 1px solid rgb(var(--greyscale100));
-  height: 40px;
+  border-bottom: 1px solid rgb(var(--border));
 `;
-const Tab = styled.li<{ active: boolean }>`
-  margin-right: 20px;
+const Tab = styled.div<{ active?: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1.5px solid transparent;
+  padding: 0 16px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 500;
   color: rgb(var(--greyscale400));
   cursor: pointer;
   ${p =>
     p.active &&
     css`
+      border-color: rgb(var(--primary));
       font-weight: 700;
-      color: rgb(var(--greyscale900));
+      color: rgb(var(--primary));
     `}
 `;
 

@@ -161,7 +161,7 @@ const Image = styled.img`
 `;
 const Nickname = styled.a`
   font-weight: 700;
-  color: rgb(var(--greyscale700));
+  color: rgb(var(--text));
 `;
 const CreatedAt = styled.span`
   position: absolute;
@@ -198,7 +198,7 @@ const EscpaeYn = styled.span<{ success: boolean }>`
 `;
 const Rating = styled.span``;
 const Text = styled.p`
-  color: rgb(var(--greyscale600));
+  color: rgb(var(--grey));
   line-height: 21px;
   white-space: pre-line;
 `;

@@ -90,10 +90,10 @@ const Wrapper = styled.div`
 const Image = styled.img`
   margin-bottom: 12px;
   border-radius: 50px;
-  border: 8px solid white;
+  border: 8px solid rgb(var(--content));
   width: 100px;
   height: 100px;
-  box-shadow: 0 0 40px rgba(17, 24, 39, 0.06);
+  box-shadow: 0 0 40px rgba(var(--text), 0.06);
 `;
 const Name = styled.strong`
   margin-bottom: 2px;

@@ -9,6 +9,7 @@ import { numberWithComma } from 'utils/common';
 import { useAppSelector } from 'store';
 import { Box, Stars } from 'components/atoms';
 import iconLock from 'assets/icons/lock.svg';
+import iconLockDark from 'assets/icons/lock-dark.svg';
 import iconBookmark from 'assets/icons/bookmark.svg';
 import iconBookmarkActive from 'assets/icons/bookmark-active.svg';
 
@@ -19,6 +20,7 @@ interface IProps {
 const ThemeCard: React.FC<IProps> = ({ theme, refetch }) => {
   const router = useRouter();
   const user = useAppSelector(state => state.auth.user);
+  const colorTheme = useAppSelector(state => state.common.theme);
 
   const saveMutation = useMutation(
     () => api.themes.saveTheme({ id: theme.id }),
@@ -82,7 +84,7 @@ const ThemeCard: React.FC<IProps> = ({ theme, refetch }) => {
               {Array.from({ length: theme.level }, (_, i) => (
                 <img
                   key={i}
-                  src={iconLock}
+                  src={colorTheme === 'light' ? iconLock : iconLockDark}
                   alt="level"
                   width="16px"
                   height="16px"
@@ -127,7 +129,7 @@ const Container = styled.a`
   flex-direction: row;
   border-radius: 16px;
   padding: 12px;
-  box-shadow: 0 0 40px rgba(17, 24, 39, 0.06);
+  box-shadow: 0 0 40px rgba(var(--text), 0.06);
 `;
 const Thumbnail = styled.img`
   border-radius: 12px;
@@ -192,11 +194,16 @@ const Price = styled.span`
   border-radius: 8px;
   padding: 7px 8px;
   height: 32px;
-  background-color: rgb(var(--primary100));
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
   color: rgb(var(--primary));
+  body[data-theme='light'] & {
+    background-color: rgb(var(--primary100));
+  }
+  body[data-theme='dark'] & {
+    background-color: rgb(var(--greyscale700));
+  }
 `;
 const SaveButton = styled.button`
   position: absolute;

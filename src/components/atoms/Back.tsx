@@ -8,7 +8,13 @@ interface IProps {
 }
 const Back: React.FC<IProps> = props => (
   <Action onClick={props.onClick}>
-    <img src={iconArrowBack} alt="back" width="32px" height="32px" />
+    <img
+      className="invert"
+      src={iconArrowBack}
+      alt="back"
+      width="32px"
+      height="32px"
+    />
   </Action>
 );
 

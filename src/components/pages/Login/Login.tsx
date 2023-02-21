@@ -174,11 +174,7 @@ const Login: React.FC = () => {
         <Box flexDirection="row" alignItems="baseline">
           <Link href="/faq">
             <a>
-              <Text
-                fontSize="12px"
-                fontWeight="500"
-                color="rgb(var(--secondary))"
-              >
+              <Text fontSize="12px" fontWeight="500" color="rgb(var(--text))">
                 자주묻는질문
               </Text>
             </a>
@@ -201,13 +197,6 @@ const Title = styled.h1`
     font-size: 16px;
     color: rgb(var(--greyscale400));
   }
-`;
-const CountrySelect = styled.select`
-  outline: none;
-  background: 0 0;
-  border: none;
-  padding: 4px;
-  font-size: 16px;
 `;
 const Or = styled.div`
   display: flex;

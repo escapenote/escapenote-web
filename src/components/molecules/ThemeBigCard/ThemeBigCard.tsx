@@ -81,7 +81,7 @@ const Contents = styled.div`
   padding: 12px;
   height: 118px;
   background-color: rgb(var(--content));
-  box-shadow: 4px 8px 16px rgba(17, 24, 39, 0.2);
+  box-shadow: 4px 8px 16px rgba(var(--text), 0.2);
 `;
 const Name = styled.strong`
   display: -webkit-box;
@@ -132,11 +132,16 @@ const Price = styled.span`
   border-radius: 8px;
   padding: 7px 8px;
   height: 32px;
-  background-color: rgb(var(--primary100));
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
   color: rgb(var(--primary));
+  body[data-theme='light'] & {
+    background-color: rgb(var(--primary100));
+  }
+  body[data-theme='dark'] & {
+    background-color: rgb(var(--greyscale700));
+  }
 `;
 
 export default ThemeBigCard;

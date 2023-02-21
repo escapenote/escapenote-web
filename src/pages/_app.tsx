@@ -12,18 +12,29 @@ import globalStyles from '../styles/globalStyles';
 import { useAppDispatch, wrapper } from 'store';
 import { currentAuthenticatedUserAsync } from 'store/authSlice';
 import { fetchCommonData } from 'store/dataSlice';
+import { setTheme } from 'store/commonSlice';
 import HeadDefaultMeta from 'components/templates/HeadDefaultMeta';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  const dispatch = useAppDispatch();
   const queryClientRef = useRef<QueryClient>();
   if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient();
   }
 
-  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchCommonData());
+
+    const currentTheme = getUserPreference();
+    dispatch(setTheme(currentTheme));
+    document.body.dataset.theme = currentTheme;
   }, []);
+
+  function getUserPreference() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  }
 
   return (
     <>

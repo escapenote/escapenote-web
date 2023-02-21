@@ -122,7 +122,7 @@ const BorderBox = styled(DefaultBox)`
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
-  border-bottom: 1px solid rgb(var(--greyscale100));
+  border-bottom: 1px solid rgb(var(--border));
   padding-bottom: 16px;
 `;
 const Label = styled.label<{ required?: boolean }>`
@@ -145,7 +145,7 @@ const Textarea = styled.textarea`
   border: none;
   border-radius: 19px;
   padding: 18px 20px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
   resize: none;
 `;
 

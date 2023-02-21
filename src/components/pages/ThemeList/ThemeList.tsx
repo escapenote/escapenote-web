@@ -22,6 +22,7 @@ const ThemeListPage = () => {
   const person = String(router.query.person ?? '');
 
   const user = useAppSelector(state => state.auth.user);
+  const theme = useAppSelector(state => state.common.theme);
 
   const {
     status,
@@ -67,7 +68,11 @@ const ThemeListPage = () => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              <GoogleAdsense layoutKey="-ff+6a-x-eh+tr" slot="3363518566" />
+              {theme === 'light' ? (
+                <GoogleAdsense layoutKey="-ff+6a-x-eh+tr" slot="3363518566" />
+              ) : (
+                <GoogleAdsense layoutKey="-ff+6a-x-eh+tr" slot="4536041577" />
+              )}
 
               {group.items?.map(item => (
                 <Item key={item.id}>

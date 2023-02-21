@@ -136,7 +136,7 @@ const Item = styled.a`
   border-radius: 16px;
   padding: 12px;
   height: 64px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
   font-weight: 700;
   :last-of-type {
     margin-bottom: 0;
@@ -163,8 +163,14 @@ const ImageBox = styled.div`
   border-radius: 8px;
   width: 40px;
   height: 40px;
-  background-color: #ffffff;
+  background-color: rgb(var(--content));
   box-shadow: 0px 4px 32px rgba(107, 114, 128, 0.02);
+  /* body[data-theme='light'] & {
+    background-color: rgb(var(--primary100));
+  }
+  body[data-theme='dark'] & {
+    background-color: rgb(var(--greyscale700));
+  } */
 `;
 
 export default Settings;

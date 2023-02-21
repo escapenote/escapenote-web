@@ -1,9 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
 
+import { useAppSelector } from 'store';
+
 const HeadDefaultMeta: React.FC = () => {
+  const theme = useAppSelector(state => state.common.theme);
+
   const title = '이스케이프노트';
-  const color = '#ffffff';
+  const color = theme === 'light' ? '#ffffff' : '#1c1c24';
 
   return (
     <Head>

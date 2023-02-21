@@ -44,7 +44,7 @@ const StyledInput = styled.input<{
   padding: 20px;
   width: 100%;
   height: 56px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
   color: rgb(var(--text));
   transition: 150ms;
   ::placeholder {
