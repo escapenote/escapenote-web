@@ -124,6 +124,7 @@ const Name = styled.strong`
   font-size: 14px;
   font-weight: 700;
   text-align: center;
+  word-break: keep-all;
 `;
 const Location = styled.span`
   margin-bottom: 4px;
