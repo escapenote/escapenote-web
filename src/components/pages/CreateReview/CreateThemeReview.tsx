@@ -252,7 +252,7 @@ const Textarea = styled.textarea`
   border: none;
   border-radius: 19px;
   padding: 18px 20px;
-  background-color: rgb(var(--content));
+  background-color: rgb(var(--background));
   resize: none;
 `;
 
