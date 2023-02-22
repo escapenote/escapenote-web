@@ -46,6 +46,7 @@ const Container = styled.div<{ active: boolean }>`
   height: 40px;
   background-color: rgb(var(--background));
   font-size: 12px;
+  color: rgb(var(--text));
   select {
     position: absolute;
     top: 0;
@@ -61,7 +62,7 @@ const Container = styled.div<{ active: boolean }>`
     css`
       background-color: rgb(var(--primary));
       font-weight: 700;
-      color: rgb(var(--text));
+      color: #ffffff;
     `}
 `;
 const Placeholder = styled.span`
