@@ -109,7 +109,7 @@ const ThemeFilters = () => {
         </MiniSelect>
       </Box>
 
-      <Box mr="12px">
+      <Box>
         <MiniSelect
           name="person"
           label="인원수"
