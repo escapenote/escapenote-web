@@ -135,7 +135,7 @@ const ThemeReviews: React.FC<IProps> = ({ id, theme }) => {
 };
 
 const Dashboard = styled.div`
-  border-bottom: 1px solid rgb(var(--greyscale100));
+  border-bottom: 1px solid rgb(var(--border));
 `;
 const RatingBox = styled.div`
   display: flex;
@@ -145,7 +145,7 @@ const RatingBox = styled.div`
   border-radius: 12px;
   padding: 24px 16px;
   height: 108px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
 `;
 const RatingLeftBox = styled.div`
   display: flex;
@@ -153,13 +153,13 @@ const RatingLeftBox = styled.div`
   justify-content: center;
   align-items: center;
   flex: 0.9;
-  border-right: 1px solid rgb(var(--greyscale400));
   padding-right: 16px;
 `;
 const RatingRightBox = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1.1;
+  border-left: 1px solid rgb(var(--disabled));
   padding-left: 16px;
   > div {
     display: flex;

@@ -368,7 +368,7 @@ const RatingRightBox = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1.1;
-  border-left: 1px solid rgb(var(--greyscale400));
+  border-left: 1px solid rgb(var(--disabled));
   padding-left: 16px;
   > div {
     display: flex;
