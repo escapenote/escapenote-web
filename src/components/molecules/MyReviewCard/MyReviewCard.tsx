@@ -203,6 +203,11 @@ const CafeThumbnail = styled.img`
   height: 64px;
 `;
 const Name = styled.strong`
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-right: 80px;
   font-weight: 700;
   color: rgb(var(--text));
 `;
