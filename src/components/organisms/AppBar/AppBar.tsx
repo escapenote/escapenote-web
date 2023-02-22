@@ -53,7 +53,7 @@ const StyledHeader = styled.header`
     max-width: 480px;
   }
 `;
-const Title = styled.h1`
+const Title = styled.strong`
   font-size: 18px;
   font-weight: 700;
 `;
