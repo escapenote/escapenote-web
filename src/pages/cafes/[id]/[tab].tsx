@@ -24,7 +24,7 @@ const CafeDetailPage = ({ initial }: IProps) => {
   const tab = String(router.query.tab);
 
   const user = useAppSelector(state => state.auth.user);
-  const { data, refetch } = useQuery(['fetchCafe', id], () => {
+  const { data, refetch } = useQuery(['fetchCafe', Boolean(user), id], () => {
     return api.cafes.fetchCafe({ id });
   });
 
@@ -108,11 +108,15 @@ CafeDetailPage.getInitialProps = wrapper.getInitialPageProps(
   store =>
     async ({ req, query }) => {
       if (req) {
+        const user = store.getState().auth.user;
         const id = query.id as string;
         const queryClient = new QueryClient();
-        await queryClient.prefetchQuery(['fetchCafe', id], () => {
-          return api.cafes.fetchCafe({ id });
-        });
+        await queryClient.prefetchQuery(
+          ['fetchCafe', Boolean(user), id],
+          () => {
+            return api.cafes.fetchCafe({ id });
+          },
+        );
         return { dehydratedState: dehydrate(queryClient), initial: true };
       }
       return { dehydratedState: null, initial: false };

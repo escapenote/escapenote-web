@@ -53,9 +53,12 @@ CafeReviewPage.getInitialProps = wrapper.getInitialPageProps(
       if (req) {
         const id = query.id as string;
         const queryClient = new QueryClient();
-        await queryClient.prefetchQuery(['fetchReview', 'cafe', id], () => {
-          return api.cafeReviews.fetchReview({ id });
-        });
+        await queryClient.prefetchQuery(
+          ['fetchReview', 'cafe', Boolean(user), id],
+          () => {
+            return api.cafeReviews.fetchReview({ id });
+          },
+        );
         return { dehydratedState: dehydrate(queryClient) };
       }
       return { dehydratedState: null };

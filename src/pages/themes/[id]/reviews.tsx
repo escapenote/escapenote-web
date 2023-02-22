@@ -65,11 +65,15 @@ ThemeReviewsPage.getInitialProps = wrapper.getInitialPageProps(
   store =>
     async ({ req, query }) => {
       if (req) {
+        const user = store.getState().auth.user;
         const id = query.id as string;
         const queryClient = new QueryClient();
-        await queryClient.prefetchQuery(['fetchTheme', id], () => {
-          return api.themes.fetchTheme({ id });
-        });
+        await queryClient.prefetchQuery(
+          ['fetchTheme', Boolean(user), id],
+          () => {
+            return api.themes.fetchTheme({ id });
+          },
+        );
         return { dehydratedState: dehydrate(queryClient), initial: true };
       }
       return { dehydratedState: null, initial: false };
