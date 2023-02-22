@@ -22,7 +22,13 @@ const ExplorePage: React.FC<IProps> = ({ tab }) => {
         rightAction={
           <>
             <ActionButton onClick={() => router.push('/search?tab=all')}>
-              <img src={iconSearch} alt="search" width="24px" height="24px" />
+              <img
+                className="invert"
+                src={iconSearch}
+                alt="search"
+                width="24px"
+                height="24px"
+              />
             </ActionButton>
           </>
         }
