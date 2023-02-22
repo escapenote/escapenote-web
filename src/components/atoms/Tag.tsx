@@ -12,7 +12,7 @@ const Tag: React.FC<IProps> = ({ children, onClick }) => {
 const StyledTag = styled.span`
   border-radius: 12px;
   padding: 11px 16px;
-  background-color: rgb(var(--greyscale50));
+  background-color: rgb(var(--background));
   font-size: 12px;
   cursor: pointer;
 `;
