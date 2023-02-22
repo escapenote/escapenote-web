@@ -3,13 +3,17 @@ import styled from '@emotion/styled';
 
 import { ITheme } from 'types';
 import { numberWithComma } from 'utils/common';
+import { useAppSelector } from 'store';
 import { Box, Stars } from 'components/atoms';
 import iconLock from 'assets/icons/lock.svg';
+import iconLockDark from 'assets/icons/lock-dark.svg';
 
 interface IProps {
   theme: ITheme;
 }
 const ThemeBigCard: React.FC<IProps> = ({ theme }) => {
+  const colorTheme = useAppSelector(state => state.common.theme);
+
   return (
     <Link href={`/themes/${theme.id}`} passHref>
       <Container
@@ -29,7 +33,7 @@ const ThemeBigCard: React.FC<IProps> = ({ theme }) => {
               {Array.from({ length: theme.level }, (_, i) => (
                 <img
                   key={i}
-                  src={iconLock}
+                  src={colorTheme === 'light' ? iconLock : iconLockDark}
                   alt="level"
                   width="16px"
                   height="16px"
