@@ -22,7 +22,6 @@ const ThemeListPage = () => {
   const person = String(router.query.person ?? '');
 
   const user = useAppSelector(state => state.auth.user);
-  const theme = useAppSelector(state => state.common.theme);
 
   const {
     status,
@@ -58,6 +57,8 @@ const ThemeListPage = () => {
         </NoXAxisScrollBar>
       </Box>
 
+      <Ads />
+
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -68,11 +69,7 @@ const ThemeListPage = () => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              {theme === 'light' ? (
-                <GoogleAdsense layoutKey="-ff+6a-x-eh+tr" slot="3363518566" />
-              ) : (
-                <GoogleAdsense layoutKey="-ff+6a-x-eh+tr" slot="4536041577" />
-              )}
+              {i !== 0 && <Ads />}
 
               {group.items?.map(item => (
                 <Item key={item.id}>
@@ -90,6 +87,23 @@ const ThemeListPage = () => {
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
+    </>
+  );
+};
+
+const Ads = () => {
+  const colorTheme = useAppSelector(state => state.common.theme);
+  return (
+    <>
+      {colorTheme && (
+        <>
+          {colorTheme === 'light' ? (
+            <GoogleAdsense layoutKey="-go+s-2u-bd+v6" slot="3363518566" />
+          ) : (
+            <GoogleAdsense layoutKey="-go+s-2u-bd+v6" slot="4536041577" />
+          )}
+        </>
+      )}
     </>
   );
 };

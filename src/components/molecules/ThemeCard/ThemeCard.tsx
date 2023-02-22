@@ -20,7 +20,7 @@ interface IProps {
 const ThemeCard: React.FC<IProps> = ({ theme, refetch }) => {
   const router = useRouter();
   const user = useAppSelector(state => state.auth.user);
-  const colorTheme = useAppSelector(state => state.common.theme);
+  const colorTheme = useAppSelector(state => state.common.theme ?? 'light');
 
   const saveMutation = useMutation(
     () => api.themes.saveTheme({ id: theme.id }),

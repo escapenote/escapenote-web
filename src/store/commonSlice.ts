@@ -3,7 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { AppState } from 'store';
 
-type ThemeType = 'dark' | 'light';
+export type ThemeType = 'dark' | 'light' | undefined;
 
 export interface IState {
   theme: ThemeType;
@@ -12,7 +12,7 @@ export interface IState {
 }
 
 const initialState: IState = {
-  theme: 'light',
+  theme: undefined,
   isDesktop: '',
   isMobile: '',
 };

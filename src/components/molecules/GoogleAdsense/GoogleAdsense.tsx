@@ -1,18 +1,25 @@
 import React, { useEffect } from 'react';
 
 interface IProps {
+  className?: string;
   layoutKey: string;
   slot: string;
 }
-const GoogleAdsense: React.FC<IProps> = ({ layoutKey, slot }) => {
+const GoogleAdsense: React.FC<IProps> = ({ className, layoutKey, slot }) => {
   useEffect(() => {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
+    try {
+      if (typeof window === 'object') {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
+    } catch {
+      // Pass
+    }
   }, []);
 
   return (
     <div style={{ width: '100%', textAlign: 'left', overflow: 'hidden' }}>
       <ins
-        className="adsbygoogle"
+        className={`adsbygoogle ${className}`}
         style={{ display: 'block' }}
         data-ad-format="fluid"
         data-ad-layout-key={layoutKey}

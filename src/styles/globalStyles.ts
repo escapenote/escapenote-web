@@ -90,6 +90,22 @@ const globalStyles = css`
   .underline {
     text-decoration: underline;
   }
+  .light {
+    body[data-theme='light'] & {
+      display: block !important;
+    }
+    body[data-theme='dark'] & {
+      display: none !important;
+    }
+  }
+  .dark {
+    body[data-theme='light'] & {
+      display: none !important;
+    }
+    body[data-theme='dark'] & {
+      display: block !important;
+    }
+  }
 
   /* Custom react-modal-sheet */
   .react-modal-sheet-container {

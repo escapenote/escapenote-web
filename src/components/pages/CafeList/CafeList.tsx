@@ -19,7 +19,6 @@ const CafeListPage = () => {
   const areaB = String(router.query.areaB ?? '');
 
   const user = useAppSelector(state => state.auth.user);
-  const theme = useAppSelector(state => state.common.theme);
 
   const {
     status,
@@ -52,6 +51,8 @@ const CafeListPage = () => {
         </NoXAxisScrollBar>
       </Box>
 
+      <Ads />
+
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -62,11 +63,7 @@ const CafeListPage = () => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              {theme === 'light' ? (
-                <GoogleAdsense layoutKey="-fv+5t+d-7z+dm" slot="1593526920" />
-              ) : (
-                <GoogleAdsense layoutKey="-ff+6a-x-eh+tr" slot="3723036241" />
-              )}
+              {i !== 0 && <Ads />}
 
               {group.items?.map(item => (
                 <Item key={item.id}>
@@ -84,6 +81,23 @@ const CafeListPage = () => {
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
+    </>
+  );
+};
+
+const Ads = () => {
+  const colorTheme = useAppSelector(state => state.common.theme);
+  return (
+    <>
+      {colorTheme && (
+        <>
+          {colorTheme === 'light' ? (
+            <GoogleAdsense layoutKey="-go+s-2u-bd+v6" slot="1593526920" />
+          ) : (
+            <GoogleAdsense layoutKey="-go+s-2u-bd+v6" slot="3723036241" />
+          )}
+        </>
+      )}
     </>
   );
 };

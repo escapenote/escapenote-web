@@ -12,7 +12,7 @@ interface IProps {
   theme: ITheme;
 }
 const ThemeBigCard: React.FC<IProps> = ({ theme }) => {
-  const colorTheme = useAppSelector(state => state.common.theme);
+  const colorTheme = useAppSelector(state => state.common.theme ?? 'light');
 
   return (
     <Link href={`/themes/${theme.id}`} passHref>
