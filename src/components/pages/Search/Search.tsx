@@ -57,7 +57,7 @@ const Search = () => {
         <>
           <Tabs>
             <Tab active={tab === 'all'} onClick={() => handleChangeTab('all')}>
-              통합
+              전체
             </Tab>
             <Tab
               active={tab === 'cafe'}
@@ -73,7 +73,7 @@ const Search = () => {
             </Tab>
           </Tabs>
 
-          <Box mt="24px">
+          <Box>
             {tab === 'all' ? (
               <SearchedAll term={term} />
             ) : tab === 'cafe' ? (
@@ -128,18 +128,20 @@ const Search = () => {
   );
 };
 
-const Tabs = styled.div`
+const Tabs = styled.ul`
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  margin: -24px -24px 24px -24px;
+  padding: 0 24px;
+  border-bottom: 1px solid rgb(var(--border));
 `;
 const Tab = styled.div<{ active?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
   border-bottom: 1.5px solid transparent;
-  border-color: rgb(var(--border));
-  height: 48px;
+  padding: 0 16px;
+  height: 40px;
   font-size: 14px;
   font-weight: 500;
   color: rgb(var(--greyscale400));
