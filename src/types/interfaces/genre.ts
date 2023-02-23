@@ -5,7 +5,7 @@ import { ITheme } from './theme';
  */
 export interface IGenre {
   id: string;
-  themes: ITheme;
+  themes: ITheme[];
   createdAt: string;
   updatedAt: string;
 }

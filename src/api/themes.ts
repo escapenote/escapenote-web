@@ -1,6 +1,6 @@
 import { api } from 'api';
 import { IPage, ITheme, IThemeReview } from 'types';
-import { getGrade } from 'utils/common';
+import { getGrade, getLevel } from 'utils/translations';
 
 /**
  * 추천 테마 리스트 조회
@@ -51,7 +51,7 @@ export const fetchThemes = async ({
   if (areaA) params.areaA = areaA;
   if (areaB) params.areaB = areaB;
   if (genre) params.genre = genre;
-  if (level) params.level = Number(level);
+  if (level) params.level = getLevel(level);
   if (person) params.person = Number(person);
   if (fearScore) params.fearScore = getGrade(fearScore);
   if (activity) params.activity = getGrade(activity);

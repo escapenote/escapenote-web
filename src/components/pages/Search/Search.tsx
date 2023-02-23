@@ -8,9 +8,10 @@ import { addRecentlySearchKeyword } from 'store/searchSlice';
 import Layout from 'components/templates/Layout';
 import SearchBar from 'components/molecules/SearchBar';
 import { Box, Back, Tag } from 'components/atoms';
+import SearchedAll from './SearchedAll';
 import SearchedCafes from './SearchedCafes';
 import SearchedThemes from './SearchedThemes';
-import SearchedAll from './SearchedAll';
+import SearchedGenreList from './SearchedGenreList';
 
 const Search = () => {
   const router = useRouter();
@@ -57,7 +58,7 @@ const Search = () => {
         <>
           <Tabs>
             <Tab active={tab === 'all'} onClick={() => handleChangeTab('all')}>
-              전체
+              통합
             </Tab>
             <Tab
               active={tab === 'cafe'}
@@ -71,6 +72,12 @@ const Search = () => {
             >
               테마
             </Tab>
+            <Tab
+              active={tab === 'genre'}
+              onClick={() => handleChangeTab('genre')}
+            >
+              장르
+            </Tab>
           </Tabs>
 
           <Box>
@@ -78,8 +85,10 @@ const Search = () => {
               <SearchedAll term={term} />
             ) : tab === 'cafe' ? (
               <SearchedCafes term={term} />
-            ) : (
+            ) : tab === 'theme' ? (
               <SearchedThemes term={term} />
+            ) : (
+              <SearchedGenreList term={term} />
             )}
           </Box>
         </>

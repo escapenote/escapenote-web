@@ -1,12 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 
 import api from 'api';
 import CafeCard from 'components/molecules/CafeCard';
 import ThemeCard from 'components/molecules/ThemeCard';
+import GenreCard from 'components/molecules/GenreCard';
 import { Box } from 'components/atoms';
-import Link from 'next/link';
 
 interface IProps {
   term: string;
@@ -28,6 +29,14 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
     refetch: themeRefetch,
   } = useQuery(['fetchThemes', 'search', term], () => {
     return api.themes.fetchThemes({ term });
+  });
+
+  const {
+    isLoading: isGenreLoading,
+    data: genreList,
+    error: genreError,
+  } = useQuery(['fetchGenreList', 'search', term], () => {
+    return api.genre.fetchGenreList({ term });
   });
 
   return (
@@ -91,6 +100,36 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
           </ThemeItems>
         )}
       </Section>
+
+      <Section>
+        <Box
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+          mb="18px"
+        >
+          <Title>장르</Title>
+          <Link href={`/search?tab=genre&q=${term}`} passHref>
+            <More>전체 보기</More>
+          </Link>
+        </Box>
+
+        {isGenreLoading ? (
+          <Loading>로딩중...</Loading>
+        ) : genreError ? (
+          <Error>에러</Error>
+        ) : genreList?.length === 0 ? (
+          <NoData>데이터가 없습니다.</NoData>
+        ) : (
+          <GenreItems>
+            {genreList?.slice(0, 8).map(item => (
+              <GenreItem key={item.id}>
+                <GenreCard genre={item} />
+              </GenreItem>
+            ))}
+          </GenreItems>
+        )}
+      </Section>
     </>
   );
 };
@@ -127,6 +166,10 @@ const CafeItem = styled.li`
 `;
 const ThemeItems = styled.ul``;
 const ThemeItem = styled.li`
+  margin-bottom: 18px;
+`;
+const GenreItems = styled.ul``;
+const GenreItem = styled.li`
   margin-bottom: 18px;
 `;
 
