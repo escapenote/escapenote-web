@@ -21,7 +21,7 @@ const ThemeFilters = () => {
   const areaBData = areaAData.length > 0 ? location[areaA] : [];
 
   const { data: genreList } = useQuery(['fetchGenreList'], () => {
-    return api.genre.fetchGenreList();
+    return api.genre.fetchGenreList({});
   });
 
   function handleChagneSortOrder(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -126,11 +126,11 @@ const ThemeFilters = () => {
           onChange={handleChangeValue}
         >
           <option value="">전체</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          <option value="상">상</option>
+          <option value="중상">중상</option>
+          <option value="중">중</option>
+          <option value="중하">중하</option>
+          <option value="하">하</option>
         </MiniSelect>
       </Box>
 
