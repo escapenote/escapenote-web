@@ -10,13 +10,15 @@ const ThemeFilters = () => {
   const router = useRouter();
   const sort = String(router.query.sort ?? 'createdAt');
   const order = String(router.query.order ?? 'desc');
+  const areaA = String(router.query.areaA ?? '');
   const areaB = String(router.query.areaB ?? '');
   const genre = String(router.query.genre ?? '');
   const level = String(router.query.level ?? '');
   const person = String(router.query.person ?? '');
 
   const location = useAppSelector(state => state.data.location);
-  const areaBData = location['서울'];
+  const areaAData = Object.keys(location);
+  const areaBData = areaAData.length > 0 ? location[areaA] : [];
 
   const { data: genreList } = useQuery(['fetchGenreList'], () => {
     return api.genre.fetchGenreList();
@@ -31,6 +33,11 @@ const ThemeFilters = () => {
   function handleChangeValue(e: React.ChangeEvent<HTMLSelectElement>) {
     const { name, value } = e.target;
     const query = { ...router.query };
+
+    if (name === 'areaA' && areaB) {
+      delete query['areaB'];
+    }
+
     if (!value) delete query[name];
     else query[name] = value;
     router.replace({ query });
@@ -62,19 +69,37 @@ const ThemeFilters = () => {
 
       <Box mr="12px">
         <MiniSelect
-          name="areaB"
+          name="areaA"
           label="지역"
-          value={areaB}
+          value={areaA}
           onChange={handleChangeValue}
         >
-          <option value="">전체</option>
-          {areaBData?.map(v => (
+          <option value="">전국</option>
+          {areaAData?.map(v => (
             <option key={v} value={v}>
               {v}
             </option>
           ))}
         </MiniSelect>
       </Box>
+
+      {areaA && areaBData.length > 0 && (
+        <Box mr="12px">
+          <MiniSelect
+            name="areaB"
+            label="세부지역"
+            value={areaB}
+            onChange={handleChangeValue}
+          >
+            <option value="">전체</option>
+            {areaBData?.map(v => (
+              <option key={v} value={v}>
+                {v}
+              </option>
+            ))}
+          </MiniSelect>
+        </Box>
+      )}
 
       <Box mr="12px">
         <MiniSelect

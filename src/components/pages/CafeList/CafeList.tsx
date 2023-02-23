@@ -16,6 +16,7 @@ const CafeListPage = () => {
   const router = useRouter();
   const sort = String(router.query.sort ?? 'createdAt');
   const order = String(router.query.order ?? 'desc');
+  const areaA = String(router.query.areaA ?? '');
   const areaB = String(router.query.areaB ?? '');
 
   const user = useAppSelector(state => state.auth.user);
@@ -29,9 +30,10 @@ const CafeListPage = () => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery(
-    ['fetchCafes', Boolean(user), areaB, sort, order],
+    ['fetchCafes', Boolean(user), areaA, areaB, sort, order],
     ({ pageParam }) => {
       return api.cafes.fetchCafes({
+        areaA,
         areaB,
         cursor: pageParam,
         sort,

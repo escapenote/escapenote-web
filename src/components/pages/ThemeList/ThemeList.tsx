@@ -16,6 +16,7 @@ const ThemeListPage = () => {
   const router = useRouter();
   const sort = String(router.query.sort ?? 'createdAt');
   const order = String(router.query.order ?? 'desc');
+  const areaA = String(router.query.areaA ?? '');
   const areaB = String(router.query.areaB ?? '');
   const genre = String(router.query.genre ?? '');
   const level = String(router.query.level ?? '');
@@ -32,9 +33,20 @@ const ThemeListPage = () => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery(
-    ['fetchThemes', Boolean(user), areaB, genre, level, person, sort, order],
+    [
+      'fetchThemes',
+      Boolean(user),
+      areaA,
+      areaB,
+      genre,
+      level,
+      person,
+      sort,
+      order,
+    ],
     ({ pageParam }) => {
       return api.themes.fetchThemes({
+        areaA,
         areaB,
         genre,
         level,

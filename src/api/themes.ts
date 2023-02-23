@@ -16,6 +16,7 @@ export const fetchRecommendThemes = async () => {
 interface IFetchThemesProps {
   term?: string;
   cafeId?: string;
+  areaA?: string;
   areaB?: string;
   genre?: string;
   level?: string;
@@ -31,6 +32,7 @@ interface IFetchThemesProps {
 export const fetchThemes = async ({
   term,
   cafeId,
+  areaA,
   areaB,
   genre,
   level,
@@ -46,6 +48,7 @@ export const fetchThemes = async ({
   const params = { take, cursor } as any;
   if (term) params.term = term;
   if (cafeId) params.cafeId = cafeId;
+  if (areaA) params.areaA = areaA;
   if (areaB) params.areaB = areaB;
   if (genre) params.genre = genre;
   if (level) params.level = Number(level);

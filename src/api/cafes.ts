@@ -14,6 +14,7 @@ export const fetchRecommendCafes = async () => {
  */
 interface IFetchCafesProps {
   term?: string;
+  areaA?: string;
   areaB?: string;
   take?: number;
   cursor?: string;
@@ -22,6 +23,7 @@ interface IFetchCafesProps {
 }
 export const fetchCafes = async ({
   term,
+  areaA,
   areaB,
   take = 20,
   cursor,
@@ -30,6 +32,7 @@ export const fetchCafes = async ({
 }: IFetchCafesProps) => {
   const params = { take, cursor } as IFetchCafesProps;
   if (term) params.term = term;
+  if (areaA) params.areaA = areaA;
   if (areaB) params.areaB = areaB;
   if (sort) params.sort = sort;
   if (order) params.order = order;
