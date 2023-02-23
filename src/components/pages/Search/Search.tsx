@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 
 import { useAppDispatch, useAppSelector } from 'store';
 import { addRecentlySearchKeyword } from 'store/searchSlice';
@@ -52,46 +51,43 @@ const Search = () => {
           </Box>
         </Box>
       }
+      activeTab={tab}
+      tabs={[
+        {
+          key: 'all',
+          label: '통합',
+          onClick: () => handleChangeTab('all'),
+        },
+        {
+          key: 'cafe',
+          label: '카페',
+          onClick: () => handleChangeTab('cafe'),
+        },
+        {
+          key: 'theme',
+          label: '테마',
+          onClick: () => handleChangeTab('theme'),
+        },
+        {
+          key: 'genre',
+          label: '장르',
+          onClick: () => handleChangeTab('genre'),
+        },
+      ]}
       noBottom
     >
       {term ? (
-        <>
-          <Tabs>
-            <Tab active={tab === 'all'} onClick={() => handleChangeTab('all')}>
-              통합
-            </Tab>
-            <Tab
-              active={tab === 'cafe'}
-              onClick={() => handleChangeTab('cafe')}
-            >
-              카페
-            </Tab>
-            <Tab
-              active={tab === 'theme'}
-              onClick={() => handleChangeTab('theme')}
-            >
-              테마
-            </Tab>
-            <Tab
-              active={tab === 'genre'}
-              onClick={() => handleChangeTab('genre')}
-            >
-              장르
-            </Tab>
-          </Tabs>
-
-          <Box>
-            {tab === 'all' ? (
-              <SearchedAll term={term} />
-            ) : tab === 'cafe' ? (
-              <SearchedCafes term={term} />
-            ) : tab === 'theme' ? (
-              <SearchedThemes term={term} />
-            ) : (
-              <SearchedGenreList term={term} />
-            )}
-          </Box>
-        </>
+        <Box>
+          {tab === 'all' ? (
+            <SearchedAll term={term} />
+          ) : tab === 'cafe' ? (
+            <SearchedCafes term={term} />
+          ) : tab === 'theme' ? (
+            <SearchedThemes term={term} />
+          ) : (
+            <SearchedGenreList term={term} />
+          )}
+        </Box>
       ) : (
         <>
           <Title>다른 방탈러들이 많이 찾고 있어요!</Title>
@@ -137,32 +133,6 @@ const Search = () => {
   );
 };
 
-const Tabs = styled.ul`
-  display: flex;
-  align-items: center;
-  margin: -24px -24px 24px -24px;
-  padding: 0 24px;
-  border-bottom: 1px solid rgb(var(--border));
-`;
-const Tab = styled.div<{ active?: boolean }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1.5px solid transparent;
-  padding: 0 16px;
-  height: 40px;
-  font-size: 14px;
-  font-weight: 500;
-  color: rgb(var(--greyscale400));
-  cursor: pointer;
-  ${p =>
-    p.active &&
-    css`
-      border-color: rgb(var(--primary));
-      font-weight: 700;
-      color: rgb(var(--primary));
-    `}
-`;
 const Title = styled.strong`
   margin-bottom: 8px;
   font-weight: 500;

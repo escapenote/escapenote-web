@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { useIntersectionObserver } from 'hooks';
+import useIntersectionObserver from 'hooks/useIntersectionObserver';
 import { Box } from 'components/atoms';
 
 interface IProps {

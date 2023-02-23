@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
+import { ITabOption } from 'types';
 import AppBar from 'components/organisms/AppBar';
 import BottomNavigationBar from 'components/organisms/BottomNavigationBar';
-import { css } from '@emotion/react';
 
 interface IProps {
   title?: string;
@@ -13,6 +14,8 @@ interface IProps {
   noPadding?: boolean;
   noBottom?: boolean;
   appBar?: React.ReactNode;
+  activeTab?: string;
+  tabs?: ITabOption[];
   children: React.ReactNode;
 }
 const Layout: React.FC<IProps> = ({
@@ -23,6 +26,8 @@ const Layout: React.FC<IProps> = ({
   noPadding = false,
   noBottom = false,
   appBar,
+  activeTab,
+  tabs,
   children,
 }) => {
   return (
@@ -33,8 +38,10 @@ const Layout: React.FC<IProps> = ({
         leftAction={leftAction}
         rightAction={rightAction}
         appBar={appBar}
+        activeTab={activeTab}
+        tabs={tabs}
       />
-      <Main noPadding={noPadding} noBottom={noBottom}>
+      <Main isTabs={Boolean(tabs)} noPadding={noPadding} noBottom={noBottom}>
         {children}
       </Main>
       {!noBottom && <BottomNavigationBar />}
@@ -47,7 +54,11 @@ const Wrapper = styled.section`
   flex-direction: column;
   flex-grow: 1;
 `;
-const Main = styled.main<{ noPadding: boolean; noBottom: boolean }>`
+const Main = styled.main<{
+  isTabs: boolean;
+  noPadding: boolean;
+  noBottom: boolean;
+}>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -59,6 +70,11 @@ const Main = styled.main<{ noPadding: boolean; noBottom: boolean }>`
   width: 100%;
   overflow: hidden;
   ${p =>
+    p.isTabs &&
+    css`
+      padding-top: 120px;
+    `}
+  ${p =>
     p.noBottom &&
     css`
       padding-bottom: calc(24px + env(safe-area-inset-bottom));
@@ -67,7 +83,7 @@ const Main = styled.main<{ noPadding: boolean; noBottom: boolean }>`
     p.noPadding &&
     css`
       padding: 0;
-      padding-top: 56px;
+      padding-top: ${p.isTabs ? '86px' : '56px'};
       padding-bottom: calc(0 + env(safe-area-inset-bottom));
     `}
   @media (min-width: 480px) {
