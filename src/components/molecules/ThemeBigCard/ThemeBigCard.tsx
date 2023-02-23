@@ -144,7 +144,7 @@ const Price = styled.span`
     background-color: rgb(var(--primary100));
   }
   body[data-theme='dark'] & {
-    background-color: rgb(var(--greyscale700));
+    background-color: rgb(var(--greyscale800));
   }
 `;
 
