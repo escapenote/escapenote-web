@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 import sortOptions from 'data/sortOptions';
-// import iconX from 'assets/icons/x-white.svg';
 import iconArrowsDownUpWhite from 'assets/icons/arrows-down-up-white.svg';
 
 interface IProps extends HTMLAttributes<HTMLSelectElement> {
@@ -38,7 +37,6 @@ const SortSelect: React.FC<IProps> = ({
       ) : (
         label
       )}
-      {/* {active && <CloseIcon src={iconX} alt="close" />} */}
     </Container>
   );
 };
@@ -79,10 +77,5 @@ const SortIcon = styled.img`
   width: 12px;
   height: 12px;
 `;
-// const CloseIcon = styled.img`
-//   margin-left: 2px;
-//   width: 12px;
-//   height: 12px;
-// `;
 
 export default SortSelect;
