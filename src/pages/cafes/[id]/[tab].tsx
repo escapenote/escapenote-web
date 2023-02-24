@@ -70,7 +70,7 @@ const CafeDetailPage = ({ initial }: IProps) => {
         <HeadPageMeta
           title={`${data.name} - 이스케이프노트`}
           description={data.addressLine}
-          pageUrl={`${process.env.NEXT_PUBLIC_URL}/cafes/${id}`}
+          pageUrl={`${process.env.NEXT_PUBLIC_URL}/cafes/${id}/${tab}`}
           {...(data.images && {
             imageUrl: `${process.env.NEXT_PUBLIC_IMAGE_URL}${data.images[0]}`,
           })}
