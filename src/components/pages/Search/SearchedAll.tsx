@@ -8,6 +8,7 @@ import CafeCard from 'components/molecules/CafeCard';
 import ThemeCard from 'components/molecules/ThemeCard';
 import GenreCard from 'components/molecules/GenreCard';
 import { Box } from 'components/atoms';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 
 interface IProps {
   term: string;
@@ -71,6 +72,20 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
         )}
       </Section>
 
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        mt="-18px"
+        mb="24px"
+      >
+        <GoogleAdsense
+          style={{ height: '60px' }}
+          slot="2388298495"
+          responsive={false}
+        />
+      </Box>
+
       <Section>
         <Box
           flexDirection="row"
@@ -100,6 +115,19 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
           </ThemeItems>
         )}
       </Section>
+
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        mb="24px"
+      >
+        <GoogleAdsense
+          style={{ height: '60px' }}
+          slot="2388298495"
+          responsive={false}
+        />
+      </Box>
 
       <Section>
         <Box
@@ -167,6 +195,9 @@ const CafeItem = styled.li`
 const ThemeItems = styled.ul``;
 const ThemeItem = styled.li`
   margin-bottom: 18px;
+  :last-of-type {
+    margin-bottom: 0;
+  }
 `;
 const GenreItems = styled.ul``;
 const GenreItem = styled.li`

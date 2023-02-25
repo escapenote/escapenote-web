@@ -3,8 +3,10 @@ import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import api from 'api';
+import { useAppSelector } from 'store';
 import FetchMore from 'components/templates/FetchMore';
 import MyReviewCard from 'components/molecules/MyReviewCard';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 
 interface IProps {
   nickname: string;
@@ -29,6 +31,8 @@ const CafeReviews: React.FC<IProps> = ({ nickname }) => {
 
   return (
     <>
+      <Ads />
+
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -39,6 +43,8 @@ const CafeReviews: React.FC<IProps> = ({ nickname }) => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
+              {i !== 0 && <Ads />}
+
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <MyReviewCard type="cafe" review={item} />
@@ -55,6 +61,21 @@ const CafeReviews: React.FC<IProps> = ({ nickname }) => {
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
+    </>
+  );
+};
+
+const Ads = () => {
+  const colorTheme = useAppSelector(state => state.common.theme);
+  return (
+    <>
+      {colorTheme && (
+        <GoogleAdsense
+          format="fluid"
+          layoutKey="-gn+l-25-8i+nc"
+          slot={colorTheme === 'light' ? '6722295176' : '5310539955'}
+        />
+      )}
     </>
   );
 };

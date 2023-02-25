@@ -8,6 +8,7 @@ import { useAppSelector } from 'store';
 import NoXAxisScrollBar from 'components/templates/NoXAxisScrollBar';
 import CafeCard from 'components/molecules/CafeCard';
 import ThemeBigCard from 'components/molecules/ThemeBigCard';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 import { Box } from 'components/atoms';
 import iconMessage from 'assets/icons/message.svg';
 
@@ -106,6 +107,19 @@ const HomePage = () => {
         )}
       </Section>
 
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        mb="24px"
+      >
+        <GoogleAdsense
+          style={{ height: '60px' }}
+          slot="3154004694"
+          responsive={false}
+        />
+      </Box>
+
       <Section>
         <Box
           flexDirection="row"
@@ -135,6 +149,20 @@ const HomePage = () => {
           </CafeItems>
         )}
       </Section>
+
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        mt="-18px"
+        mb="24px"
+      >
+        <GoogleAdsense
+          style={{ height: '60px' }}
+          slot="3154004694"
+          responsive={false}
+        />
+      </Box>
 
       <Section>
         <Question href="mailto:escapenote.team@gmail.com">

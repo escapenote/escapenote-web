@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import api from 'api';
 import { revertAll, useAppDispatch } from 'store';
 import { logout } from 'store/authSlice';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 import { Box, Text } from 'components/atoms';
 import iconProfileCircle from 'assets/icons/profile-circle.svg';
 import iconLockGrey from 'assets/icons/lock-grey.svg';
@@ -105,6 +106,10 @@ const Settings = () => {
         </Items>
       </Box>
 
+      <Box mb="24px">
+        <GoogleAdsense format="auto" slot="5118968263" />
+      </Box>
+
       <Box>
         <Items>
           <Item role="button" onClick={handleLogout}>
@@ -165,12 +170,6 @@ const ImageBox = styled.div`
   height: 40px;
   background-color: rgb(var(--content));
   box-shadow: 0px 4px 32px rgba(107, 114, 128, 0.02);
-  /* body[data-theme='light'] & {
-    background-color: rgb(var(--primary100));
-  }
-  body[data-theme='dark'] & {
-    background-color: rgb(var(--greyscale700));
-  } */
 `;
 
 export default Settings;

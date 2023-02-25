@@ -35,8 +35,8 @@ const Circle = styled.div`
   border: 1px solid rgb(var(--border));
   width: 40px;
   height: 40px;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
 `;
 const Contents = styled.div`
   display: flex;
@@ -47,7 +47,7 @@ const Name = styled.strong`
 `;
 const Themes = styled.span`
   font-size: 12px;
-  color: rgb(var(--grey));
+  color: rgb(var(--greyscale400));
 `;
 
 export default GenreCard;

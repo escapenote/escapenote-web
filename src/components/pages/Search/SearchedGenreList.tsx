@@ -3,7 +3,9 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 
 import api from 'api';
+import { useAppSelector } from 'store';
 import GenreCard from 'components/molecules/GenreCard';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 
 interface IProps {
   term: string;
@@ -15,6 +17,8 @@ const SearchedGenreList: React.FC<IProps> = ({ term }) => {
 
   return (
     <>
+      <Ads />
+
       {isLoading ? (
         <Loading>로딩중...</Loading>
       ) : error ? (
@@ -29,6 +33,21 @@ const SearchedGenreList: React.FC<IProps> = ({ term }) => {
             </Item>
           ))}
         </Items>
+      )}
+    </>
+  );
+};
+
+const Ads = () => {
+  const colorTheme = useAppSelector(state => state.common.theme);
+  return (
+    <>
+      {colorTheme && (
+        <GoogleAdsense
+          format="fluid"
+          layoutKey="-gn+t-2s-c0+w5"
+          slot={colorTheme === 'light' ? '4408521827' : '4670846903'}
+        />
       )}
     </>
   );

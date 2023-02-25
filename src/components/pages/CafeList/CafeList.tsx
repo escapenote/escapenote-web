@@ -92,13 +92,11 @@ const Ads = () => {
   return (
     <>
       {colorTheme && (
-        <>
-          {colorTheme === 'light' ? (
-            <GoogleAdsense layoutKey="-go+s-2u-bd+v6" slot="1593526920" />
-          ) : (
-            <GoogleAdsense layoutKey="-go+s-2u-bd+v6" slot="3723036241" />
-          )}
-        </>
+        <GoogleAdsense
+          format="fluid"
+          layoutKey="-go+s-2u-bd+v6"
+          slot={colorTheme === 'light' ? '1593526920' : '3723036241'}
+        />
       )}
     </>
   );

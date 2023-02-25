@@ -3,8 +3,10 @@ import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import api from 'api';
+import { useAppSelector } from 'store';
 import FetchMore from 'components/templates/FetchMore';
 import CafeCard from 'components/molecules/CafeCard';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 
 interface IProps {
   term: string;
@@ -33,6 +35,8 @@ const SearchedCafes: React.FC<IProps> = ({ term }) => {
 
   return (
     <>
+      <Ads />
+
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -43,6 +47,8 @@ const SearchedCafes: React.FC<IProps> = ({ term }) => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
+              {i !== 0 && <Ads />}
+
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <CafeCard cafe={item} refetch={refetch} />
@@ -59,6 +65,21 @@ const SearchedCafes: React.FC<IProps> = ({ term }) => {
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
+    </>
+  );
+};
+
+const Ads = () => {
+  const colorTheme = useAppSelector(state => state.common.theme);
+  return (
+    <>
+      {colorTheme && (
+        <GoogleAdsense
+          format="fluid"
+          layoutKey="-gn+t-2s-c0+w5"
+          slot={colorTheme === 'light' ? '9857926100' : '7871725310'}
+        />
+      )}
     </>
   );
 };
