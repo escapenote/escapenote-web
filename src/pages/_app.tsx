@@ -14,6 +14,7 @@ import { currentAuthenticatedUserAsync } from 'store/authSlice';
 import { fetchCommonData } from 'store/dataSlice';
 import { setTheme } from 'store/commonSlice';
 import HeadDefaultMeta from 'components/templates/HeadDefaultMeta';
+import A2HS from 'components/organisms/A2HS';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const dispatch = useAppDispatch();
@@ -45,6 +46,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <QueryClientProvider client={queryClientRef.current}>
         <Hydrate state={(pageProps as any).dehydratedState}>
           <Component {...pageProps} />
+          <A2HS />
         </Hydrate>
       </QueryClientProvider>
     </>

@@ -87,6 +87,9 @@ const globalStyles = css`
   .invert {
     filter: var(--invert);
   }
+  .invert-reverse {
+    filter: var(--invertR);
+  }
   .underline {
     text-decoration: underline;
   }

@@ -52,6 +52,7 @@ export const variables = css`
     --shadow: 238, 238, 238;
     --disabled: 209, 213, 219; // greyscale300
     --invert: invert(0);
+    --invertR: invert(1);
   }
   body[data-theme='dark'] {
     --text: 250, 250, 251;
@@ -66,6 +67,7 @@ export const variables = css`
     --shadow: 238, 238, 238;
     --disabled: 75, 85, 99; // greyscale600
     --invert: invert(1);
+    --invertR: invert(0);
   }
 `;
 
