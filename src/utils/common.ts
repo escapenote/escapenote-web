@@ -6,6 +6,10 @@ export const numberWithComma = (num: string | number = 0) => {
   return Number(num).toLocaleString();
 };
 
+export const roundToDecimal = (num: number = 0) => {
+  return parseFloat(num.toFixed(1));
+};
+
 export const getFormattedPhoneNumber = (phoneNumber: string) => {
   let newPhoneNumber = phoneNumber.replaceAll('-', '');
   if (phoneNumber.charAt(0) === '0') {

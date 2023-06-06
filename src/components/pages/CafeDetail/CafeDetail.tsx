@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 import { ICafe } from 'types';
+import { roundToDecimal } from 'utils/common';
 import { Box, Stars } from 'components/atoms';
 import CafeThemes from './CafeThemes';
 import CafeInfo from './CafeInfo';
@@ -39,7 +40,7 @@ const CafeDetail: React.FC<IProps> = ({ id, tab, cafe }) => {
         <Rating>
           <Stars rating={cafe?.reviewsRating} />
           <span>
-            {cafe?.reviewsRating}점({cafe?.reviewsCount})
+            {roundToDecimal(cafe?.reviewsRating)}점({cafe?.reviewsCount})
           </span>
         </Rating>
       </Box>

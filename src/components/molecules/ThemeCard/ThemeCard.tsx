@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import api from 'api';
 import { ITheme } from 'types';
-import { numberWithComma } from 'utils/common';
+import { numberWithComma, roundToDecimal } from 'utils/common';
 import { useAppSelector } from 'store';
 import { Box, Stars } from 'components/atoms';
 import iconLock from 'assets/icons/lock.svg';
@@ -77,7 +77,7 @@ const ThemeCard: React.FC<IProps> = ({ theme, refetch }) => {
             <Rating>
               <Stars rating={theme?.reviewsRating} />
               <span>
-                {theme?.reviewsRating}점({theme?.reviewsCount})
+                {roundToDecimal(theme?.reviewsRating)}점({theme?.reviewsCount})
               </span>
             </Rating>
             <LevelBox>

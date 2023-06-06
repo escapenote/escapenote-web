@@ -5,6 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import api from 'api';
 import { ICafe } from 'types';
+import { roundToDecimal } from 'utils/common';
 import { useAppSelector } from 'store';
 import { Stars } from 'components/atoms';
 import iconCafeThumbnail from 'assets/icons/cafe-thumbnail.svg';
@@ -76,7 +77,7 @@ const CafeCard: React.FC<IProps> = ({ cafe, refetch, hideSave = false }) => {
         <Rating>
           <Stars rating={cafe?.reviewsRating} />
           <span>
-            {cafe?.reviewsRating}점({cafe?.reviewsCount})
+            {roundToDecimal(cafe?.reviewsRating)}점({cafe?.reviewsCount})
           </span>
         </Rating>
 

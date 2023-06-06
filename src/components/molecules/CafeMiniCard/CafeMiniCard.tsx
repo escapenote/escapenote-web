@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 
 import { ICafe } from 'types';
+import { roundToDecimal } from 'utils/common';
 import { Box, Stars } from 'components/atoms';
 import iconCafeThumbnail from 'assets/icons/cafe-thumbnail.svg';
 
@@ -28,7 +29,7 @@ const CafeMiniCard: React.FC<IProps> = ({ cafe }) => {
           <Rating>
             <Stars rating={cafe?.reviewsRating} />
             <span>
-              {cafe?.reviewsRating}점({cafe?.reviewsCount})
+              {roundToDecimal(cafe?.reviewsRating)}점({cafe?.reviewsCount})
             </span>
           </Rating>
         </Box>
