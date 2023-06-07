@@ -115,7 +115,7 @@ const A2HS = () => {
     <RadiusContainer>
       <AppIconMini
         src={`${process.env.NEXT_PUBLIC_URL}/icons/apple-icon-120x120.png`}
-        alt="NomadTerrace"
+        alt="이스케이프노트"
       />
       <span>
         iPhone에 이 웹 앱을 설치합니다.

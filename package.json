@@ -28,6 +28,7 @@
     "js-cookie": "^3.0.5",
     "next": "^12.2.3",
     "next-images": "^1.8.4",
+    "next-pwa": "^5.6.0",
     "next-redux-wrapper": "^7.0.5",
     "next-sitemap": "^3.1.30",
     "pica": "^9.0.1",

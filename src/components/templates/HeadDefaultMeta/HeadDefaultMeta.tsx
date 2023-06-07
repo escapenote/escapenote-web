@@ -6,7 +6,8 @@ import { useAppSelector } from 'store';
 const HeadDefaultMeta: React.FC = () => {
   const theme = useAppSelector(state => state.common.theme || 'light');
 
-  const title = '이스케이프노트';
+  const name = '이스케이프노트';
+  const title = '이스케이프노트 - 방탈출에 대한 모든 것';
   const color = theme === 'light' ? '#ffffff' : '#1c1c24';
 
   return (
@@ -17,13 +18,14 @@ const HeadDefaultMeta: React.FC = () => {
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
       />
       <title>{title}</title>
-      <meta property="og:site_name" content={title} />
+      <meta property="og:site_name" content={name} />
       <meta property="og:type" content="website" />
 
+      {/* 아이콘 및 색상 정보 */}
       <meta name="theme-color" content={color} />
       <meta name="apple-mobile-web-app-status-bar-style" content={color} />
       <meta name="msapplication-TileColor" content={color} />
-      <meta name="apple-mobile-web-app-title" content={title} />
+      <meta name="apple-mobile-web-app-title" content={name} />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <link rel="manifest" href="/manifest.json" />
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -108,6 +110,58 @@ const HeadDefaultMeta: React.FC = () => {
       <meta
         name="msapplication-TileImage"
         content="/icons/ms-icon-144x144.png"
+      />
+
+      {/* iOS 스플래쉬 이미지 */}
+      <link
+        href="/images/iphone5-splash.png"
+        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image"
+      />
+      <link
+        href="/images/iphone6-splash.png"
+        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image"
+      />
+      <link
+        href="/images/iphoneplus-splash.png"
+        media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image"
+      />
+      <link
+        href="/images/iphonex-splash.png"
+        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image"
+      />
+      <link
+        href="/images/iphonexr-splash.png"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image"
+      />
+      <link
+        href="/images/iphonexsmax-splash.png"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image"
+      />
+      <link
+        href="/images/ipad-splash.png"
+        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image"
+      />
+      <link
+        href="/images/ipadpro1-splash.png"
+        media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image"
+      />
+      <link
+        href="/images/ipadpro3-splash.png"
+        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image"
+      />
+      <link
+        href="/images/ipadpro2-splash.png"
+        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image"
       />
 
       {/* 도메인 리소스 외부 연결시 시간 단축 */}
