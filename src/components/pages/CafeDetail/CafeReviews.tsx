@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from 'store';
 import { setReviewTypeAndId } from 'store/reviewSlice';
 import FetchMore from 'components/templates/FetchMore';
 import ReviewCard from 'components/molecules/ReviewCard';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 import { Box, Stars } from 'components/atoms';
 
 interface IProps {
@@ -51,7 +52,11 @@ const CafeReviews: React.FC<IProps> = ({ cafeId, cafe }) => {
   const reviewsCount = cafe?.reviewsCount ?? 0;
 
   return (
-    <>
+    <Wrapper>
+      <Box mb="24px">
+        <GoogleAdsense style={{ height: '54px' }} slot="9807600775" />
+      </Box>
+
       <Dashboard>
         <RatingBox>
           <Stars size="40px" rating={cafe?.reviewsRating} />
@@ -105,12 +110,15 @@ const CafeReviews: React.FC<IProps> = ({ cafeId, cafe }) => {
           isFetchingNextPage={isFetchingNextPage}
         />
       </Items>
-    </>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.div`
+  margin-bottom: 18px;
+  padding-top: 18px;
+`;
 const Dashboard = styled.div`
-  margin-top: 24px;
   border-bottom: 1px solid rgb(var(--border));
 `;
 const RatingBox = styled.div`

@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
 import api from 'api';
-import ThemeCard from 'components/molecules/ThemeCard';
 import { useQuery } from '@tanstack/react-query';
+import ThemeCard from 'components/molecules/ThemeCard';
+import ThemeAds from 'components/molecules/ThemeAds';
 
 interface IProps {
   cafeId: string;
@@ -17,6 +18,8 @@ const CafeThemes: React.FC<IProps> = ({ cafeId }) => {
 
   return (
     <List>
+      <ThemeAds lightSlot="2962172585" darkSlot="7831355885" />
+
       {isLoading ? (
         <Loading>로딩중...</Loading>
       ) : error ? (

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from 'store';
 import { addRecentlySearchKeyword } from 'store/searchSlice';
 import Layout from 'components/templates/Layout';
 import SearchBar from 'components/molecules/SearchBar';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 import { Box, Back, Tag } from 'components/atoms';
 import SearchedAll from './SearchedAll';
 import SearchedCafes from './SearchedCafes';
@@ -126,6 +127,12 @@ const Search = () => {
                   </Box>
                 ))
               : '없음'}
+          </Box>
+
+          <Box height="24px" />
+
+          <Box>
+            <GoogleAdsense format="auto" slot="4418708571" />
           </Box>
         </>
       )}

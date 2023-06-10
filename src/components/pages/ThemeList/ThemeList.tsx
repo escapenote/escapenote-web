@@ -9,7 +9,7 @@ import ThemeFilters from './ThemeFilters';
 import NoXAxisScrollBar from 'components/templates/NoXAxisScrollBar';
 import FetchMore from 'components/templates/FetchMore';
 import ThemeCard from 'components/molecules/ThemeCard';
-import GoogleAdsense from 'components/molecules/GoogleAdsense';
+import ThemeAds from 'components/molecules/ThemeAds';
 import { Box } from 'components/atoms';
 
 const ThemeListPage = () => {
@@ -69,7 +69,7 @@ const ThemeListPage = () => {
         </NoXAxisScrollBar>
       </Box>
 
-      <Ads />
+      <ThemeAds lightSlot="3363518566" darkSlot="4536041577" />
 
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
@@ -81,7 +81,9 @@ const ThemeListPage = () => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              {i !== 0 && <Ads />}
+              {i !== 0 && (
+                <ThemeAds lightSlot="3363518566" darkSlot="4536041577" />
+              )}
 
               {group.items?.map(item => (
                 <Item key={item.id}>
@@ -99,21 +101,6 @@ const ThemeListPage = () => {
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
-    </>
-  );
-};
-
-const Ads = () => {
-  const colorTheme = useAppSelector(state => state.common.theme);
-  return (
-    <>
-      {colorTheme && (
-        <GoogleAdsense
-          format="fluid"
-          layoutKey="-go+s-2u-bd+v6"
-          slot={colorTheme === 'light' ? '3363518566' : '4536041577'}
-        />
-      )}
     </>
   );
 };

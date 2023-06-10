@@ -3,10 +3,9 @@ import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import api from 'api';
-import { useAppSelector } from 'store';
 import FetchMore from 'components/templates/FetchMore';
 import ThemeCard from 'components/molecules/ThemeCard';
-import GoogleAdsense from 'components/molecules/GoogleAdsense';
+import ThemeAds from 'components/molecules/ThemeAds';
 
 const SavedThemes = () => {
   const {
@@ -31,7 +30,7 @@ const SavedThemes = () => {
 
   return (
     <>
-      <Ads />
+      <ThemeAds lightSlot="5707762253" darkSlot="2835585707" />
 
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
@@ -43,7 +42,9 @@ const SavedThemes = () => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              {i !== 0 && <Ads />}
+              {i !== 0 && (
+                <ThemeAds lightSlot="5707762253" darkSlot="2835585707" />
+              )}
 
               {group.items?.map(item => (
                 <Item key={item.id}>
@@ -61,21 +62,6 @@ const SavedThemes = () => {
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
-    </>
-  );
-};
-
-const Ads = () => {
-  const colorTheme = useAppSelector(state => state.common.theme);
-  return (
-    <>
-      {colorTheme && (
-        <GoogleAdsense
-          format="fluid"
-          layoutKey="-gn+t-2s-c0+w5"
-          slot={colorTheme === 'light' ? '5707762253' : '2835585707'}
-        />
-      )}
     </>
   );
 };

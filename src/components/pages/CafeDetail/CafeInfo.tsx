@@ -1,10 +1,10 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import { ICafe } from 'types';
 import { Box } from 'components/atoms';
 import SimpleMap from 'components/molecules/SimpleMap';
-import { useEffect } from 'react';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 
 interface IProps {
   cafe?: ICafe;
@@ -39,6 +39,10 @@ const CafeInfo: React.FC<IProps> = ({ cafe }) => {
 
   return (
     <Wrapper>
+      <Box mb="24px">
+        <GoogleAdsense style={{ height: '54px' }} slot="6354622686" />
+      </Box>
+
       {cafe?.intro && (
         <Box alignItems="flex-start" mb="28px">
           <Intro ref={introRef}>{cafe?.intro}</Intro>

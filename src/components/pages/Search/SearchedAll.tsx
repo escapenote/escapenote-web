@@ -77,13 +77,9 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
         alignItems="center"
         justifyContent="center"
         mt="-18px"
-        mb="24px"
+        mb="28px"
       >
-        <GoogleAdsense
-          style={{ height: '60px' }}
-          slot="2388298495"
-          responsive={false}
-        />
+        <GoogleAdsense style={{ height: '54px' }} slot="2388298495" />
       </Box>
 
       <Section>
@@ -120,13 +116,9 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
         flexDirection="row"
         alignItems="center"
         justifyContent="center"
-        mb="24px"
+        mb="28px"
       >
-        <GoogleAdsense
-          style={{ height: '60px' }}
-          slot="2388298495"
-          responsive={false}
-        />
+        <GoogleAdsense style={{ height: '54px' }} slot="2388298495" />
       </Box>
 
       <Section>
@@ -163,7 +155,7 @@ const SearchedAll: React.FC<IProps> = ({ term }) => {
 };
 
 const Section = styled.section`
-  margin-bottom: 36px;
+  margin-bottom: 28px;
 `;
 const Title = styled.strong`
   font-size: 16px;

@@ -13,7 +13,7 @@ const GoogleAdsense: React.FC<IProps> = ({
   className = '',
   format,
   layoutKey,
-  responsive = true,
+  responsive = false,
   slot,
 }) => {
   useEffect(() => {
@@ -23,11 +23,18 @@ const GoogleAdsense: React.FC<IProps> = ({
       }
     } catch {
       // Pass
+      console.log('aaaaaaaaaa');
     }
   }, []);
 
   return (
-    <div style={{ width: '100%', textAlign: 'left', overflow: 'hidden' }}>
+    <div
+      style={{
+        width: '100%',
+        textAlign: 'left',
+        overflow: 'hidden',
+      }}
+    >
       <ins
         className={`adsbygoogle ${className}`}
         style={{ display: 'block', ...style }}

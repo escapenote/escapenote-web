@@ -7,6 +7,7 @@ import { numberWithComma } from 'utils/common';
 import { useAppDispatch, useAppSelector } from 'store';
 import { setReviewTypeAndId } from 'store/reviewSlice';
 import CafeMiniCard from 'components/molecules/CafeMiniCard';
+import GoogleAdsense from 'components/molecules/GoogleAdsense';
 import { Box, Stars, Text } from 'components/atoms';
 import ThemeReviews from './ThemeReviews';
 import iconGhost from 'assets/icons/ghost.svg';
@@ -133,6 +134,18 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
         )}
         <Intro>{theme?.intro}</Intro>
       </Container>
+
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        pt="2px"
+        pb="12px"
+        px="24px"
+        backgroundColor="rgb(var(--background))"
+      >
+        <GoogleAdsense style={{ height: '54px' }} slot="9735410596" />
+      </Box>
 
       <Container>
         <Box mb="14px">

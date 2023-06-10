@@ -5,8 +5,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import api from 'api';
 import FetchMore from 'components/templates/FetchMore';
 import MyReviewCard from 'components/molecules/MyReviewCard';
-import { useAppSelector } from 'store';
-import GoogleAdsense from 'components/molecules/GoogleAdsense';
+import ThemeAds from 'components/molecules/ThemeAds';
 
 interface IProps {
   nickname: string;
@@ -31,7 +30,7 @@ const ThemeReviews: React.FC<IProps> = ({ nickname }) => {
 
   return (
     <>
-      <Ads />
+      <ThemeAds lightSlot="2520725080" darkSlot="9824500033" noContainer />
 
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
@@ -43,7 +42,9 @@ const ThemeReviews: React.FC<IProps> = ({ nickname }) => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              {i !== 0 && <Ads />}
+              {i !== 0 && (
+                <ThemeAds lightSlot="2520725080" darkSlot="9824500033" />
+              )}
 
               {group.items?.map(item => (
                 <Item key={item.id}>
@@ -61,21 +62,6 @@ const ThemeReviews: React.FC<IProps> = ({ nickname }) => {
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
-    </>
-  );
-};
-
-const Ads = () => {
-  const colorTheme = useAppSelector(state => state.common.theme);
-  return (
-    <>
-      {colorTheme && (
-        <GoogleAdsense
-          format="fluid"
-          layoutKey="-gn+l-25-8i+nc"
-          slot={colorTheme === 'light' ? '2520725080' : '9824500033'}
-        />
-      )}
     </>
   );
 };

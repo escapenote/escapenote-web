@@ -9,7 +9,7 @@ import CafeFilters from './CafeFilters';
 import NoXAxisScrollBar from 'components/templates/NoXAxisScrollBar';
 import FetchMore from 'components/templates/FetchMore';
 import CafeCard from 'components/molecules/CafeCard';
-import GoogleAdsense from 'components/molecules/GoogleAdsense';
+import ThemeAds from 'components/molecules/ThemeAds';
 import { Box } from 'components/atoms';
 
 const CafeListPage = () => {
@@ -53,7 +53,7 @@ const CafeListPage = () => {
         </NoXAxisScrollBar>
       </Box>
 
-      <Ads />
+      <ThemeAds lightSlot="1593526920" darkSlot="3723036241" />
 
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
@@ -65,7 +65,9 @@ const CafeListPage = () => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              {i !== 0 && <Ads />}
+              {i !== 0 && (
+                <ThemeAds lightSlot="1593526920" darkSlot="3723036241" />
+              )}
 
               {group.items?.map(item => (
                 <Item key={item.id}>
@@ -83,21 +85,6 @@ const CafeListPage = () => {
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
-    </>
-  );
-};
-
-const Ads = () => {
-  const colorTheme = useAppSelector(state => state.common.theme);
-  return (
-    <>
-      {colorTheme && (
-        <GoogleAdsense
-          format="fluid"
-          layoutKey="-go+s-2u-bd+v6"
-          slot={colorTheme === 'light' ? '1593526920' : '3723036241'}
-        />
-      )}
     </>
   );
 };

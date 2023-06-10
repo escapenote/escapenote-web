@@ -111,13 +111,9 @@ const HomePage = () => {
         flexDirection="row"
         alignItems="center"
         justifyContent="center"
-        mb="24px"
+        mb="28px"
       >
-        <GoogleAdsense
-          style={{ height: '60px' }}
-          slot="3154004694"
-          responsive={false}
-        />
+        <GoogleAdsense style={{ height: '54px' }} slot="3154004694" />
       </Box>
 
       <Section>
@@ -155,13 +151,9 @@ const HomePage = () => {
         alignItems="center"
         justifyContent="center"
         mt="-18px"
-        mb="24px"
+        mb="28px"
       >
-        <GoogleAdsense
-          style={{ height: '60px' }}
-          slot="3154004694"
-          responsive={false}
-        />
+        <GoogleAdsense style={{ height: '54px' }} slot="3154004694" />
       </Box>
 
       <Section>
@@ -182,7 +174,7 @@ const HomePage = () => {
 };
 
 const Section = styled.section`
-  margin-bottom: 36px;
+  margin-bottom: 28px;
 `;
 const Title = styled.strong`
   font-size: 16px;
