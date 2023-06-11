@@ -23,7 +23,6 @@ const GoogleAdsense: React.FC<IProps> = ({
       }
     } catch {
       // Pass
-      console.log('aaaaaaaaaa');
     }
   }, []);
 
