@@ -34,8 +34,6 @@ const GenreDetailPage: React.FC<IProps> = ({ genre }) => {
 
   return (
     <>
-      <ThemeAds lightSlot="4459905325" darkSlot="1259823070" />
-
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -45,11 +43,9 @@ const GenreDetailPage: React.FC<IProps> = ({ genre }) => {
       ) : (
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
-            <Items>
-              {i !== 0 && (
-                <ThemeAds lightSlot="4459905325" darkSlot="1259823070" />
-              )}
+            <ThemeAds lightSlot="4459905325" darkSlot="1259823070" />
 
+            <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <ThemeCard theme={item} refetch={refetch} />

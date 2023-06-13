@@ -53,8 +53,6 @@ const CafeListPage = () => {
         </NoXAxisScrollBar>
       </Box>
 
-      <ThemeAds lightSlot="1593526920" darkSlot="3723036241" />
-
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -64,11 +62,9 @@ const CafeListPage = () => {
       ) : (
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
-            <Items>
-              {i !== 0 && (
-                <ThemeAds lightSlot="1593526920" darkSlot="3723036241" />
-              )}
+            <ThemeAds lightSlot="1593526920" darkSlot="3723036241" />
 
+            <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <CafeCard cafe={item} refetch={refetch} />

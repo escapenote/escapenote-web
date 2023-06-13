@@ -42,10 +42,6 @@ const CafeReviews: React.FC<IProps> = ({ nickname }) => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              {i !== 0 && (
-                <ThemeAds lightSlot="6722295176" darkSlot="5310539955" />
-              )}
-
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <MyReviewCard type="cafe" review={item} />

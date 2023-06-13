@@ -59,7 +59,7 @@ const CafeReviews: React.FC<IProps> = ({ cafeId, cafe }) => {
 
       <Dashboard>
         <RatingBox>
-          <Stars size="40px" rating={cafe?.reviewsRating} />
+          <Stars size="38px" rating={cafe?.reviewsRating} />
           <Box width="8px" />
           {(cafe?.reviewsRating ?? 0).toFixed(1)}점({reviewsCount})
         </RatingBox>
@@ -127,7 +127,7 @@ const RatingBox = styled.div`
   align-items: center;
   margin-bottom: 10px;
   border-radius: 12px;
-  padding: 33px 24px;
+  padding: 33px 22px;
   height: 108px;
   background-color: rgb(var(--background));
   font-size: 18px;

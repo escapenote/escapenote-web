@@ -69,8 +69,6 @@ const ThemeListPage = () => {
         </NoXAxisScrollBar>
       </Box>
 
-      <ThemeAds lightSlot="3363518566" darkSlot="4536041577" />
-
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -80,11 +78,9 @@ const ThemeListPage = () => {
       ) : (
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
-            <Items>
-              {i !== 0 && (
-                <ThemeAds lightSlot="3363518566" darkSlot="4536041577" />
-              )}
+            <ThemeAds lightSlot="3363518566" darkSlot="4536041577" />
 
+            <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <ThemeCard theme={item} refetch={refetch} />

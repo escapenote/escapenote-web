@@ -110,7 +110,7 @@ const Container = styled.a`
   flex-direction: column;
   align-items: center;
   border-radius: 16px;
-  padding: 24px;
+  padding: 24px 18px;
   box-shadow: 0 0 40px rgba(var(--text), 0.06);
 `;
 const Image = styled.img`

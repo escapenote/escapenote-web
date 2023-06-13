@@ -49,7 +49,12 @@ const Container = styled.div`
   margin-bottom: 18px;
   border-radius: 16px;
   padding: 16px 14px 0px 14px;
+  /* padding: 14px; */
   box-shadow: 0 0 40px rgba(var(--text), 0.06);
+  /* * {
+    max-height: 110px !important;
+    overflow: hidden !important;
+  } */
 `;
 
 export default ThemeAds;

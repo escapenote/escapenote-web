@@ -34,8 +34,6 @@ const SearchedCafes: React.FC<IProps> = ({ term }) => {
 
   return (
     <>
-      <ThemeAds lightSlot="9857926100" darkSlot="7871725310" />
-
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -45,11 +43,9 @@ const SearchedCafes: React.FC<IProps> = ({ term }) => {
       ) : (
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
-            <Items>
-              {i !== 0 && (
-                <ThemeAds lightSlot="9857926100" darkSlot="7871725310" />
-              )}
+            <ThemeAds lightSlot="9857926100" darkSlot="7871725310" />
 
+            <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <CafeCard cafe={item} refetch={refetch} />

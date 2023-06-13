@@ -34,8 +34,6 @@ const SearchedThemes: React.FC<IProps> = ({ term }) => {
 
   return (
     <>
-      <ThemeAds lightSlot="3194113708" darkSlot="1689460342" />
-
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -45,11 +43,9 @@ const SearchedThemes: React.FC<IProps> = ({ term }) => {
       ) : (
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
-            <Items>
-              {i !== 0 && (
-                <ThemeAds lightSlot="3194113708" darkSlot="1689460342" />
-              )}
+            <ThemeAds lightSlot="3194113708" darkSlot="1689460342" />
 
+            <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <ThemeCard theme={item} refetch={refetch} />

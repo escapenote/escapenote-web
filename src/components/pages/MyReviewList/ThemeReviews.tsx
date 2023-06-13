@@ -42,10 +42,6 @@ const ThemeReviews: React.FC<IProps> = ({ nickname }) => {
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
             <Items>
-              {i !== 0 && (
-                <ThemeAds lightSlot="2520725080" darkSlot="9824500033" />
-              )}
-
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <MyReviewCard type="theme" review={item} />
@@ -55,7 +51,6 @@ const ThemeReviews: React.FC<IProps> = ({ nickname }) => {
           </React.Fragment>
         ))
       )}
-
       <FetchMore
         fetchNextPage={fetchNextPage}
         hasNextPage={hasNextPage}

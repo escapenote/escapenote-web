@@ -30,8 +30,6 @@ const SavedThemes = () => {
 
   return (
     <>
-      <ThemeAds lightSlot="5707762253" darkSlot="2835585707" />
-
       {status === 'loading' ? (
         <Loading>로딩중...</Loading>
       ) : status === 'error' ? (
@@ -41,11 +39,9 @@ const SavedThemes = () => {
       ) : (
         data?.pages.map((group, i: number) => (
           <React.Fragment key={i}>
-            <Items>
-              {i !== 0 && (
-                <ThemeAds lightSlot="5707762253" darkSlot="2835585707" />
-              )}
+            <ThemeAds lightSlot="5707762253" darkSlot="2835585707" />
 
+            <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
                   <ThemeCard theme={item} refetch={refetch} />
