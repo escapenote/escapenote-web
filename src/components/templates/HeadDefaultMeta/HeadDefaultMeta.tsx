@@ -1,7 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 
+import { useAppSelector } from 'store';
+
 const HeadDefaultMeta: React.FC = () => {
+  const theme = useAppSelector(state => state.common.theme);
+
   const name = '이스케이프노트';
   const title = '이스케이프노트 - 방탈출에 대한 모든 것';
   const lightColor = '#ffffff';
@@ -19,36 +23,17 @@ const HeadDefaultMeta: React.FC = () => {
       <meta property="og:type" content="website" />
 
       {/* 아이콘 및 색상 정보 */}
-      <meta
-        name="theme-color"
-        media="(prefers-color-scheme: light)"
-        content={lightColor}
-      />
-      <meta
-        name="theme-color"
-        media="(prefers-color-scheme: dark)"
-        content={darkColor}
-      />
-      <meta
-        name="apple-mobile-web-app-status-bar-style"
-        media="(prefers-color-scheme: light)"
-        content={lightColor}
-      />
-      <meta
-        name="apple-mobile-web-app-status-bar-style"
-        media="(prefers-color-scheme: dark)"
-        content={darkColor}
-      />
-      <meta
-        name="msapplication-TileColor"
-        media="(prefers-color-scheme: light)"
-        content={lightColor}
-      />
-      <meta
-        name="msapplication-TileColor"
-        media="(prefers-color-scheme: dark)"
-        content={darkColor}
-      />
+      {theme === 'light' ? (
+        <>
+          <meta name="theme-color" content={lightColor} />
+          <meta name="msapplication-TileColor" content={lightColor} />
+        </>
+      ) : (
+        <>
+          <meta name="theme-color" content={darkColor} />
+          <meta name="msapplication-TileColor" content={darkColor} />
+        </>
+      )}
       <meta name="apple-mobile-web-app-title" content={name} />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <link rel="manifest" href="/manifest.json" />
@@ -121,10 +106,6 @@ const HeadDefaultMeta: React.FC = () => {
       <link
         rel="apple-touch-icon"
         sizes="180x180"
-        href="/icons/apple-icon-180x180.png"
-      />
-      <link
-        rel="apple-touch-startup-image"
         href="/icons/apple-icon-180x180.png"
       />
       <link
