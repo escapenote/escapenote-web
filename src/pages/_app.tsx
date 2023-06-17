@@ -18,9 +18,16 @@ import A2HS from 'components/organisms/A2HS';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const dispatch = useAppDispatch();
+
   const queryClientRef = useRef<QueryClient>();
   if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient();
+    queryClientRef.current = new QueryClient({
+      defaultOptions: {
+        queries: {
+          staleTime: 5 * 60 * 1000, // 5 minutes
+        },
+      },
+    });
   }
 
   useEffect(() => {
@@ -28,7 +35,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
     const currentTheme = getUserPreference();
     dispatch(setTheme(currentTheme));
-    document.body.dataset.theme = currentTheme;
   }, []);
 
   function getUserPreference() {

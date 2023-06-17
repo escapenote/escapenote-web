@@ -15,22 +15,12 @@ class MyDocument extends Document {
   }
 
   render() {
-    const setInitialTheme = `
-      function getUserPreference() {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light';
-      }
-      document.body.dataset.theme = getUserPreference();
-    `;
-
     return (
       <Html lang="ko">
         <Head>
           <Analytics />
         </Head>
         <body>
-          <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
           <Main />
           <div id="modal"></div>
           <NextScript />

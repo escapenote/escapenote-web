@@ -1,12 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
 
-const name = '이스케이프노트';
-const title = '이스케이프노트 - 방탈출에 대한 모든 것';
-const lightColor = '#ffffff';
-const darkColor = '#1c1c24';
-
 const HeadDefaultMeta: React.FC = () => {
+  const name = '이스케이프노트';
+  const title = '이스케이프노트 - 방탈출에 대한 모든 것';
+  const lightColor = '#ffffff';
+  const darkColor = '#1c1c24';
+
   return (
     <Head>
       <meta charSet="utf-8" />
@@ -19,19 +19,31 @@ const HeadDefaultMeta: React.FC = () => {
       <meta property="og:type" content="website" />
 
       {/* 아이콘 및 색상 정보 */}
-      <meta name="theme-color" content={lightColor} />
+      <meta
+        name="theme-color"
+        media="(prefers-color-scheme: light)"
+        content={lightColor}
+      />
       <meta
         name="theme-color"
         media="(prefers-color-scheme: dark)"
         content={darkColor}
       />
-      <meta name="apple-mobile-web-app-status-bar-style" content={lightColor} />
+      <meta
+        name="apple-mobile-web-app-status-bar-style"
+        media="(prefers-color-scheme: light)"
+        content={lightColor}
+      />
       <meta
         name="apple-mobile-web-app-status-bar-style"
         media="(prefers-color-scheme: dark)"
         content={darkColor}
       />
-      <meta name="msapplication-TileColor" content={lightColor} />
+      <meta
+        name="msapplication-TileColor"
+        media="(prefers-color-scheme: light)"
+        content={lightColor}
+      />
       <meta
         name="msapplication-TileColor"
         media="(prefers-color-scheme: dark)"
@@ -127,7 +139,7 @@ const HeadDefaultMeta: React.FC = () => {
       {/* iOS 스플래쉬 이미지 */}
       <link
         href="/images/iphone5-splash-light.png"
-        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+        media="(prefers-color-scheme: light) and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
@@ -137,7 +149,7 @@ const HeadDefaultMeta: React.FC = () => {
       />
       <link
         href="/images/iphone6-splash-light.png"
-        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+        media="(prefers-color-scheme: light) and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
@@ -147,7 +159,7 @@ const HeadDefaultMeta: React.FC = () => {
       />
       <link
         href="/images/iphoneplus-splash-light.png"
-        media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+        media="(prefers-color-scheme: light) and (device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
         rel="apple-touch-startup-image"
       />
       <link
@@ -157,7 +169,7 @@ const HeadDefaultMeta: React.FC = () => {
       />
       <link
         href="/images/iphonex-splash-light.png"
-        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+        media="(prefers-color-scheme: light) and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
         rel="apple-touch-startup-image"
       />
       <link
@@ -167,7 +179,7 @@ const HeadDefaultMeta: React.FC = () => {
       />
       <link
         href="/images/iphonexr-splash-light.png"
-        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+        media="(prefers-color-scheme: light) and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
@@ -177,7 +189,7 @@ const HeadDefaultMeta: React.FC = () => {
       />
       <link
         href="/images/iphonexsmax-splash-light.png"
-        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+        media="(prefers-color-scheme: light) and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
         rel="apple-touch-startup-image"
       />
       <link
@@ -187,7 +199,7 @@ const HeadDefaultMeta: React.FC = () => {
       />
       <link
         href="/images/ipad-splash-light.png"
-        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+        media="(prefers-color-scheme: light) and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
@@ -197,7 +209,7 @@ const HeadDefaultMeta: React.FC = () => {
       />
       <link
         href="/images/ipadpro1-splash-light.png"
-        media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+        media="(prefers-color-scheme: light) and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
@@ -207,7 +219,7 @@ const HeadDefaultMeta: React.FC = () => {
       />
       <link
         href="/images/ipadpro3-splash-light.png"
-        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+        media="(prefers-color-scheme: light) and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
@@ -217,7 +229,7 @@ const HeadDefaultMeta: React.FC = () => {
       />
       <link
         href="/images/ipadpro2-splash-light.png"
-        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+        media="(prefers-color-scheme: light) and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
