@@ -119,103 +119,53 @@ const HeadDefaultMeta: React.FC = () => {
 
       {/* iOS 스플래쉬 이미지 */}
       <link
-        href="/images/iphone5-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+        href="/images/iphone5-splash.png"
+        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
-        href="/images/iphone5-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+        href="/images/iphone6-splash.png"
+        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
-        href="/images/iphone6-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+        href="/images/iphoneplus-splash.png"
+        media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
         rel="apple-touch-startup-image"
       />
       <link
-        href="/images/iphone6-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+        href="/images/iphonex-splash.png"
+        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
         rel="apple-touch-startup-image"
       />
       <link
-        href="/images/iphoneplus-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+        href="/images/iphonexr-splash.png"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
-        href="/images/iphoneplus-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+        href="/images/iphonexsmax-splash.png"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
         rel="apple-touch-startup-image"
       />
       <link
-        href="/images/iphonex-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+        href="/images/ipad-splash.png"
+        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
-        href="/images/iphonex-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+        href="/images/ipadpro1-splash.png"
+        media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
-        href="/images/iphonexr-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+        href="/images/ipadpro3-splash.png"
+        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
       <link
-        href="/images/iphonexr-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/iphonexsmax-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/iphonexsmax-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/ipad-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/ipad-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/ipadpro1-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/ipadpro1-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/ipadpro3-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/ipadpro3-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/ipadpro2-splash-light.png"
-        media="(prefers-color-scheme: light) and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
-        rel="apple-touch-startup-image"
-      />
-      <link
-        href="/images/ipadpro2-splash-dark.png"
-        media="(prefers-color-scheme: dark) and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+        href="/images/ipadpro2-splash.png"
+        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
         rel="apple-touch-startup-image"
       />
 
