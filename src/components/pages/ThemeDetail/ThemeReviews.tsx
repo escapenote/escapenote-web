@@ -18,9 +18,9 @@ const ThemeReviews: React.FC<IProps> = ({ themeId, reviewsCount }) => {
   const user = useAppSelector(state => state.auth.user);
 
   const { isLoading, data, error } = useQuery(
-    ['fetchThemeReviews', Boolean(user), themeId, 4],
+    ['fetchThemeReviews', Boolean(user), themeId, 5],
     () => {
-      return api.themes.fetchThemeReviews({ id: themeId, take: 4 });
+      return api.themes.fetchThemeReviews({ id: themeId, take: 5 });
     },
   );
 

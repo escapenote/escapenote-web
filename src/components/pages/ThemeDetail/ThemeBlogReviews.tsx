@@ -17,8 +17,8 @@ const ThemeBlogReviews: React.FC<IProps> = ({ themeId, reviewsCount }) => {
     isLoading: blogLoading,
     data: blogReviews,
     error: blogError,
-  } = useQuery(['fetchThemeBlogReviews', themeId, 4], () => {
-    return api.themes.fetchThemeBlogReviews({ id: themeId, take: 4 });
+  } = useQuery(['fetchThemeBlogReviews', themeId, 5], () => {
+    return api.themes.fetchThemeBlogReviews({ id: themeId, take: 5 });
   });
 
   return (
