@@ -19,10 +19,12 @@ const BlogReviewCard: React.FC<IProps> = ({ review }) => {
           <Desc>{review.desc}</Desc>
         </Box>
 
-        <Thumbnail
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${review.thumbnail}`}
-          alt={review.title}
-        />
+        {review.thumbnail && (
+          <Thumbnail
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${review.thumbnail}`}
+            alt={review.title}
+          />
+        )}
       </Box>
     </Container>
   );
