@@ -1,5 +1,5 @@
 import { api } from 'api';
-import { IPage, ITheme, IThemeReview } from 'types';
+import { IBlogReview, IPage, ITheme, IThemeReview } from 'types';
 import { getGrade, getLevel } from 'utils/translations';
 
 /**
@@ -111,7 +111,7 @@ interface IFetchThemeReviewProps {
 }
 export const fetchThemeReviews = async ({
   id,
-  take = 5,
+  take = 20,
   cursor,
   sort,
   order,
@@ -153,5 +153,30 @@ export const writeReviewOnTheme = async ({
 }: IWriteReviewOnThemeProps) => {
   const body = { rating, success, level, fear, activity, text };
   const { data } = await api.post<boolean>(`themes/${id}/reviews`, body);
+  return data;
+};
+
+/**
+ * 테마 블로그 리뷰 리스트 조회
+ */
+interface IFetchThemeBlogReviewsProps {
+  id: string;
+  take?: number;
+  cursor?: string;
+}
+export const fetchThemeBlogReviews = async ({
+  id,
+  take = 20,
+  cursor,
+}: IFetchThemeBlogReviewsProps) => {
+  const params = { take } as IFetchThemeBlogReviewsProps;
+  if (cursor) params.cursor = cursor;
+
+  const { data } = await api.get<{ items: IBlogReview[]; pageInfo: IPage }>(
+    `themes/${id}/blog-reviews`,
+    {
+      params,
+    },
+  );
   return data;
 };

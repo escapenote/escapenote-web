@@ -29,6 +29,7 @@ export interface ITheme {
   reviewsFear: number;
   reviewsActivity: number;
   reviewsCount: number;
+  blogReviewsCount: number;
   status: string;
   createdAt: string;
   updatedAt: string;

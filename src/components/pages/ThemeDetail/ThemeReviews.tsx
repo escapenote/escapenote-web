@@ -18,9 +18,9 @@ const ThemeReviews: React.FC<IProps> = ({ themeId, reviewsCount }) => {
   const user = useAppSelector(state => state.auth.user);
 
   const { isLoading, data, error } = useQuery(
-    ['fetchThemeReviews', Boolean(user), themeId, 5],
+    ['fetchThemeReviews', Boolean(user), themeId, 4],
     () => {
-      return api.themes.fetchThemeReviews({ id: themeId, take: 5 });
+      return api.themes.fetchThemeReviews({ id: themeId, take: 4 });
     },
   );
 
@@ -58,7 +58,12 @@ const ThemeReviews: React.FC<IProps> = ({ themeId, reviewsCount }) => {
 
       {reviewsCount > 5 && (
         <Box my="10px">
-          <Button kind="primary">리뷰 더보기({reviewsCount})</Button>
+          <Button
+            kind="primary"
+            onClick={() => router.push(`/themes/${themeId}/reviews`)}
+          >
+            리뷰 더보기({reviewsCount})
+          </Button>
         </Box>
       )}
     </>

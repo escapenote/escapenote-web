@@ -5,4 +5,5 @@ export * from './cafeReview';
 export * from './genre';
 export * from './theme';
 export * from './themeReview';
+export * from './blogReview';
 export * from './faq';

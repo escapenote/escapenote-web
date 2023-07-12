@@ -3,15 +3,13 @@ import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import api from 'api';
-import { useAppSelector } from 'store';
 import FetchMore from 'components/templates/FetchMore';
-import ReviewCard from 'components/molecules/ReviewCard';
+import BlogReviewCard from 'components/molecules/BlogReviewCard';
 
 interface IProps {
   id: string;
 }
-const ThemeReviews: React.FC<IProps> = ({ id }) => {
-  const user = useAppSelector(state => state.auth.user);
+const BlogReviews: React.FC<IProps> = ({ id }) => {
   const {
     status,
     data,
@@ -20,9 +18,9 @@ const ThemeReviews: React.FC<IProps> = ({ id }) => {
     isFetching,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    ['fetchThemeReviews', Boolean(user), id],
+    ['fetchThemeBlogReviews', id],
     ({ pageParam }) => {
-      return api.themes.fetchThemeReviews({
+      return api.themes.fetchThemeBlogReviews({
         id,
         cursor: pageParam,
       });
@@ -46,7 +44,7 @@ const ThemeReviews: React.FC<IProps> = ({ id }) => {
             <Items>
               {group.items?.map(item => (
                 <Item key={item.id}>
-                  <ReviewCard type="theme" review={item} />
+                  <BlogReviewCard review={item} />
                 </Item>
               ))}
             </Items>
@@ -82,4 +80,4 @@ const Item = styled.li`
   }
 `;
 
-export default ThemeReviews;
+export default BlogReviews;

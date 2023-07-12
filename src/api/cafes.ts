@@ -1,5 +1,5 @@
 import { api } from 'api';
-import { IPage, ICafe, ICafeReview } from 'types';
+import { IPage, ICafe, ICafeReview, IBlogReview } from 'types';
 
 /**
  * 추천 카페 리스트 조회
@@ -122,5 +122,30 @@ export const writeReviewOnCafe = async ({
 }: IWriteReviewOnCafeProps) => {
   const body = { rating, text };
   const { data } = await api.post<boolean>(`cafes/${id}/reviews`, body);
+  return data;
+};
+
+/**
+ * 카페 블로그 리뷰 리스트 조회
+ */
+interface IFetchCafeBlogReviewsProps {
+  id: string;
+  take?: number;
+  cursor?: string;
+}
+export const fetchCafeBlogReviews = async ({
+  id,
+  take = 20,
+  cursor,
+}: IFetchCafeBlogReviewsProps) => {
+  const params = { take } as IFetchCafeBlogReviewsProps;
+  if (cursor) params.cursor = cursor;
+
+  const { data } = await api.get<{ items: IBlogReview[]; pageInfo: IPage }>(
+    `cafes/${id}/blog-reviews`,
+    {
+      params,
+    },
+  );
   return data;
 };

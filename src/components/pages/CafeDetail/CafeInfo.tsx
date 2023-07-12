@@ -38,7 +38,7 @@ const CafeInfo: React.FC<IProps> = ({ cafe }) => {
   }
 
   return (
-    <Wrapper>
+    <Container>
       <Box mb="24px">
         <GoogleAdsense style={{ height: '54px' }} slot="6354622686" />
       </Box>
@@ -77,13 +77,12 @@ const CafeInfo: React.FC<IProps> = ({ cafe }) => {
         lat={cafe?.lat}
         lng={cafe?.lng}
       />
-    </Wrapper>
+    </Container>
   );
 };
 
-const Wrapper = styled.div`
-  margin-bottom: 18px;
-  padding-top: 18px;
+const Container = styled.div`
+  padding: 18px 24px;
 `;
 const Title = styled.h2`
   margin-bottom: 4px;

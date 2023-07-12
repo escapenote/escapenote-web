@@ -21,6 +21,7 @@ export interface ICafe {
   saves: any[];
   reviewsRating: number;
   reviewsCount: number;
+  blogReviewsCount: number;
   status: string;
   createdAt: string;
   updatedAt: string;

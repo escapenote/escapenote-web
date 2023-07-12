@@ -10,6 +10,7 @@ import CafeMiniCard from 'components/molecules/CafeMiniCard';
 import GoogleAdsense from 'components/molecules/GoogleAdsense';
 import { Box, Stars, Text } from 'components/atoms';
 import ThemeReviews from './ThemeReviews';
+import ThemeBlogReviews from './ThemeBlogReviews';
 import iconGhost from 'assets/icons/ghost.svg';
 import iconActivity from 'assets/icons/activity.svg';
 import iconLockBlack from 'assets/icons/lock-black.svg';
@@ -22,6 +23,9 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.auth.user);
+
+  const reviewsCount = theme?.reviewsCount ?? 0;
+  const blogReviewsCount = theme?.blogReviewsCount ?? 0;
 
   const getRatingText = (rating: number) => {
     if (rating > 3.9) return '꽃길';
@@ -38,8 +42,6 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
       router.push(`/accounts/login?rd_url=${router.asPath}`);
     }
   }
-
-  const reviewsCount = theme?.reviewsCount ?? 0;
 
   return (
     <Wrapper>
@@ -220,6 +222,30 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
         </ReviewDashboard>
 
         <ThemeReviews themeId={id} reviewsCount={reviewsCount} />
+      </Container>
+
+      <Container>
+        <Box
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box flexDirection="row" alignItems="center">
+            <SubTitle>블로그 리뷰</SubTitle>
+            <Box width="6px" />
+            <Text
+              fontSize="16px"
+              fontWeight="700"
+              color={
+                blogReviewsCount === 0 ? 'rgb(var(--greyscale500))' : '#0abe16;'
+              }
+            >
+              {blogReviewsCount}
+            </Text>
+          </Box>
+        </Box>
+
+        <ThemeBlogReviews themeId={id} reviewsCount={blogReviewsCount} />
       </Container>
 
       <Footer>

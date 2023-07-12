@@ -8,6 +8,7 @@ import { Box, Stars } from 'components/atoms';
 import CafeThemes from './CafeThemes';
 import CafeInfo from './CafeInfo';
 import CafeReviews from './CafeReviews';
+import CafeBlogReviews from './CafeBlogReviews';
 import iconCafeThumbnail from 'assets/icons/cafe-thumbnail.svg';
 
 interface IProps {
@@ -24,44 +25,52 @@ const CafeDetail: React.FC<IProps> = ({ id, tab, cafe }) => {
 
   return (
     <Wrapper>
-      <Box alignItems="center" mb="32px">
-        {cafe && cafe.images.length > 0 ? (
-          <Image
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${cafe.images[0]}`}
-            alt={cafe.name}
-          />
-        ) : (
-          <Image src={iconCafeThumbnail} alt={cafe?.name} />
-        )}
-        <Name>{cafe?.name}</Name>
-        <Location>
-          {cafe?.areaA} {cafe?.areaB}
-        </Location>
-        <Rating>
-          <Stars rating={cafe?.reviewsRating} />
-          <span>
-            {roundToDecimal(cafe?.reviewsRating)}점({cafe?.reviewsCount})
-          </span>
-        </Rating>
-      </Box>
+      <Container>
+        <Box alignItems="center" mb="32px">
+          {cafe && cafe.images.length > 0 ? (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${cafe.images[0]}`}
+              alt={cafe.name}
+            />
+          ) : (
+            <Image src={iconCafeThumbnail} alt={cafe?.name} />
+          )}
+          <Name>{cafe?.name}</Name>
+          <Location>
+            {cafe?.areaA} {cafe?.areaB}
+          </Location>
+          <Rating>
+            <Stars rating={cafe?.reviewsRating} />
+            <span>
+              {roundToDecimal(cafe?.reviewsRating)}점({cafe?.reviewsCount})
+            </span>
+          </Rating>
+        </Box>
 
-      <Tabs>
-        <Tab
-          active={tab === 'themes'}
-          onClick={() => handleChangeTab('themes')}
-        >
-          테마 ({cafe?.themes.length})
-        </Tab>
-        <Tab active={tab === 'info'} onClick={() => handleChangeTab('info')}>
-          기본정보
-        </Tab>
-        <Tab
-          active={tab === 'reviews'}
-          onClick={() => handleChangeTab('reviews')}
-        >
-          리뷰 ({cafe?.reviewsCount})
-        </Tab>
-      </Tabs>
+        <Tabs>
+          <Tab
+            active={tab === 'themes'}
+            onClick={() => handleChangeTab('themes')}
+          >
+            테마
+          </Tab>
+          <Tab active={tab === 'info'} onClick={() => handleChangeTab('info')}>
+            기본정보
+          </Tab>
+          <Tab
+            active={tab === 'reviews'}
+            onClick={() => handleChangeTab('reviews')}
+          >
+            카페 리뷰
+          </Tab>
+          <Tab
+            active={tab === 'blogs'}
+            onClick={() => handleChangeTab('blogs')}
+          >
+            블로그 리뷰
+          </Tab>
+        </Tabs>
+      </Container>
 
       {renderTabContents(tab, id, cafe)}
 
@@ -82,11 +91,16 @@ const renderTabContents = (tab: string, id: string, cafe?: ICafe) => {
     themes: <CafeThemes cafeId={id} />,
     info: <CafeInfo cafe={cafe} />,
     reviews: <CafeReviews cafeId={id} cafe={cafe} />,
+    blogs: <CafeBlogReviews cafeId={id} cafe={cafe} />,
   }[tab];
 };
 
 const Wrapper = styled.div`
+  margin: 0 -24px;
   margin-bottom: 48px;
+`;
+const Container = styled.div`
+  padding: 0 24px;
 `;
 const Image = styled.img`
   margin-bottom: 12px;
