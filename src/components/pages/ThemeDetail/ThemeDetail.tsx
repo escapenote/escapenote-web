@@ -224,6 +224,18 @@ const ThemeDetail: React.FC<IProps> = ({ id, theme }) => {
         <ThemeReviews themeId={id} reviewsCount={reviewsCount} />
       </Container>
 
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        pt="2px"
+        pb="12px"
+        px="24px"
+        backgroundColor="rgb(var(--background))"
+      >
+        <GoogleAdsense style={{ height: '54px' }} slot="9735410596" />
+      </Box>
+
       <Container>
         <Box
           flexDirection="row"
