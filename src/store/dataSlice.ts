@@ -7,17 +7,17 @@ import {
 import { HYDRATE } from 'next-redux-wrapper';
 
 import api from 'api';
-import { AppState } from 'store';
+import { RootState } from 'store';
 
-export interface IState {
+export type DataState = {
   location: { [key: string]: string[] };
-}
+};
 
-const initialState: IState = {
+const initialState: DataState = {
   location: {},
 };
 
-export const hydrate = createAction<AppState>(HYDRATE);
+export const hydrate = createAction<RootState>(HYDRATE);
 
 export const dataSlice = createSlice({
   name: 'data',

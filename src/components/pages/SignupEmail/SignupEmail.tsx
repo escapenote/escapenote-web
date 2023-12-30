@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 import { useMutation } from '@tanstack/react-query';
 
 import api from 'api';
@@ -12,7 +11,7 @@ import { setSignupEmail } from 'store/signupSlice';
 import { Box, Input, Button } from 'components/atoms';
 import iconEmail from 'assets/icons/mail.svg';
 
-const Signup = () => {
+const SignupEmail = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { agreeOlder14Years, agreeTerms, agreePrivacy } = useAppSelector(
@@ -143,4 +142,4 @@ const Form = styled.form`
   flex: 1;
 `;
 
-export default Signup;
+export default SignupEmail;

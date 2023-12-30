@@ -6,21 +6,23 @@ import {
 } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import api from 'api';
 import { IUser } from 'types';
-import { AppState, revertAll } from 'store';
+import { RootState, revertAll } from 'store';
+import { NextPageContext } from 'next';
+import axios from 'axios';
+import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 
-type SliceState = {
+export type AuthState = {
   accessToken: string;
   user: IUser | null;
 };
 
-const initialState: SliceState = {
+const initialState: AuthState = {
   accessToken: '',
   user: null,
 };
 
-export const hydrate = createAction<AppState>(HYDRATE);
+export const hydrate = createAction<RootState>(HYDRATE);
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -77,17 +79,37 @@ export const {
 } = authSlice.actions;
 
 export const currentAuthenticatedUserAsync =
-  (cookies: string = '') =>
+  ({ req, res }: NextPageContext<any>) =>
   (dispatch: Dispatch) => {
-    return api.auth
-      .refreshToken(cookies)
-      .then(({ data }) => {
-        dispatch(currentAuthenticatedUser(data));
-        return data;
-      })
-      .catch(() => {
-        dispatch(currentAuthenticatedUser(null));
-      });
+    const refreshToken = getCookie('refreshToken', { req, res });
+    if (refreshToken) {
+      const API = process.env.NEXT_PUBLIC_API?.replace('localhost', '0.0.0.0');
+      return axios
+        .post(`${API}/auth/refresh`, null, {
+          headers: {
+            Cookie: req?.headers.cookie,
+          },
+        })
+        .then(({ data }) => {
+          dispatch(currentAuthenticatedUser(data));
+          setCookie('refreshToken', data.refreshToken, {
+            req,
+            res,
+            domain: process.env.NEXT_PUBLIC_HOST,
+            maxAge: data.expiredAt,
+            path: '/',
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : false,
+          });
+        })
+        .catch(() => {
+          dispatch(currentAuthenticatedUser(null));
+          deleteCookie('refreshToken', { req, res });
+        });
+    } else {
+      dispatch(currentAuthenticatedUser(null));
+    }
   };
 
 export default authSlice;

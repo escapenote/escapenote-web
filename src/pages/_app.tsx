@@ -1,47 +1,23 @@
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import App from 'next/app';
 import type { AppProps } from 'next/app';
 import { Global } from '@emotion/react';
-import {
-  QueryClient,
-  QueryClientProvider,
-  Hydrate,
-} from '@tanstack/react-query';
 
 import globalStyles from '../styles/globalStyles';
 import { useAppDispatch, wrapper } from 'store';
 import { currentAuthenticatedUserAsync } from 'store/authSlice';
 import { fetchCommonData } from 'store/dataSlice';
-import { setTheme } from 'store/commonSlice';
 import HeadDefaultMeta from 'components/templates/HeadDefaultMeta';
 import A2HS from 'components/organisms/A2HS';
+import Providers from 'providers';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, ...rest }: AppProps) => {
+  const { store, props } = wrapper.useWrappedStore(rest);
   const dispatch = useAppDispatch();
-
-  const queryClientRef = useRef<QueryClient>();
-  if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient({
-      defaultOptions: {
-        queries: {
-          staleTime: 5 * 60 * 1000, // 5 minutes
-        },
-      },
-    });
-  }
 
   useEffect(() => {
     dispatch(fetchCommonData());
-
-    const currentTheme = getUserPreference();
-    dispatch(setTheme(currentTheme));
   }, []);
-
-  function getUserPreference() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
-  }
 
   return (
     <>
@@ -49,12 +25,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
       <Global styles={globalStyles} />
 
-      <QueryClientProvider client={queryClientRef.current}>
-        <Hydrate state={(pageProps as any).dehydratedState}>
-          <Component {...pageProps} />
-          <A2HS />
-        </Hydrate>
-      </QueryClientProvider>
+      <Providers store={store} pageProps={props.pageProps}>
+        <Component {...props.pageProps} />
+        <A2HS />
+      </Providers>
     </>
   );
 };
@@ -64,7 +38,8 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
     const { req } = appContext.ctx;
 
     if (req) {
-      await store.dispatch(currentAuthenticatedUserAsync(req.headers.cookie));
+      // 현재 인증된 사용자의 정보를 가져와서 저장합니다.
+      await store.dispatch(currentAuthenticatedUserAsync(appContext.ctx));
     }
 
     const appProps = await App.getInitialProps(appContext);

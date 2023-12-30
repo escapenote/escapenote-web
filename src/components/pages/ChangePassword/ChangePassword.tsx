@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import api from 'api';
 import { IChangePasswordProps } from 'api/auth';
 import { signupSchema } from 'utils/validators';
+import { useAppSelector } from 'store';
 import { Box, Input, Button } from 'components/atoms';
 import iconPassword from 'assets/icons/password.svg';
 import iconEyeOff from 'assets/icons/eye-off.svg';
@@ -13,6 +14,7 @@ import iconEye from 'assets/icons/eye.svg';
 
 const ChangePassword: React.FC = () => {
   const router = useRouter();
+  const authUser = useAppSelector(state => state.auth.user);
 
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -68,41 +70,47 @@ const ChangePassword: React.FC = () => {
       return;
     }
 
-    mutation.mutate({ oldPassword, newPassword });
+    if (authUser?.hasPassword) {
+      mutation.mutate({ oldPassword, newPassword });
+    } else {
+      mutation.mutate({ newPassword });
+    }
   }
 
   return (
     <Box flex="1">
       <Form onSubmit={handleSignup}>
-        <Box mb="24px">
-          <Label>현재 비밀번호</Label>
-          <Input
-            type={passwordType}
-            name="oldPassword"
-            placeholder="현재 비밀번호"
-            maxLength={20}
-            value={oldPassword}
-            prefixIcon={
-              <img
-                src={iconPassword}
-                alt="password"
-                width="20px"
-                height="20px"
-              />
-            }
-            suffixIcon={
-              <button type="button" onClick={handleTogglePasswordType}>
+        {authUser?.hasPassword && (
+          <Box mb="24px">
+            <Label>현재 비밀번호</Label>
+            <Input
+              type={passwordType}
+              name="oldPassword"
+              placeholder="현재 비밀번호"
+              maxLength={20}
+              value={oldPassword}
+              prefixIcon={
                 <img
-                  src={passwordType === 'password' ? iconEyeOff : iconEye}
-                  alt="eyes-off"
+                  src={iconPassword}
+                  alt="password"
                   width="20px"
                   height="20px"
                 />
-              </button>
-            }
-            onChange={handleChangeState}
-          />
-        </Box>
+              }
+              suffixIcon={
+                <button type="button" onClick={handleTogglePasswordType}>
+                  <img
+                    src={passwordType === 'password' ? iconEyeOff : iconEye}
+                    alt="eyes-off"
+                    width="20px"
+                    height="20px"
+                  />
+                </button>
+              }
+              onChange={handleChangeState}
+            />
+          </Box>
+        )}
 
         <Box mb="16px">
           <Label>새로운 비밀번호</Label>
@@ -167,7 +175,10 @@ const ChangePassword: React.FC = () => {
             type="submit"
             kind="default"
             disabled={
-              !oldPassword || !newPassword || !confirmNewPassword || submitting
+              (authUser?.hasPassword && !oldPassword) ||
+              !newPassword ||
+              !confirmNewPassword ||
+              submitting
             }
           >
             {submitting ? '로딩중...' : '저장'}

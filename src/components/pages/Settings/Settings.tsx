@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import api from 'api';
@@ -16,14 +15,13 @@ import iconLogout from 'assets/icons/logout.svg';
 import iconChevronRight from 'assets/icons/chevron-right.svg';
 
 const Settings = () => {
-  const router = useRouter();
   const dispatch = useAppDispatch();
 
   async function handleLogout() {
     await api.auth.logout();
     dispatch(logout());
     dispatch(revertAll());
-    router.push('/');
+    window.location.href = '/';
   }
 
   return (

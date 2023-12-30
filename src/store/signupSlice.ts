@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { revertAll } from 'store';
 
-type SliceState = {
+export type SignupState = {
   email: string;
   code: string;
   agreeOlder14Years: boolean;
@@ -11,7 +11,7 @@ type SliceState = {
   agreeMarketing: boolean;
 };
 
-const initialState: SliceState = {
+const initialState: SignupState = {
   email: '',
   code: '',
   agreeOlder14Years: false,

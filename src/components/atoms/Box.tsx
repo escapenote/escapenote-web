@@ -24,6 +24,7 @@ interface IProps
     LayoutProps,
     FontWeightProps,
     PositionProps {
+  gap?: string;
   center?: boolean;
 }
 const Box = styled.div<IProps>`
@@ -38,6 +39,7 @@ const Box = styled.div<IProps>`
   ${layout}
   ${position}
   ${fontWeight}
+  ${p => p.gap && `gap: ${p.gap};`}
 `;
 
 export default Box;

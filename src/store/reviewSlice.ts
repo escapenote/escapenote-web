@@ -4,12 +4,12 @@ import { revertAll } from 'store';
 
 type ReviewType = 'cafe' | 'theme' | '';
 
-type SliceState = {
+export type ReviewState = {
   type: ReviewType;
   id: string;
 };
 
-const initialState: SliceState = {
+const initialState: ReviewState = {
   type: '',
   id: '',
 };

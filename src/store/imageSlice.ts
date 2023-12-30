@@ -4,13 +4,13 @@ import { revertAll } from 'store';
 
 type IImportType = 'user' | 'review';
 
-type SliceState = {
+export type ImageState = {
   importType: IImportType;
   importedImageFile: File | null;
   exportedImageFile: File | null;
 };
 
-const initialState: SliceState = {
+const initialState: ImageState = {
   importType: 'user',
   importedImageFile: null,
   exportedImageFile: null,

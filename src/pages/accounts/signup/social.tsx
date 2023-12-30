@@ -1,26 +1,26 @@
 import { useRouter } from 'next/router';
 
-import SignupEmail from 'components/pages/SignupEmail';
+import SignupSocial from 'components/pages/SignupSocial';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
 import { Back } from 'components/atoms';
 
-const SignupPage = () => {
+const SignupSocialPage = () => {
   const router = useRouter();
 
   return (
     <>
       <HeadPageMeta
-        title="이메일로 회원가입 - 이스케이프노트"
-        description="이메일로 회원가입"
-        pageUrl={`${process.env.NEXT_PUBLIC_URL}/accounts/signup/email`}
+        title="소셜 회원가입 - 이스케이프노트"
+        description="소셜 회원가입"
+        pageUrl={`${process.env.NEXT_PUBLIC_URL}/accounts/signup/social`}
       />
 
       <Layout leftAction={<Back onClick={router.back} />} noBottom>
-        <SignupEmail />
+        <SignupSocial />
       </Layout>
     </>
   );
 };
 
-export default SignupPage;
+export default SignupSocialPage;

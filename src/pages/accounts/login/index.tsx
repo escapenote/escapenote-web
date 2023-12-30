@@ -5,7 +5,7 @@ import HeadPageMeta from 'components/templates/HeadPageMeta';
 import Layout from 'components/templates/Layout';
 import { Back } from 'components/atoms';
 
-const LoginPage = () => {
+const Page = () => {
   const router = useRouter();
 
   return (
@@ -23,4 +23,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Page;

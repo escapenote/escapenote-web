@@ -1,3 +1,4 @@
+import { IAccount } from './account';
 import { ICafeReview } from './cafeReview';
 import { IThemeReview } from './themeReview';
 
@@ -11,6 +12,7 @@ export interface IUser {
   phoneNumber?: string;
   phoneNumberVerified: boolean;
   password: string;
+  hasPassword: boolean;
   refreshToken: string;
   avatar: string;
   nickname: string;
@@ -19,6 +21,7 @@ export interface IUser {
   agreeTerms: boolean;
   agreePrivacy: boolean;
   agreeMarketing: boolean;
+  accounts: IAccount[];
   cafeSaves: any[];
   themeSaves: any[];
   cafeReviews: ICafeReview[];

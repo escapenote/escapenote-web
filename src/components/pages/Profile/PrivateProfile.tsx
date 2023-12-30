@@ -20,7 +20,11 @@ const PrivateProfile: React.FC<IProps> = ({ user }) => {
       const totalCount = user.themeReviews.length;
       const successReviews = user.themeReviews.filter(v => v.success);
       const successCount = successReviews.length;
-      return Math.round((successCount / totalCount) * 100);
+      if (totalCount === 0) {
+        return 0;
+      } else {
+        return Math.round((successCount / totalCount) * 100);
+      }
     }
     return 0;
   };

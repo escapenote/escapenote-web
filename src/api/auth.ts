@@ -2,6 +2,19 @@ import { api } from 'api';
 import { IUser } from 'types';
 
 /**
+ * 토큰 재발행
+ */
+interface RefreshTokenRes {
+  accessToken: string;
+  refreshToken: string;
+  expiredAt: number;
+  user: IUser;
+}
+export const refreshToken = () => {
+  return api.post<RefreshTokenRes>('/auth/refresh');
+};
+
+/**
  * 내 정보 조회
  */
 export const fetchProfile = async () => {
@@ -25,7 +38,7 @@ export const updateProfile = (body: IUpdateProfileProps) => {
  * 비밀번호 변경
  */
 export interface IChangePasswordProps {
-  oldPassword: string;
+  oldPassword?: string;
   newPassword: string;
 }
 export const changePassword = (body: IChangePasswordProps) => {
@@ -33,13 +46,15 @@ export const changePassword = (body: IChangePasswordProps) => {
 };
 
 /**
- * 임시 비밀번호 발급
+ * 닉네임 중복 확인
  */
-export interface ISendTemporaryPasswordProps {
-  email: string;
+export interface ICheckForDuplicateNicknameProps {
+  nickname: string;
 }
-export const sendTemporaryPassword = (data: ISendTemporaryPasswordProps) => {
-  return api.post('/auth/email/send_password', data);
+export const checkForDuplicateNickname = (
+  data: ICheckForDuplicateNicknameProps,
+) => {
+  return api.post('/auth/nickname/duplicate', data);
 };
 
 /**
@@ -74,6 +89,34 @@ export const verifyCodeByEmail = (data: IVerifyCodeByEmailProps) => {
 };
 
 /**
+ * 임시 비밀번호 발급
+ */
+export interface ISendTemporaryPasswordProps {
+  email: string;
+}
+export const sendTemporaryPassword = (data: ISendTemporaryPasswordProps) => {
+  return api.post('/auth/email/send_password', data);
+};
+
+/**
+ * 이메일로 로그인
+ */
+export interface ILoginByEmailProps {
+  email: string;
+  password: string;
+}
+export interface ILoginByEmailRes {
+  accessToken: string;
+  refreshToken: string;
+  expiredAt: number;
+  user: IUser;
+}
+export const loginByEmail = ({ email, password }: ILoginByEmailProps) => {
+  const data = { email, password };
+  return api.post<ILoginByEmailRes>('/auth/login/email', data);
+};
+
+/**
  * 이메일로 회원가입
  */
 export interface ISignupByEmailProps {
@@ -83,57 +126,35 @@ export interface ISignupByEmailProps {
   avatar?: string;
   nickname: string;
   type: string;
-  agreeOlder14Years: boolean;
-  agreeTerms: boolean;
-  agreePrivacy: boolean;
   agreeMarketing: boolean;
 }
+export interface ISignupByEmailRes {
+  accessToken: string;
+  refreshToken: string;
+  expiredAt: number;
+  user: IUser;
+}
 export const signupByEmail = (data: ISignupByEmailProps) => {
-  return api.post('/auth/email/signup', data);
+  return api.post<ISignupByEmailRes>('/auth/signup/email', data);
 };
 
 /**
- * 닉네임 중복 확인
+ * 소셜로 회원가입
  */
-export interface ICheckForDuplicateNicknameProps {
+export interface ISignupBySocialProps {
+  avatar?: string;
   nickname: string;
+  type: string;
+  agreeMarketing: boolean;
 }
-export const checkForDuplicateNickname = (
-  data: ICheckForDuplicateNicknameProps,
-) => {
-  return api.post('/auth/nickname/duplicate', data);
-};
-
-/**
- * 토큰 재발행
- */
-interface IRefreshTokenRes {
+export interface ISignupBySocialRes {
   accessToken: string;
+  refreshToken: string;
+  expiredAt: number;
   user: IUser;
 }
-export const refreshToken = (cookies?: string) => {
-  let options = undefined;
-  if (cookies) {
-    options = { headers: { Cookie: cookies } };
-  }
-  return api.post<IRefreshTokenRes>('/auth/refresh', {}, options);
-};
-
-/**
- * 로그인
- */
-export interface ILoginProps {
-  email: string;
-  password: string;
-}
-interface ILoginRes {
-  accessToken: string;
-  user: IUser;
-}
-export const login = ({ email, password }: ILoginProps) => {
-  const data = { email, password };
-
-  return api.post<ILoginRes>('/auth/login', data);
+export const signupBySocial = (data: ISignupBySocialProps) => {
+  return api.post<ISignupBySocialRes>('/auth/signup/social', data);
 };
 
 /**

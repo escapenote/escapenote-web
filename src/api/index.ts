@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-import store from 'store';
-import { setAccessToken } from 'store/authSlice';
+import { store } from 'store';
+import { currentAuthenticatedUser } from 'store/authSlice';
+
+import { refreshToken } from './auth';
+
 import * as common from './common';
 import * as auth from './auth';
 import * as users from './users';
@@ -29,30 +32,31 @@ api.interceptors.request.use((config: any) => {
   return config;
 });
 
-api.interceptors.response.use(undefined, error => {
+api.interceptors.response.use(undefined, async error => {
   const { config, response } = error;
 
-  if (response.status !== 401) {
-    return Promise.reject(error);
+  if (
+    response?.status === 401 &&
+    config.url !== '/auth/refresh' &&
+    !config?._retry
+  ) {
+    // Request new access token using refresh token
+    try {
+      const { data } = await refreshToken();
+
+      // Use callback to set access token and user
+      store.dispatch(currentAuthenticatedUser(data));
+    } catch {
+      store.dispatch(currentAuthenticatedUser(null));
+    }
+
+    // Update failed request's header and retry it
+    config._retry = true;
+
+    return api(config);
   }
 
-  if (config.url === '/auth/refresh') {
-    return Promise.reject(error);
-  }
-
-  return auth
-    .refreshToken()
-    .then(({ data }) => {
-      const { accessToken } = data;
-      store.dispatch(setAccessToken(accessToken));
-      return new Promise((resolve, reject) => {
-        api
-          .request(config)
-          .then(result => resolve(result))
-          .catch(error => reject(error));
-      });
-    })
-    .catch(error => Promise.reject(error));
+  return Promise.reject(error);
 });
 
 export default {

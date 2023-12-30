@@ -1,19 +1,19 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { AppState, revertAll } from 'store';
+import { RootState, revertAll } from 'store';
 
-export interface IState {
+export type SearchState = {
   term: string;
   values: string[];
-}
+};
 
-const initialState: IState = {
+const initialState: SearchState = {
   term: '',
   values: [],
 };
 
-export const hydrate = createAction<AppState>(HYDRATE);
+export const hydrate = createAction<RootState>(HYDRATE);
 
 export const searchSlice = createSlice({
   name: 'search',

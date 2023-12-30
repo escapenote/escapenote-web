@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { revertAll } from 'store';
 
-type SliceState = {
+export type PasswordState = {
   email: string;
 };
 
-const initialState: SliceState = {
+const initialState: PasswordState = {
   email: '',
 };
 

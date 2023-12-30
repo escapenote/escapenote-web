@@ -1,23 +1,23 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { AppState } from 'store';
+import { RootState } from 'store';
 
 export type ThemeType = 'dark' | 'light' | undefined;
 
-export interface IState {
+export type CommonState = {
   theme: ThemeType;
   isDesktop: string;
   isMobile: string;
-}
+};
 
-const initialState: IState = {
+const initialState: CommonState = {
   theme: undefined,
   isDesktop: '',
   isMobile: '',
 };
 
-export const hydrate = createAction<AppState>(HYDRATE);
+export const hydrate = createAction<RootState>(HYDRATE);
 
 export const commonSlice = createSlice({
   name: 'common',
