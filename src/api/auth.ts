@@ -4,14 +4,14 @@ import { IUser } from 'types';
 /**
  * 토큰 재발행
  */
-interface RefreshTokenRes {
+interface IRefreshTokenRes {
   accessToken: string;
   refreshToken: string;
   expiredAt: number;
   user: IUser;
 }
 export const refreshToken = () => {
-  return api.post<RefreshTokenRes>('/auth/refresh');
+  return api.post<IRefreshTokenRes>('/auth/refresh');
 };
 
 /**
