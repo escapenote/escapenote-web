@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-query';
 
 import api from 'api';
+import { truncateText } from 'utils/common';
 import { useAppSelector, wrapper } from 'store';
 import ThemeDetail from 'components/pages/ThemeDetail';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
@@ -68,7 +69,7 @@ const ThemeDetailPage = ({ initial }: IProps) => {
       {data && (
         <HeadPageMeta
           title={`${data.displayName} - 이스케이프노트`}
-          description={data.intro}
+          description={truncateText(data.intro)}
           pageUrl={`${process.env.NEXT_PUBLIC_URL}/themes/${id}`}
           imageUrl={`${process.env.NEXT_PUBLIC_IMAGE_URL}${data.thumbnail}`}
         />

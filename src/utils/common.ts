@@ -54,3 +54,15 @@ export const readUrl = (file: File): Promise<string> => {
 export const blobToFile = (theBlob: Blob, fileName: string): File => {
   return new File([theBlob], fileName, { lastModified: new Date().getTime() });
 };
+
+export const truncateText = (text: string | undefined, maxLength = 152) => {
+  if (text) {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    } else {
+      return text;
+    }
+  } else {
+    return '';
+  }
+};

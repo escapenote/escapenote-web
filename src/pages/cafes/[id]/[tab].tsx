@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-query';
 
 import api from 'api';
+import { truncateText } from 'utils/common';
 import { useAppSelector, wrapper } from 'store';
 import CafeDetail from 'components/pages/CafeDetail';
 import HeadPageMeta from 'components/templates/HeadPageMeta';
@@ -69,7 +70,7 @@ const CafeDetailPage = ({ initial }: IProps) => {
       {data && (
         <HeadPageMeta
           title={`${data.name} - 이스케이프노트`}
-          description={data.addressLine}
+          description={truncateText(data.intro)}
           pageUrl={`${process.env.NEXT_PUBLIC_URL}/cafes/${id}/${tab}`}
           {...(data.images && {
             imageUrl: `${process.env.NEXT_PUBLIC_IMAGE_URL}${data.images[0]}`,
